@@ -1,7 +1,7 @@
-#The MIT License (MIT)
+# The MIT License (MIT)
 
-Copyright (c) The CPNV(Centre Professionnel du Nord Vaudois), .NET Foundation and Contributors
-
+###### Copyright (c) The CPNV(Centre Professionnel du Nord Vaudois), .NET Foundation and Contributors
+****
 All rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -21,3 +21,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+**** 
