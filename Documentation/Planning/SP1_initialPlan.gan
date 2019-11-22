@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2019-11-18" view-index="0" gantt-divider-location="353" resource-divider-location="300" version="2.8.1" locale="fr_CH">
+<?xml version="1.0" encoding="UTF-8"?><project name="GameLibrary - Louis &amp; Jonas" company="" webLink="http://" view-date="2019-11-18" view-index="0" gantt-divider-location="353" resource-divider-location="300" version="2.8.1" locale="fr">
     <description/>
     <view zooming-state="default:5" id="gantt-chart">
         <field id="tpd3" name="Nom" width="239" order="0"/>
@@ -35,8 +35,8 @@
         </taskproperties>
         <task id="0" name="Sprint 1 - Register/Login" meeting="false" start="2019-11-21" duration="11" complete="0" expand="true"/>
         <task id="2" name="Sprint 2 - Add game to library" meeting="false" start="2019-12-05" duration="11" complete="0" expand="true"/>
-        <task id="4" name="Sprint 3 - View library" meeting="false" start="2019-12-19" duration="21" complete="0" expand="true"/>
-        <task id="6" name="Sprint 4 - Import/Export library" meeting="false" start="2020-01-17" duration="11" complete="0" expand="true"/>
+        <task id="4" name="Sprint 3 - View library + CRUD" meeting="false" start="2019-12-19" duration="21" complete="0" expand="true"/>
+        <task id="6" name="Sprint 4 - Import/Export library" meeting="false" start="2020-01-17" duration="6" complete="0" expand="true"/>
     </tasks>
     <resources/>
     <allocations/>
