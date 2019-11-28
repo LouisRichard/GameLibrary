@@ -66,6 +66,8 @@ namespace GameLibrary
         /// </summary>
         private void btnSignIn_Click(object sender, EventArgs e)
         {
+            //check that every field is filled
+
             if (register)
             {
                 //sends register view
