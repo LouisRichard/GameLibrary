@@ -9,6 +9,7 @@ namespace TestLoginRegister
         [TestMethod]
         public void TestMethod1()
         {
+
         }
     }
 }

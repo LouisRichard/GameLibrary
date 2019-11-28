@@ -6,9 +6,17 @@ namespace TestLoginRegister
     [TestClass]
     public class TestStatusLoginRegister
     {
+
         [TestMethod]
-        public void TestMethod1()
+        public void TestDynamicView()
         {
+
+        }
+
+        [TestMethod]
+        public void TestBool()
+        {
+
         }
     }
 }
