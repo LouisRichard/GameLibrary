@@ -13,7 +13,7 @@ namespace GameLibrary
     public partial class LoginRegister : Form
     {
         /// <summary>
-        /// register permits to change dynamically the view
+        /// register attribute permits to change dynamically the view
         /// </summary>
         private bool register = false;
 
@@ -30,16 +30,18 @@ namespace GameLibrary
         {
             if (register)
             {
+                //goes to login view
                 register = false;
             }
             else
             {
+                //goes to register view
                 register = true;
             }
 
             if (register)
             {
-                //register
+                //register view
                 lblTitle.Text = "Register";
                 btnChange.Text = "Go login";
                 btnSignIn.Text = "Sign up";
@@ -49,13 +51,32 @@ namespace GameLibrary
             }
             else
             {
-                //login
+                //login view
                 lblTitle.Text = "Login";
                 btnChange.Text = "Go register";
                 btnSignIn.Text = "Sign in";
 
                 lblRePassword.Visible = false;
                 txtRePassword.Visible = false;
+            }
+        }
+
+        /// <summary>
+        /// This method sign the user. Depending on the register attribute, it will add or authentifiate the user on the database.
+        /// </summary>
+        private void btnSignIn_Click(object sender, EventArgs e)
+        {
+            if (register)
+            {
+                //sends register view
+
+                //if the user has been correctly added to DB, shows RegisterValid form
+                
+            }
+            else
+            {
+                //sends login view
+
             }
         }
     }
