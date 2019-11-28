@@ -69,17 +69,23 @@ namespace GameLibrary
                                 [Title] VARCHAR(255) NOT NULL)",
 
                 @"CREATE TABLE IF NOT EXISTS
-                                [Library]([idUser] INTERGER NOT NULL FOREIGN KEY,
-                                [idGame] INTEGER NOT NULL FOREIGN KEY,
-                                [DateAdded] DATE NOT NULL)",
+                                [Library](
+                                [idUser] INTEGER NOT NULL,
+                                [idGame] INTEGER NOT NULL,
+                                [DateAdded] DATE NOT NULL,
+                                FOREIGN KEY(idUser) REFERENCES Users(idUser),
+                                FOREIGN KEY(idGame) REFERENCES Games(idGame))",
 
                 @"CREATE TABLE IF NOT EXISTS
                                 [Platforms]([idPlatform] INTEGER NOT NULL PRIMARY KEY,
                                 [Name] VARCHAR(255) NOT NULL)",
 
-                @"CREATE TABLE IF NOT EXISTS
-                                [GamesPlatforms]([idGame] INTEGER NOT NULL FOREIGN KEY,
-                                [idPlatform] INTEGER NOT NULL FOREIGN KEY)"
+                @"CREATE TABLE IF NOT EXISTS 
+                                [GamesPlatforms](
+                                [idGame] INTEGER NOT NULL,
+                                [idPlatform] INTEGER NOT NULL,
+                                FOREIGN KEY(idGame) REFERENCES Games(idGame)
+                                FOREIGN KEY(idPlatform) REFERENCES Platforms(idPlatform))"
             };
 
             foreach(string query in createTableQuery)
