@@ -60,6 +60,9 @@
     <Compile Include="Forms\RegisterValid.Designer.cs">
       <DependentUpon>RegisterValid.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\LoginRegister.resx">
+      <DependentUpon>LoginRegister.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\RegisterValid.resx">
       <DependentUpon>RegisterValid.cs</DependentUpon>
     </EmbeddedResource>
