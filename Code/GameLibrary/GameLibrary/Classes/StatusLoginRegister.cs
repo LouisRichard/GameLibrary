@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameLibrary.Classes
+namespace GameLibrary
 {
     /// <summary>
     /// This class represents the view of the user (Login ⊕ Register)
@@ -13,6 +13,9 @@ namespace GameLibrary.Classes
     {
         private bool status;
 
+        /// <summary>
+        /// status accessors
+        /// </summary>
         public bool Status
         {
             get
@@ -23,6 +26,14 @@ namespace GameLibrary.Classes
             {
                 this.status = value;
             }
+        }
+
+        /// <summary>
+        /// status constructor with a parameter
+        /// </summary>
+        public StatusLoginRegister(bool status)
+        {
+            this.status = status;
         }
     }
 }

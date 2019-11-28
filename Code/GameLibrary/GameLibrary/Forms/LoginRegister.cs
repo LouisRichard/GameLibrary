@@ -12,11 +12,7 @@ namespace GameLibrary
 {
     public partial class LoginRegister : Form
     {
-        /// <summary>
-        /// register attribute permits to change dynamically the view
-        /// </summary>
-        private bool register = false;
-
+        public StatusLoginRegister view = new StatusLoginRegister(false);
 
         public LoginRegister()
         {
@@ -28,18 +24,18 @@ namespace GameLibrary
         /// </summary>
         private void btnChange_Click(object sender, EventArgs e)
         {
-            if (register)
+            if (view.Status)
             {
                 //goes to login view
-                register = false;
+                view.Status = false;
             }
             else
             {
                 //goes to register view
-                register = true;
+                view.Status = true;
             }
 
-            if (register)
+            if (view.Status)
             {
                 //register view
                 lblTitle.Text = "Register";
@@ -66,18 +62,20 @@ namespace GameLibrary
         /// </summary>
         private void btnSignIn_Click(object sender, EventArgs e)
         {
-            //check that every field is filled
+            //!!//make every textboxes normal
 
-            if (register)
+            //!!//check that every field is filled
+
+            if (view.Status)
             {
-                //sends register view
+                //!!//sends register view
 
-                //if the user has been correctly added to DB, shows RegisterValid form
-                
+                //!!//if the user has been correctly added to DB, shows RegisterValid form
+
             }
             else
             {
-                //sends login view
+                //!!//sends login view
 
             }
         }
