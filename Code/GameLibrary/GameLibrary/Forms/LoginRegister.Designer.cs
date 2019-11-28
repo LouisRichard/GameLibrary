@@ -145,12 +145,11 @@
             this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();
-
+            
             //this code totally disable the possibility to change the size of the form
             this.MinimumSize = new System.Drawing.Size(800,400) ;
             this.MaximumSize = new System.Drawing.Size(800,400);
             this.MaximizeBox = false;
-
         }
 
         #endregion

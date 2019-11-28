@@ -71,6 +71,10 @@
             this.Controls.Add(this.btnSignIn);
             this.Controls.Add(this.lblConfirm);
             this.Controls.Add(this.lblTitle);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(800, 300);
+            this.MinimumSize = new System.Drawing.Size(800, 300);
             this.Name = "RegisterValid";
             this.Text = "RegisterValid";
             this.ResumeLayout(false);
