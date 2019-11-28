@@ -11,7 +11,7 @@ namespace GameLibrary
         /// <param name="close">If true : Close database connection. If false : Open database connection</param>
         /// <returns>SQLiteCommand cmd if database is getting opened.</returns>
         /// <returns>Null if database is getting closed</returns>
-        private static SQLiteCommand ConnectToDatabase(bool close)
+        internal static SQLiteCommand ConnectToDatabase(bool close)
         {
             if (!File.Exists("GLdb.db3"))
             {
