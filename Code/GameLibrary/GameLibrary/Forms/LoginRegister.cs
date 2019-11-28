@@ -24,16 +24,7 @@ namespace GameLibrary
         /// </summary>
         private void btnChange_Click(object sender, EventArgs e)
         {
-            if (view.Status)
-            {
-                //goes to login view
-                view.Status = false;
-            }
-            else
-            {
-                //goes to register view
-                view.Status = true;
-            }
+            view.Status ^= true;
 
             if (view.Status)
             {
@@ -62,9 +53,19 @@ namespace GameLibrary
         /// </summary>
         private void btnSignIn_Click(object sender, EventArgs e)
         {
-            //!!//make every textboxes normal
+            txtEmail.BackColor = Color.White;
+            txtPassword.BackColor = Color.White;
+            txtRePassword.BackColor = Color.White;
 
             //!!//check that every field is filled
+            try
+            {
+                
+            }
+            catch
+            {
+
+            }
 
             if (view.Status)
             {
