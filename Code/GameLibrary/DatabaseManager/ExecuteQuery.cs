@@ -29,5 +29,18 @@ namespace GameLibrary
                 _ = DbConnector.ConnectToDatabase(true); //close db connection  Using Ignore(_) as we don't care what it returns.
             return result;
         }
+
+        /// <summary>
+        /// Execute a Insert query
+        /// </summary>
+        /// <param name="query">Insert query to execute</param>
+        public static void Insert(string query)
+        {
+            SQLiteCommand command = DbConnector.ConnectToDatabase(false); //open db connection
+            command.CommandText = query;
+            command.ExecuteNonQuery(); //Execute the query
+
+            _ = DbConnector.ConnectToDatabase(true); //close db connection   Using Ignore(_) as we don't care what it returns.
+        }
     }
 }
