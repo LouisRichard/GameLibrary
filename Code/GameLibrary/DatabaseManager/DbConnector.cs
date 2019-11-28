@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Data.SQLite;
 using System;
+using System.Collections.Generic;
 
 namespace GameLibrary
 {
@@ -56,8 +57,36 @@ namespace GameLibrary
         /// <param name="cmd">SQLiteCommand cmd</param>
         private static void CreateTable(SQLiteCommand cmd)
         {
-            //TODO CREATE TABLES NEEDED FOR THE DB
-            throw new NotImplementedException();
+            List<string> createTableQuery = new List<string>
+            {
+                @"CREATE TABLE IF NOT EXISTS
+                                [Users]([idUser] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                                [Email] VARCHAR(255) NOT NULL,
+                                [Password] VARCHAR(255) NOT NULL)",
+
+                @"CREATE TABLE IF NOT EXISTS 
+                                [Games]([idGame] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                                [Title] VARCHAR(255) NOT NULL)",
+
+                @"CREATE TABLE IF NOT EXISTS
+                                [Library]([idUser] INTERGER NOT NULL FOREIGN KEY,
+                                [idGame] INTEGER NOT NULL FOREIGN KEY,
+                                [DateAdded] DATE NOT NULL)",
+
+                @"CREATE TABLE IF NOT EXISTS
+                                [Platforms]([idPlatform] INTEGER NOT NULL PRIMARY KEY,
+                                [Name] VARCHAR(255) NOT NULL)",
+
+                @"CREATE TABLE IF NOT EXISTS
+                                [GamesPlatforms]([idGame] INTEGER NOT NULL FOREIGN KEY,
+                                [idPlatform] INTEGER NOT NULL FOREIGN KEY)"
+            };
+
+            foreach(string query in createTableQuery)
+            {
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 }
