@@ -4,10 +4,17 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DataManager;
 
 namespace TestLoginRegister
-{
+{ 
     [TestClass]
     public class TestRegister
     {
+        [TestCleanup]
+        public void RemoveDatabase()
+        {
+            File.Delete(Path.Combine(
+                        Directory.GetCurrentDirectory(), "GLdb.db3"));
+        }
+
         [TestMethod]
         public void TestRegisterUserThatDoesntExist()
         {
@@ -16,11 +23,8 @@ namespace TestLoginRegister
             string testUserPasswordConfirm = "password";
             bool success = false;
 
-            //delete the database for further tests
-            File.Delete(Path.Combine(
-                        Directory.GetCurrentDirectory(), "GLdb.db3"));
-
             success = UserManager.RegisterRequest(testUserEmail, testUserPassword, testUserPasswordConfirm);
+
             Assert.AreEqual(success, true);
         }
 

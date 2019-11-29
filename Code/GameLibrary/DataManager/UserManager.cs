@@ -34,16 +34,16 @@ namespace DataManager
             {
                 string registerQuery = @"INSERT INTO [Users] (Email, Password) VALUES ('" + email + "', '" + password + "')";
                 string selectUserQuery = @"SELECT * FROM [Users] WHERE Email = '" + email + "'";
-                try
-                {
+               // try
+               // {
                     ExecuteQuery.Insert(registerQuery);
                     return true;
-                }
-                catch
-                {
-                    Exception exception;
-                }
-                throw new Exception("An error occured. Maybe this user already exists. That's a possibility. Idk man.");
+               // }
+               // catch
+              //  {
+               //     Exception exception;
+               // }
+               // throw new Exception("An error occured. Maybe this user already exists. That's a possibility. Idk man.");
             }
             throw new Exception("The passwords aren't the same");
         }
