@@ -138,5 +138,21 @@ namespace GameLibrary
                 txtRePassword.BackColor = Color.White;
             }
         }
+
+        /// <summary>
+        /// This method save the position of the window
+        /// </summary>
+        private void LoginRegister_Move(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// This method loads the user preferences during the load of the window
+        /// </summary>
+        private void LoginRegister_Load(object sender, EventArgs e)
+        {
+            this.SetDesktopLocation(GetLoginLocation());
+        }
     }
 }
