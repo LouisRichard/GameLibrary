@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\LoginRegisterLib.cs" />
     <Compile Include="Classes\StatusLoginRegister.cs" />
     <Compile Include="Forms\LoginRegister.cs">
       <SubType>Form</SubType>
