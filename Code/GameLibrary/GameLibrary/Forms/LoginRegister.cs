@@ -5,7 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,6 +13,7 @@ namespace GameLibrary
     public partial class LoginRegister : Form
     {
         public StatusLoginRegister view = new StatusLoginRegister(false);
+        public LoginRegisterLib lib = new LoginRegisterLib();
 
         public LoginRegister()
         {
@@ -83,8 +83,7 @@ namespace GameLibrary
         /// </summary>
         private void txtEmail_TextChanged(object sender, EventArgs e)
         {
-            //this regex was posted by "PaRiMaL RaJ" and "mafafu" on StackOverflow
-            if (!(Regex.IsMatch(txtEmail.Text, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase)))
+            if (!(lib.ValidMail(txtEmail.Text)))
             {
                 txtEmail.BackColor = Color.Crimson;
             }
