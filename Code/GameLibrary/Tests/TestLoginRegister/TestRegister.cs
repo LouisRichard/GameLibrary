@@ -43,9 +43,15 @@ namespace TestLoginRegister
         }
 
         [TestMethod]
-        public void TestRegisterTwiceSameUser()
+        [ExpectedException(typeof(Exception))]
+        public void TestRegisterButPasswordsArentTheSame()
         {
+            string testUserEmail = @"testuser@domain.ch";
+            string testUserPassword = "password";
+            string testUserPasswordConfirm = "NotTheSamePassword";
+            bool success = false;
 
+            success = UserManager.RegisterRequest(testUserEmail, testUserPassword, testUserPasswordConfirm);
         }
     }
 }
