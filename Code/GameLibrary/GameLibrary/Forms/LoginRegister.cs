@@ -38,7 +38,8 @@ namespace GameLibrary
         }
         private void LoginRegister_FormClosing(object sender, FormClosedEventArgs e)
         {
-            formLibrary.ShowDialog();
+
+            
         }
 
         #endregion formLoad
@@ -177,6 +178,7 @@ namespace GameLibrary
                 if (loginRegisterSuccess)
                 {
                     this.Hide();
+                    formLibrary.ShowDialog();
                     this.Close();
                 }
 
