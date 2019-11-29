@@ -148,9 +148,17 @@ namespace GameLibrary
 
             if (view.Status)
             {
-                UserManager.RegisterRequest(txtEmail.Text, txtPassword.Text, txtRePassword.Text);
+                try
+                {
+                    bool success = UserManager.RegisterRequest(txtEmail.Text, txtPassword.Text, txtRePassword.Text);
+                }
+                catch
+                {
+                    //!!//
+                }
 
                 //!!//if the user has been correctly added to DB, shows RegisterValid form
+                
 
             }
             else
