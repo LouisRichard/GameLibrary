@@ -42,5 +42,14 @@ namespace DatabaseManager
 
             _ = DbConnector.ConnectToDatabase(true); //close db connection   Using Ignore(_) as we don't care what it returns.
         }
+
+        public static void Delete(string query)
+        {
+                SQLiteCommand command = DbConnector.ConnectToDatabase(false); //open db connection
+                command.CommandText = query;
+                command.ExecuteNonQuery(); //Execute the query
+
+                _ = DbConnector.ConnectToDatabase(true); //close db connection   Using Ignore(_) as we don't care what it returns.
+        }
     }
 }
