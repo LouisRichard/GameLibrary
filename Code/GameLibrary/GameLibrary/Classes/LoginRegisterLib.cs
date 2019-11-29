@@ -13,7 +13,39 @@ namespace GameLibrary
     /// </summary>
     public class LoginRegisterLib
     {
+        #region attributes
+
+        private bool status;
         private Point windowLocation = new Point();
+
+        #endregion attributes
+
+        #region accessors
+
+        /// <summary>
+        /// Status of the LoginRegister form
+        /// </summary>
+        public bool Status
+        {
+            get
+            {
+                return status;
+            }
+            set
+            {
+                this.status = value;
+            }
+        }
+
+        #endregion accessors
+
+        #region constructors
+
+        s
+
+        #endregion constructors
+
+        #region public methods
 
         /// <summary>
         /// Check if a mail is valid
@@ -37,5 +69,8 @@ namespace GameLibrary
 
             return windowLocation;
         }
+
+        #endregion public methods
+
     }
 }

@@ -17,13 +17,12 @@ namespace GameLibrary
 
         private MyLibrary formLibrary = new MyLibrary();
         private RegisterValid formRegisterValid = new RegisterValid();
-        private StatusLoginRegister view = new StatusLoginRegister(false);
         private LoginRegisterLib lib = new LoginRegisterLib();
         private bool loginRegisterSuccess;
 
         #endregion attributes
 
-        #region form load
+        #region formLoad
 
         public LoginRegister()
         {
@@ -38,18 +37,18 @@ namespace GameLibrary
             this.SetDesktopLocation(lib.GetLoginLocation().X, lib.GetLoginLocation().Y);
         }
 
-        #endregion form load
+        #endregion formLoad
 
-        #region dynamic form
+        #region dynamicForm events
 
         /// <summary>
         /// This method is used to dynamically change the view of the form
         /// </summary>
         private void btnChange_Click(object sender, EventArgs e)
         {
-            view.Status ^= true;
+            lib.Status ^= true;
 
-            if (view.Status)
+            if (lib.Status)
             {
                 //register view
                 lblTitle.Text = "Register";
@@ -98,7 +97,7 @@ namespace GameLibrary
         /// </summary>
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
-            if (view.Status)
+            if (lib.Status)
             {
                 if (!(txtPassword.Text == txtRePassword.Text))
                 {
@@ -126,7 +125,7 @@ namespace GameLibrary
         /// </summary>
         private void txtRePassword_TextChanged(object sender, EventArgs e)
         {
-            if (!(txtPassword.Text == txtRePassword.Text && view.Status))
+            if (!(txtPassword.Text == txtRePassword.Text && lib.Status))
             {
                 txtPassword.BackColor = Color.Crimson;
                 txtRePassword.BackColor = Color.Crimson;
@@ -140,12 +139,14 @@ namespace GameLibrary
 
         #endregion dynamic form
 
+        #region signIn signUp methods
+
         /// <summary>
         /// This method sign the user. Depending on the status, it will add or authentifiate the user on the database.
         /// </summary>
         private void btnSignIn_Click(object sender, EventArgs e)
         {
-            if (view.Status)
+            if (lib.Status)
             {
                 try
                 {
@@ -177,6 +178,8 @@ namespace GameLibrary
 
             }
         }
+
+        #endregion signIn signUp methods
 
         /// <summary>
         /// This method save the position of the window
