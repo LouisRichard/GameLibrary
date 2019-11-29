@@ -47,22 +47,17 @@ namespace GameLibrary
                 lblRePassword.Visible = false;
                 txtRePassword.Visible = false;
             }
+
         }
 
         /// <summary>
-        /// This method sign the user. Depending on the register attribute, it will add or authentifiate the user on the database.
+        /// This method sign the user. Depending on the status, it will add or authentifiate the user on the database.
         /// </summary>
         private void btnSignIn_Click(object sender, EventArgs e)
         {
-
-            try
-            {
-
-            }
-            catch
-            {
-                
-            }
+            txtEmail_TextChanged(this, e);
+            txtPassword_TextChanged(this, e);
+            txtRePassword_TextChanged(this, e);
 
             if (view.Status)
             {
@@ -84,6 +79,10 @@ namespace GameLibrary
         private void txtEmail_TextChanged(object sender, EventArgs e)
         {
             if (!(lib.ValidMail(txtEmail.Text)))
+            {
+                txtEmail.BackColor = Color.Crimson;
+            }
+            else if (txtEmail.Text == "")
             {
                 txtEmail.BackColor = Color.Crimson;
             }
@@ -111,6 +110,14 @@ namespace GameLibrary
                     txtRePassword.BackColor = Color.White;
                 }
             }
+            else if (txtPassword.Text == "")
+            {
+                txtPassword.BackColor = Color.Crimson;
+            }
+            else
+            {
+                txtPassword.BackColor = Color.White;
+            }
         }
 
         /// <summary>
@@ -118,7 +125,7 @@ namespace GameLibrary
         /// </summary>
         private void txtRePassword_TextChanged(object sender, EventArgs e)
         {
-            if (!(txtPassword.Text == txtRePassword.Text))
+            if (!(txtPassword.Text == txtRePassword.Text && view.Status))
             {
                 txtPassword.BackColor = Color.Crimson;
                 txtRePassword.BackColor = Color.Crimson;

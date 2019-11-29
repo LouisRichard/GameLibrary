@@ -7,7 +7,13 @@ namespace TestLoginRegister
     public class TestLogin
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestEmailNotValid()
+        {
+
+        }
+
+        [TestMethod]
+        public void TestEmailValid()
         {
 
         }
