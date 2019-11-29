@@ -1,4 +1,4 @@
-﻿using System.IO;
+﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DataManager;
 using DatabaseManager;
@@ -29,9 +29,17 @@ namespace TestLoginRegister
         }
 
         [TestMethod]
+        [ExpectedException(typeof(Exception))]
         public void TestRegisterUserThatAlreadyExist()
         {
+            string testUserEmail = @"testuser@domain.ch";
+            string testUserPassword = "password";
+            string testUserPasswordConfirm = "password";
+            bool register = false;
+            bool registerSame = false;
 
+            register = UserManager.RegisterRequest(testUserEmail, testUserPassword, testUserPasswordConfirm);
+            registerSame = UserManager.RegisterRequest(testUserEmail, testUserPassword, testUserPasswordConfirm);
         }
 
         [TestMethod]
