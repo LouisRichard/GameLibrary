@@ -78,6 +78,7 @@
             this.MinimumSize = new System.Drawing.Size(800, 300);
             this.Name = "RegisterValid";
             this.Text = "Register valid";
+            this.Load += new System.EventHandler(this.RegisterValid_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

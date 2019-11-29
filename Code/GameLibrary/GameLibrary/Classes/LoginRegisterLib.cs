@@ -17,6 +17,7 @@ namespace GameLibrary
 
         private bool status;
         private Point loginLocation = new Point();
+        private Point registerValidLocation = new Point();
 
         #endregion attributes
 
@@ -59,15 +60,29 @@ namespace GameLibrary
         }
 
         /// <summary>
-        /// This method gets the user preferences for the login window location
+        /// This method returns login-register window location from the last user preferences
         /// </summary>
-        /// <returns>Point structure: the position of the window</returns>
+        /// <returns>Point structure: the position of the login-regiser window</returns>
         public Point LoginLocation()
         {
-            loginLocation.X = 800;
-            loginLocation.Y = 400;
+            //loginLocation.X = json.JSONXLocation;
+            //loginLocation.Y = json.JSONYLocation;
+            loginLocation.X = 100;
+            loginLocation.Y = 50;
 
             return loginLocation;
+        }
+
+        /// <summary>
+        /// This method returns register valid window location
+        /// </summary>
+        /// <returns>Point structure: the position of the register valid window</returns>
+        public Point RegisterValidLocation()
+        {
+            registerValidLocation.X = this.LoginLocation().X;
+            registerValidLocation.Y = this.LoginLocation().Y+50;
+
+            return registerValidLocation;
         }
 
         #endregion public methods

@@ -12,6 +12,8 @@ namespace GameLibrary
 {
     public partial class RegisterValid : Form
     {
+        private LoginRegisterLib lib = new LoginRegisterLib();
+
         public RegisterValid()
         {
             InitializeComponent();
@@ -20,6 +22,11 @@ namespace GameLibrary
         private void btnSignIn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void RegisterValid_Load(object sender, EventArgs e)
+        {
+            this.SetDesktopLocation(lib.RegisterValidLocation().X, lib.RegisterValidLocation().Y);
         }
     }
 }
