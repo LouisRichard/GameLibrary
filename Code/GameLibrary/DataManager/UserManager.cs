@@ -14,7 +14,7 @@ namespace DataManager
         /// <returns></returns>
         public static bool LoginRequest(string email, string password)
         {
-            string testLoginQuery = @"SELECT * FROM [users] WHERE [email] = " + email + " AND PASSWORD = " + password;
+            string testLoginQuery = @"SELECT * FROM [users] WHERE [email] = '" + email + "' AND PASSWORD = '" + password + "'";
             if(ExecuteQuery.Select(testLoginQuery) != null)
             {
                 return true;

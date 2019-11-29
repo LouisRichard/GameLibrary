@@ -39,7 +39,7 @@ namespace DatabaseManager
             command.CommandText = query;
             command.ExecuteNonQuery(); //Execute the query
 
-            _ = DbConnector.ConnectToDatabase(true); //close db connection   Using Ignore(_) as we don't care what it returns.
+            command = DbConnector.ConnectToDatabase(true); //close db connection   Using Ignore(_) as we don't care what it returns.
         }
 
         /// <summary>
