@@ -152,7 +152,7 @@ namespace GameLibrary
         /// </summary>
         private void LoginRegister_Load(object sender, EventArgs e)
         {
-            this.SetDesktopLocation(GetLoginLocation());
+            this.SetDesktopLocation(lib.GetLoginLocation().X, lib.GetLoginLocation().Y);
         }
     }
 }
