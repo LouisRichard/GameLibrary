@@ -1,7 +1,7 @@
-﻿
-using System.IO;
+﻿using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DataManager;
+using DatabaseManager;
 
 namespace TestLoginRegister
 { 
@@ -11,8 +11,8 @@ namespace TestLoginRegister
         [TestCleanup]
         public void RemoveDatabase()
         {
-            File.Delete(Path.Combine(
-                        Directory.GetCurrentDirectory(), "GLdb.db3"));
+            string query = @"DELETE FROM [Users] WHERE 'email' = 'testuser@domain.ch'";
+            ExecuteQuery.Delete(query);
         }
 
         [TestMethod]

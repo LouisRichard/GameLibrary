@@ -43,6 +43,10 @@ namespace DatabaseManager
             _ = DbConnector.ConnectToDatabase(true); //close db connection   Using Ignore(_) as we don't care what it returns.
         }
 
+        /// <summary>
+        /// Execute a statement delete in the database
+        /// </summary>
+        /// <param name="query"></param>
         public static void Delete(string query)
         {
                 SQLiteCommand command = DbConnector.ConnectToDatabase(false); //open db connection
