@@ -23,5 +23,17 @@ namespace TestLoginRegister
             success = UserManager.RegisterRequest(testUserEmail, testUserPassword, testUserPasswordConfirm);
             Assert.AreEqual(success, true);
         }
+
+        [TestMethod]
+        public void TestRegisterUserThatAlreadyExist()
+        {
+
+        }
+
+        [TestMethod]
+        public void TestRegisterTwiceSameUser()
+        {
+
+        }
     }
 }
