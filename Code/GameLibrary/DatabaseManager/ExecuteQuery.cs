@@ -4,7 +4,7 @@ using System.Text;
 using System.Data.SQLite;
 using System.Data;
 
-namespace GameLibrary
+namespace DatabaseManager
 {
     public class ExecuteQuery
     {

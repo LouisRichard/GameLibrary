@@ -3,7 +3,7 @@ using System.Data.SQLite;
 using System;
 using System.Collections.Generic;
 
-namespace GameLibrary
+namespace DatabaseManager
 {
     public class DbConnector
     {

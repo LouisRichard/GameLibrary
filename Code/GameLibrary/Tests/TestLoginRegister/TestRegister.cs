@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GameLibrary;
+using DataManager;
 
 namespace TestLoginRegister
 {
