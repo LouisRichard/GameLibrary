@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GameLibrary
+namespace DataManager
 {
     public class UserManager
     {
