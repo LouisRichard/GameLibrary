@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DatabaseManager\DatabaseManager.csproj" />
-    <ProjectReference Include="..\GameLibrary\GameLibrary.csproj" />
   </ItemGroup>
 
 </Project>
