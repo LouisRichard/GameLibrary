@@ -18,7 +18,7 @@ namespace GameLibrary
         /// <summary>
         /// Check if a mail is valid
         /// </summary>
-        /// <param name="email">the mail that must be checked</param>
+        /// <param name="email">string value: the mail that must be checked</param>
         /// <returns>boolean value: true if the mail is valid, false if it isnt</returns>
         public bool ValidMail(string email)
         {
