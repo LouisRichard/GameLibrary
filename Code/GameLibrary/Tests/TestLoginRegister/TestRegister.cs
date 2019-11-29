@@ -29,7 +29,7 @@ namespace TestLoginRegister
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof(System.Data.SQLite.SQLiteException))]
         public void TestRegisterUserThatAlreadyExist()
         {
             string testUserEmail = @"testuser@domain.ch";
