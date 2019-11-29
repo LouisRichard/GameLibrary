@@ -22,6 +22,7 @@ namespace GameLibrary
         /// <returns>boolean value: true if the mail is valid, false if it isnt</returns>
         public bool ValidMail(string email)
         {
+            //This regex has been made by "PaRiMaL RaJ" and "mafafu"
             return Regex.IsMatch(email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
         }
 

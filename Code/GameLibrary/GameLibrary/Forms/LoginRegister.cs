@@ -145,10 +145,6 @@ namespace GameLibrary
         /// </summary>
         private void btnSignIn_Click(object sender, EventArgs e)
         {
-            txtEmail_TextChanged(this, e);
-            txtPassword_TextChanged(this, e);
-            txtRePassword_TextChanged(this, e);
-
             if (view.Status)
             {
                 try
