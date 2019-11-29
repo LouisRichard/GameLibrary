@@ -34,8 +34,8 @@ namespace GameLibrary
         /// </summary>
         private void LoginRegister_Load(object sender, EventArgs e)
         {
-            this.SetDesktopLocation(lib.GetLoginLocation().X, lib.GetLoginLocation().Y);
-        }
+            this.SetDesktopLocation(lib.LoginLocation().X, lib.LoginLocation().Y);
+        }   
 
         #endregion formLoad
 

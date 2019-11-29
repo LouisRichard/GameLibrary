@@ -16,7 +16,7 @@ namespace GameLibrary
         #region attributes
 
         private bool status;
-        private Point windowLocation = new Point();
+        private Point loginLocation = new Point();
 
         #endregion attributes
 
@@ -41,7 +41,7 @@ namespace GameLibrary
 
         #region constructors
 
-        s
+        
 
         #endregion constructors
 
@@ -54,7 +54,7 @@ namespace GameLibrary
         /// <returns>boolean value: true if the mail is valid, false if it isnt</returns>
         public bool ValidMail(string email)
         {
-            //This regex has been made by "PaRiMaL RaJ" and "mafafu"
+            //This regex has been made by "PaRiMaL RaJ" and "mafafu" on StackOverflow
             return Regex.IsMatch(email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
         }
 
@@ -62,12 +62,12 @@ namespace GameLibrary
         /// This method gets the user preferences for the login window location
         /// </summary>
         /// <returns>Point structure: the position of the window</returns>
-        public Point GetLoginLocation()
+        public Point LoginLocation()
         {
-            windowLocation.X = 800;
-            windowLocation.Y = 400;
+            loginLocation.X = 800;
+            loginLocation.Y = 400;
 
-            return windowLocation;
+            return loginLocation;
         }
 
         #endregion public methods
