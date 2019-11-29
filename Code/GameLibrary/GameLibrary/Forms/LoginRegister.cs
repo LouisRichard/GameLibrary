@@ -35,7 +35,11 @@ namespace GameLibrary
         private void LoginRegister_Load(object sender, EventArgs e)
         {
             this.SetDesktopLocation(lib.LoginLocation().X, lib.LoginLocation().Y);
-        }   
+        }
+        private void LoginRegister_FormClosing(object sender, FormClosedEventArgs e)
+        {
+            formLibrary.ShowDialog();
+        }
 
         #endregion formLoad
 
@@ -189,9 +193,5 @@ namespace GameLibrary
 
         }
 
-        private void LoginRegister_FormClosing(object sender, FormClosedEventArgs e)
-        {
-            formLibrary.ShowDialog();
-        }
     }
 }
