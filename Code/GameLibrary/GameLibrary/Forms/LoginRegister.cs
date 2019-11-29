@@ -15,8 +15,11 @@ namespace GameLibrary
     {
         #region attributes
 
-        public StatusLoginRegister view = new StatusLoginRegister(false);
-        public LoginRegisterLib lib = new LoginRegisterLib();
+        private MyLibrary formLibrary = new MyLibrary();
+        private RegisterValid formRegisterValid = new RegisterValid();
+        private StatusLoginRegister view = new StatusLoginRegister(false);
+        private LoginRegisterLib lib = new LoginRegisterLib();
+        private bool loginRegisterSuccess;
 
         #endregion attributes
 
@@ -150,7 +153,7 @@ namespace GameLibrary
             {
                 try
                 {
-                    bool success = UserManager.RegisterRequest(txtEmail.Text, txtPassword.Text, txtRePassword.Text);
+                    loginRegisterSuccess = UserManager.RegisterRequest(txtEmail.Text, txtPassword.Text, txtRePassword.Text);
                 }
                 catch
                 {
@@ -158,14 +161,24 @@ namespace GameLibrary
                 }
 
                 //!!//if the user has been correctly added to DB, shows RegisterValid form
-                
+                if (loginRegisterSuccess)
+                {
+                    this.Hide();
+                    formRegisterValid.ShowDialog();
+                    this.Close();
+                }
 
             }
             else
             {
-                UserManager.LoginRequest(txtEmail.Text, txtPassword.Text);
+                loginRegisterSuccess = UserManager.LoginRequest(txtEmail.Text, txtPassword.Text);
 
-                //!!//if request is passed, show MyLibrary form
+                if (loginRegisterSuccess)
+                {
+                    this.Hide();
+                    this.Close();
+                }
+
             }
         }
 
@@ -177,5 +190,9 @@ namespace GameLibrary
 
         }
 
+        private void LoginRegister_FormClosing(object sender, FormClosedEventArgs e)
+        {
+            formLibrary.ShowDialog();
+        }
     }
 }

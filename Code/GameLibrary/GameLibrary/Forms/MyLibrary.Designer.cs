@@ -1,4 +1,4 @@
-﻿namespace GameLibrary.Forms
+﻿namespace GameLibrary
 {
     partial class MyLibrary
     {

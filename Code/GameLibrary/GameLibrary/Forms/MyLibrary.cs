@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GameLibrary.Forms
+namespace GameLibrary
 {
     public partial class MyLibrary : Form
     {

@@ -153,6 +153,7 @@
             this.MinimumSize = new System.Drawing.Size(800, 400);
             this.Name = "LoginRegister";
             this.Text = "Login";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LoginRegister_FormClosing);
             this.Load += new System.EventHandler(this.LoginRegister_Load);
             this.Move += new System.EventHandler(this.LoginRegister_Move);
             this.ResumeLayout(false);
