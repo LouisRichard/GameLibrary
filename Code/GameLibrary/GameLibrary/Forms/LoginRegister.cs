@@ -57,14 +57,25 @@ namespace GameLibrary
             txtPassword.BackColor = Color.White;
             txtRePassword.BackColor = Color.White;
 
-            //!!//check that every field is filled
             try
             {
-                
+
             }
             catch
             {
+                if (txtEmail.Text == "")
+                {
+                    throw new Exception("mail missing");
+                } else if (txtPassword.Text == "")
+                {
+                    throw new Exception("mail missing");
+                }
+                else if (view.Status) {
+                    if (txtRePassword.Text == "")
+                    {
 
+                    }
+                }
             }
 
             if (view.Status)
