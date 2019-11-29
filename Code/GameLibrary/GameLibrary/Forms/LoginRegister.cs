@@ -12,13 +12,31 @@ namespace GameLibrary
 {
     public partial class LoginRegister : Form
     {
+        #region attributes
+
         public StatusLoginRegister view = new StatusLoginRegister(false);
         public LoginRegisterLib lib = new LoginRegisterLib();
+
+        #endregion attributes
+
+        #region form load
 
         public LoginRegister()
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// This method loads the user preferences during the load of the window
+        /// </summary>
+        private void LoginRegister_Load(object sender, EventArgs e)
+        {
+            this.SetDesktopLocation(lib.GetLoginLocation().X, lib.GetLoginLocation().Y);
+        }
+
+        #endregion form load
+
+        #region dynamic form
 
         /// <summary>
         /// This method is used to dynamically change the view of the form
@@ -50,29 +68,6 @@ namespace GameLibrary
                 txtRePassword.Visible = false;
             }
 
-        }
-
-        /// <summary>
-        /// This method sign the user. Depending on the status, it will add or authentifiate the user on the database.
-        /// </summary>
-        private void btnSignIn_Click(object sender, EventArgs e)
-        {
-            txtEmail_TextChanged(this, e);
-            txtPassword_TextChanged(this, e);
-            txtRePassword_TextChanged(this, e);
-
-            if (view.Status)
-            {
-                //!!//sends register view
-
-                //!!//if the user has been correctly added to DB, shows RegisterValid form
-
-            }
-            else
-            {
-                //!!//sends login view
-
-            }
         }
 
         /// <summary>
@@ -139,6 +134,31 @@ namespace GameLibrary
             }
         }
 
+        #endregion dynamic form
+
+        /// <summary>
+        /// This method sign the user. Depending on the status, it will add or authentifiate the user on the database.
+        /// </summary>
+        private void btnSignIn_Click(object sender, EventArgs e)
+        {
+            txtEmail_TextChanged(this, e);
+            txtPassword_TextChanged(this, e);
+            txtRePassword_TextChanged(this, e);
+
+            if (view.Status)
+            {
+                //!!//sends register view
+
+                //!!//if the user has been correctly added to DB, shows RegisterValid form
+
+            }
+            else
+            {
+                //!!//sends login view
+
+            }
+        }
+
         /// <summary>
         /// This method save the position of the window
         /// </summary>
@@ -147,12 +167,5 @@ namespace GameLibrary
 
         }
 
-        /// <summary>
-        /// This method loads the user preferences during the load of the window
-        /// </summary>
-        private void LoginRegister_Load(object sender, EventArgs e)
-        {
-            this.SetDesktopLocation(lib.GetLoginLocation().X, lib.GetLoginLocation().Y);
-        }
     }
 }
