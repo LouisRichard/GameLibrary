@@ -10,13 +10,14 @@ namespace TestLoginRegister
         [TestMethod]
         public void TestDynamicView()
         {
-
+            
         }
 
         [TestMethod]
-        public void TestBool()
+        public void TestStatusWork()
         {
 
         }
+        
     }
 }
