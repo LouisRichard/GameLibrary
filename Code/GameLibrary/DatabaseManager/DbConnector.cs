@@ -27,7 +27,7 @@ namespace DatabaseManager
 
             if (!close)
             {
-                conn.Open(); //Open connection to the SQLite database
+                conn.Open();
                 if (createTable)
                 {
                     CreateTable(cmd);
@@ -61,12 +61,12 @@ namespace DatabaseManager
             {
                 @"CREATE TABLE IF NOT EXISTS
                                 [Users]([idUser] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                                [Email] VARCHAR(255) NOT NULL,
-                                [Password] VARCHAR(255) NOT NULL)",
+                                [Email] VARCHAR(255) NOT NULL UNIQUE,
+                                [Password] VARCHAR(255) NOT NULL);",
 
                 @"CREATE TABLE IF NOT EXISTS 
                                 [Games]([idGame] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                                [Title] VARCHAR(255) NOT NULL)",
+                                [Title] VARCHAR(255) NOT NULL);",
 
                 @"CREATE TABLE IF NOT EXISTS
                                 [Library](
@@ -74,18 +74,18 @@ namespace DatabaseManager
                                 [idGame] INTEGER NOT NULL,
                                 [DateAdded] DATE NOT NULL,
                                 FOREIGN KEY(idUser) REFERENCES Users(idUser),
-                                FOREIGN KEY(idGame) REFERENCES Games(idGame))",
+                                FOREIGN KEY(idGame) REFERENCES Games(idGame));",
 
                 @"CREATE TABLE IF NOT EXISTS
                                 [Platforms]([idPlatform] INTEGER NOT NULL PRIMARY KEY,
-                                [Name] VARCHAR(255) NOT NULL)",
+                                [Name] VARCHAR(255) NOT NULL);",
 
                 @"CREATE TABLE IF NOT EXISTS 
                                 [GamesPlatforms](
                                 [idGame] INTEGER NOT NULL,
                                 [idPlatform] INTEGER NOT NULL,
                                 FOREIGN KEY(idGame) REFERENCES Games(idGame)
-                                FOREIGN KEY(idPlatform) REFERENCES Platforms(idPlatform))"
+                                FOREIGN KEY(idPlatform) REFERENCES Platforms(idPlatform));"
             };
 
             foreach(string query in createTableQuery)
