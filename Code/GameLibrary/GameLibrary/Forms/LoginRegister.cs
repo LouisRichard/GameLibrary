@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DataManager;
 
 namespace GameLibrary
 {
@@ -147,15 +148,16 @@ namespace GameLibrary
 
             if (view.Status)
             {
-                //!!//sends register view
+                UserManager.RegisterRequest(txtEmail.Text, txtPassword.Text, txtRePassword.Text);
 
                 //!!//if the user has been correctly added to DB, shows RegisterValid form
 
             }
             else
             {
-                //!!//sends login view
+                UserManager.LoginRequest(txtEmail.Text, txtPassword.Text);
 
+                //!!//if request is passed, show MyLibrary form
             }
         }
 
