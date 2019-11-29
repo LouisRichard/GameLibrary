@@ -68,12 +68,12 @@ namespace GameLibrary
                     throw new Exception("mail missing");
                 } else if (txtPassword.Text == "")
                 {
-                    throw new Exception("mail missing");
+                    throw new Exception("password missing");
                 }
                 else if (view.Status) {
                     if (txtRePassword.Text == "")
                     {
-
+                        throw new Exception("confirm password missing");
                     }
                 }
             }
