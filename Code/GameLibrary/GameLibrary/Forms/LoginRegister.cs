@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -53,9 +54,6 @@ namespace GameLibrary
         /// </summary>
         private void btnSignIn_Click(object sender, EventArgs e)
         {
-            txtEmail.BackColor = Color.White;
-            txtPassword.BackColor = Color.White;
-            txtRePassword.BackColor = Color.White;
 
             try
             {
@@ -63,19 +61,7 @@ namespace GameLibrary
             }
             catch
             {
-                if (txtEmail.Text == "")
-                {
-                    throw new Exception("mail missing");
-                } else if (txtPassword.Text == "")
-                {
-                    throw new Exception("password missing");
-                }
-                else if (view.Status) {
-                    if (txtRePassword.Text == "")
-                    {
-                        throw new Exception("confirm password missing");
-                    }
-                }
+                
             }
 
             if (view.Status)
@@ -89,6 +75,59 @@ namespace GameLibrary
             {
                 //!!//sends login view
 
+            }
+        }
+
+        /// <summary>
+        /// this method test if the mail textbox is well formatted
+        /// </summary>
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+            //this regex was posted by "PaRiMaL RaJ" and "mafafu" on StackOverflow
+            if (!(Regex.IsMatch(txtEmail.Text, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase)))
+            {
+                txtEmail.BackColor = Color.Crimson;
+            }
+            else
+            {
+                txtEmail.BackColor = Color.White;
+            }
+        }
+
+        /// <summary>
+        /// this method test if the password textbox is well formatted
+        /// </summary>
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+            if (view.Status)
+            {
+                if (!(txtPassword.Text == txtRePassword.Text))
+                {
+                    txtPassword.BackColor = Color.Crimson;
+                    txtRePassword.BackColor = Color.Crimson;
+                }
+                else
+                {
+                    txtPassword.BackColor = Color.White;
+                    txtRePassword.BackColor = Color.White;
+                }
+            }
+        }
+
+        /// <summary>
+        /// this method test if the confirm password textbox is well formatted
+        /// </summary>
+        private void txtRePassword_TextChanged(object sender, EventArgs e)
+        {
+            if (!(txtPassword.Text == txtRePassword.Text))
+            {
+                txtPassword.BackColor = Color.Crimson;
+                txtRePassword.BackColor = Color.Crimson;
+            }
+            else
+            {
+                txtPassword.BackColor = Color.White;
+                txtRePassword.BackColor = Color.White;
             }
         }
     }

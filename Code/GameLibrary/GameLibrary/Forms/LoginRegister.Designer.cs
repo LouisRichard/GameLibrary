@@ -88,6 +88,7 @@
             this.txtRePassword.Size = new System.Drawing.Size(300, 35);
             this.txtRePassword.TabIndex = 13;
             this.txtRePassword.Visible = false;
+            this.txtRePassword.TextChanged += new System.EventHandler(this.txtRePassword_TextChanged);
             // 
             // txtPassword
             // 
@@ -96,6 +97,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(300, 35);
             this.txtPassword.TabIndex = 12;
+            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
             // txtEmail
             // 
@@ -105,6 +107,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(300, 35);
             this.txtEmail.TabIndex = 11;
+            this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
             // 
             // btnChange
             // 
