@@ -33,6 +33,7 @@ namespace GameLibrary
                 lblTitle.Text = "Register";
                 btnChange.Text = "Go login";
                 btnSignIn.Text = "Sign up";
+                this.Text = "Register";
 
                 lblRePassword.Visible = true;
                 txtRePassword.Visible = true;
@@ -43,6 +44,7 @@ namespace GameLibrary
                 lblTitle.Text = "Login";
                 btnChange.Text = "Go register";
                 btnSignIn.Text = "Sign in";
+                this.Text = "Login";
 
                 lblRePassword.Visible = false;
                 txtRePassword.Visible = false;

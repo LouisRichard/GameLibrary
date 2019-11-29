@@ -76,7 +76,7 @@
             this.MaximumSize = new System.Drawing.Size(800, 300);
             this.MinimumSize = new System.Drawing.Size(800, 300);
             this.Name = "RegisterValid";
-            this.Text = "RegisterValid";
+            this.Text = "Register valid";
             this.ResumeLayout(false);
             this.PerformLayout();
 
