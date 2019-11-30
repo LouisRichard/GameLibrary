@@ -15,7 +15,7 @@ namespace DataManager
         public static bool LoginRequest(string email, string password)
         {
             string testLoginQuery = @"SELECT * FROM [users] WHERE [email] = '" + email + "' AND PASSWORD = '" + password + "'"  ;
-            if(ExecuteQuery.Select(testLoginQuery) != null)
+            if(ExecuteQuery.Select(testLoginQuery).Count == 1)
             {
                 return true;
             }
@@ -34,12 +34,16 @@ namespace DataManager
         {
             if (password == confirmPassword)
             {
+                string selectQuery = @"SELECT count(idUser) FROM [users] WHERE [email] = '" + email + "'";
                 string registerQuery = @"INSERT INTO [Users] (Email, Password) VALUES ('" + email + "', '" + password + "')";
 
-                List<string> selectResult = new List<string>();
+                if(ExecuteQuery.Select(selectQuery).Count == 0)
+                {
+                    ExecuteQuery.Insert(registerQuery);
+                    return true;
+                }
 
-                ExecuteQuery.Insert(registerQuery);
-                return true;
+                throw new Exception("User already exists");
 
             }
             throw new Exception("The passwords aren't the same");
