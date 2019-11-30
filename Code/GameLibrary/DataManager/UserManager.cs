@@ -34,16 +34,19 @@ namespace DataManager
         {
             if (password == confirmPassword)
             {
-                string selectQuery = @"SELECT count(idUser) FROM [users] WHERE [email] = '" + email + "'";
                 string registerQuery = @"INSERT INTO [Users] (Email, Password) VALUES ('" + email + "', '" + password + "')";
+                try { 
 
-                if(ExecuteQuery.Select(selectQuery).Count == 0)
-                {
                     ExecuteQuery.Insert(registerQuery);
                     return true;
                 }
+                catch
+                {
+                    Exception exception;
+                    throw new Exception("User already exists");
+                }
 
-                throw new Exception("User already exists");
+                
 
             }
             throw new Exception("The passwords aren't the same");
