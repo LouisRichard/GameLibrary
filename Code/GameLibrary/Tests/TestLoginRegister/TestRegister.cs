@@ -8,7 +8,7 @@ namespace TestLoginRegister
     [TestClass]
     public class TestRegister
     {
-        [TestCleanup]
+        [TestInitialize]
         public void RemoveDatabase()
         {
             string query = @"DELETE FROM [Users] WHERE 'email' = 'testuser@domain.ch'";
