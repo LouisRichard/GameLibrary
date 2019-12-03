@@ -27,6 +27,9 @@ namespace GameLibrary
         private void RegisterValid_Load(object sender, EventArgs e)
         {
             this.SetDesktopLocation(lib.RegisterValidLocation().X, lib.RegisterValidLocation().Y);
+
+            //!!//modify the label to put the username
+            //lblConfirm = $"{}, you're now registered.";
         }
     }
 }

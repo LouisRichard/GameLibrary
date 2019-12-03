@@ -38,6 +38,7 @@
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.btnChange = new System.Windows.Forms.Button();
             this.btnSignIn = new System.Windows.Forms.Button();
+            this.lblError = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblRePassword
@@ -132,11 +133,22 @@
             this.btnSignIn.UseVisualStyleBackColor = true;
             this.btnSignIn.Click += new System.EventHandler(this.btnSignIn_Click);
             // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.lblError.ForeColor = System.Drawing.Color.Crimson;
+            this.lblError.Location = new System.Drawing.Point(345, 291);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(0, 29);
+            this.lblError.TabIndex = 18;
+            // 
             // LoginRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 361);
+            this.Controls.Add(this.lblError);
             this.Controls.Add(this.lblRePassword);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblEmail);
@@ -172,6 +184,7 @@
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Button btnChange;
         private System.Windows.Forms.Button btnSignIn;
+        private System.Windows.Forms.Label lblError;
     }
 }
 

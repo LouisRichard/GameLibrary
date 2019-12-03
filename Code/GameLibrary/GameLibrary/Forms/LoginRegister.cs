@@ -52,6 +52,7 @@ namespace GameLibrary
         private void btnChange_Click(object sender, EventArgs e)
         {
             lib.Status ^= true;
+            lblError.Text = "";
 
             if (lib.Status)
             {
@@ -151,6 +152,8 @@ namespace GameLibrary
         /// </summary>
         private void btnSignIn_Click(object sender, EventArgs e)
         {
+            lblError.Text = "";
+
             if (lib.Status)
             {
                 try
@@ -159,10 +162,10 @@ namespace GameLibrary
                 }
                 catch
                 {
-                    //!!//
+                    //!!//add exception text
+                    //lblError.Text = $"{}";
                 }
 
-                //!!//if the user has been correctly added to DB, shows RegisterValid form
                 if (loginRegisterSuccess)
                 {
                     this.Hide();
@@ -174,7 +177,15 @@ namespace GameLibrary
             }
             else
             {
-                loginRegisterSuccess = UserManager.LoginRequest(txtEmail.Text, txtPassword.Text);
+                try
+                {
+                    loginRegisterSuccess = UserManager.LoginRequest(txtEmail.Text, txtPassword.Text);
+                }
+                catch
+                {
+                    //!!//add exception text
+                    //lblError.Text = $"{}";
+                }
 
                 if (loginRegisterSuccess)
                 {
