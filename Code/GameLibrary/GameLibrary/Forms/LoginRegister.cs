@@ -167,6 +167,7 @@ namespace GameLibrary
                 {
                     this.Hide();
                     formRegisterValid.ShowDialog();
+                    formLibrary.ShowDialog();
                     this.Close();
                 }
 
