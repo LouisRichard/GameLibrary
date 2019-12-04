@@ -186,10 +186,9 @@ namespace GameLibrary
                 {
                     loginRegisterSuccess = UserManager.LoginRequest(user.Username, user.Password);
                 }
-                catch
+                catch (FailedDatabaseConnectionException exception)
                 {
-                    //!!//add exception text
-                    //lblError.Text = $"{}";
+                    lblError.Text = $"{exception}";
                 }
 
                 if (loginRegisterSuccess)

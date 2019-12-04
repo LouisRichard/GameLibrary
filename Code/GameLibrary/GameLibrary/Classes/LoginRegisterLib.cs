@@ -17,7 +17,6 @@ namespace GameLibrary
 
         private bool status;
         private Point loginLocation = new Point();
-        private Point registerValidLocation = new Point();
 
         #endregion attributes
 
