@@ -73,18 +73,6 @@ namespace GameLibrary
             return loginLocation;
         }
 
-        /// <summary>
-        /// This method returns register valid window location
-        /// </summary>
-        /// <returns>Point structure: the position of the register valid window</returns>
-        public Point RegisterValidLocation()
-        {
-            registerValidLocation.X = this.LoginLocation().X;
-            registerValidLocation.Y = this.LoginLocation().Y+50;
-
-            return registerValidLocation;
-        }
-
         #endregion public methods
 
     }
