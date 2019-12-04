@@ -47,7 +47,7 @@ namespace GameLibrary
         #region dynamicForm events
 
         /// <summary>
-        /// This method is used to dynamically change the view of the form
+        /// This method is used to dynamically toggle the view of the form
         /// </summary>
         private void btnChange_Click(object sender, EventArgs e)
         {
