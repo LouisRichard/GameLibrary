@@ -39,7 +39,6 @@ namespace GameLibrary
         private void LoginRegister_FormClosing(object sender, FormClosedEventArgs e)
         {
 
-            
         }
 
         #endregion formLoad
