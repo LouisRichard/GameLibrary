@@ -18,6 +18,7 @@ namespace GameLibrary
         private MyLibrary formLibrary = new MyLibrary();
         private RegisterValid formRegisterValid = new RegisterValid();
         private LoginRegisterLib lib = new LoginRegisterLib();
+        private User user = new User();
         private bool loginRegisterSuccess;
 
         #endregion attributes
@@ -34,7 +35,7 @@ namespace GameLibrary
         /// </summary>
         private void LoginRegister_Load(object sender, EventArgs e)
         {
-            this.SetDesktopLocation(lib.LoginLocation().X, lib.LoginLocation().Y);
+            SetDesktopLocation(lib.LoginLocation().X, lib.LoginLocation().Y);
         }
         private void LoginRegister_FormClosing(object sender, FormClosedEventArgs e)
         {
@@ -152,12 +153,15 @@ namespace GameLibrary
         private void btnSignIn_Click(object sender, EventArgs e)
         {
             lblError.Text = "";
+            user.Username = txtEmail.Text;
+            user.Password = txtPassword.Text;
+            user.RePassword = txtRePassword.Text;
 
             if (lib.Status)
             {
                 try
                 {
-                    loginRegisterSuccess = UserManager.RegisterRequest(txtEmail.Text, txtPassword.Text, txtRePassword.Text);
+                    loginRegisterSuccess = UserManager.RegisterRequest(user.Username, user.Password, user.RePassword);
                 }
                 catch
                 {
@@ -168,7 +172,9 @@ namespace GameLibrary
                 if (loginRegisterSuccess)
                 {
                     this.Hide();
-                    formRegisterValid.ShowDialog();
+                    formRegisterValid.User = user;
+                    formRegisterValid.Lib = lib;
+                    formRegisterValid.ShowDialog(this);
                     formLibrary.ShowDialog();
                     this.Close();
                 }
@@ -178,7 +184,7 @@ namespace GameLibrary
             {
                 try
                 {
-                    loginRegisterSuccess = UserManager.LoginRequest(txtEmail.Text, txtPassword.Text);
+                    loginRegisterSuccess = UserManager.LoginRequest(user.Username, user.Password);
                 }
                 catch
                 {

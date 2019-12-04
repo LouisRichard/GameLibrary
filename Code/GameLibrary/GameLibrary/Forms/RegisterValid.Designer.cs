@@ -79,6 +79,7 @@
             this.MaximumSize = new System.Drawing.Size(800, 300);
             this.MinimumSize = new System.Drawing.Size(800, 300);
             this.Name = "RegisterValid";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Register valid";
             this.Load += new System.EventHandler(this.RegisterValid_Load);
             this.ResumeLayout(false);
