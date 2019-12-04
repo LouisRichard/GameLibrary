@@ -8,13 +8,6 @@ namespace TestLoginRegister
     [TestClass]
     public class TestRegister
     {
-        [TestInitialize]
-        public void RemoveDatabase()
-        {
-            string query = @"DELETE FROM [Users] WHERE 'email' = 'testuser@domain.ch'";
-            ExecuteQuery.Delete(query);
-        }
-
         [TestMethod]
         public void TestRegisterUserThatDoesntExist()
         {
@@ -52,6 +45,13 @@ namespace TestLoginRegister
             bool success = false;
 
             success = UserManager.RegisterRequest(testUserEmail, testUserPassword, testUserPasswordConfirm);
+        }
+
+        [TestCleanup]
+        public void RemoveDatabase()
+        {
+            string query = @"DELETE FROM [Users] WHERE 'email' = 'testuser@domain.ch'";
+            ExecuteQuery.Delete(query);
         }
     }
 }
