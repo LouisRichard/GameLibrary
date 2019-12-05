@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DatabaseManager;
+using System.Data.SQLite;
 
 namespace DataManager
 {
     public class UserManager
     {
+        static CryptoPassword crypto = new CryptoPassword();
+
         /// <summary>
         /// Tries to log in a user
         /// </summary>
@@ -14,16 +16,24 @@ namespace DataManager
         /// <returns></returns>
         public static bool LoginRequest(string email, string password)
         {
-            string testLoginQuery = @"SELECT * FROM [users] WHERE [email] = '" + email + "' AND PASSWORD = '" + password + "'"  ;
+            string testLoginQuery = @"SELECT [Password] FROM [users] WHERE [email] = '" + email + "'" ;
             try
             {
-                if (ExecuteQuery.Select(testLoginQuery).Count == 1)
+                List<string> queryResult = new List<string>();
+                queryResult = ExecuteQuery.Select(testLoginQuery);
+                if (queryResult.Count == 1)
                 {
-                    return true;
+                    string hashedPassword = queryResult[0];
+
+                    if (crypto.Verify(password, hashedPassword))
+                    {
+                        return true;
+                    }
+                    throw new WrongPasswordException();
                 }
                 throw new UserDoesntExistException();
             }
-            catch
+            catch(SQLiteException)
             {
                 throw new FailedDatabaseConnectionException();
             }
@@ -40,28 +50,29 @@ namespace DataManager
         public static bool RegisterRequest(string email, string password, string confirmPassword)
         {
             LoginRegisterLib lib = new LoginRegisterLib();
-            if(lib.ValidMail(email))
+            if (email != "" || password != "" || confirmPassword != "")
             {
-                if (password == confirmPassword)
+                if (lib.ValidMail(email))
                 {
-                    string registerQuery = @"INSERT INTO [Users] (Email, Password) VALUES ('" + email + "', '" + password + "')";
-                    try
+                    if (password == confirmPassword)
                     {
+                        string registerQuery = @"INSERT INTO [Users] (Email, Password) VALUES ('" + email + "', '" + crypto.Hash(password) + "')";
+                        try
+                        {
 
-                        ExecuteQuery.Insert(registerQuery);
-                        return true;
+                            ExecuteQuery.Insert(registerQuery);
+                            return true;
+                        }
+                        catch
+                        {
+                            throw new UserAldreadyExistsException();
+                        }
                     }
-                    catch
-                    {
-                        throw new UserAldreadyExistsException();
-                    }
-
-
-
+                    throw new PasswordDontMatchException();
                 }
-                throw new PasswordDontMatchException();
+                throw new NotValidEmailException();
             }
-            throw new NotValidEmailException();
+            throw new EmptyFieldException();
         }
     }
 }

@@ -18,13 +18,14 @@ namespace DatabaseManager
             List<string> result = new List<string>();
             DataTable dt = new DataTable();
             command.CommandText = query;
-            using (SQLiteDataReader reader = command.ExecuteReader())
+            command.CommandType = CommandType.Text;
+            SQLiteDataReader reader = command.ExecuteReader();
+            
+            while(reader.Read())
             {
-                while(reader.Read())
-                {
-                    result.Add(Convert.ToString(reader));
-                }
+                result.Add(reader.GetString(0));
             }
+            
                 _ = DbConnector.ConnectToDatabase(true); //close db connection  Using Ignore(_) as we don't care what it returns.
             return result;
         }
