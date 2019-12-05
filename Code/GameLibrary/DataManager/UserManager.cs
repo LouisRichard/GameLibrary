@@ -16,27 +16,32 @@ namespace DataManager
         /// <returns></returns>
         public static bool LoginRequest(string email, string password)
         {
-            string testLoginQuery = @"SELECT [Password] FROM [users] WHERE [email] = '" + email + "'" ;
-            try
+            if(email == "" || password == "")
             {
-                List<string> queryResult = new List<string>();
-                queryResult = ExecuteQuery.Select(testLoginQuery);
-                if (queryResult.Count == 1)
+                throw new EmptyFieldException();
+            }
+            string testLoginQuery = @"SELECT [Password] FROM [users] WHERE [email] = '" + email + "'";
+                try
                 {
-                    string hashedPassword = queryResult[0];
-
-                    if (crypto.Verify(password, hashedPassword))
+                    List<string> queryResult = new List<string>();
+                    queryResult = ExecuteQuery.Select(testLoginQuery);
+                    if (queryResult.Count == 1)
                     {
-                        return true;
+                        string hashedPassword = queryResult[0];
+
+                        if (crypto.Verify(password, hashedPassword))
+                        {
+                            return true;
+                        }
+                        throw new WrongPasswordException();
                     }
-                    throw new WrongPasswordException();
+                    throw new UserDoesntExistException();
                 }
-                throw new UserDoesntExistException();
-            }
-            catch(SQLiteException)
-            {
-                throw new FailedDatabaseConnectionException();
-            }
+                catch (SQLiteException)
+                {
+                    throw new FailedDatabaseConnectionException();
+                }
+            
         }
 
 

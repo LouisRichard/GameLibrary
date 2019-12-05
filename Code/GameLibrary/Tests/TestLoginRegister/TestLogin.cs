@@ -7,6 +7,7 @@ namespace TestLoginRegister
     [TestClass]
     public class TestLogin
     {
+        #region Test login
         [TestMethod]
         public void TestEmailNotValid()
         {
@@ -26,5 +27,67 @@ namespace TestLoginRegister
 
             Assert.AreEqual(valid, true);
         }
+
+
+        [TestMethod]
+        public void LoginWithCorrectParameters()
+        {
+            string email = "testlogin1@domain.ch";
+            string password = "Pa$$w0rd";
+            //insert the user in the database
+            _ = UserManager.RegisterRequest(email, password, password);
+
+            //Tries to log in
+            bool success = UserManager.LoginRequest(email, password);
+
+            Assert.AreEqual(true, success);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(UserDoesntExistException))]
+        public void TestLoginUserThatdoesntExist()
+        {
+            string email = "thisuserdoesnotexist@sad.co.uk";
+            string password = "whatever";
+
+            bool success = UserManager.LoginRequest(email, password);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(WrongPasswordException))]
+        public void TestLoginUserWithWrongPassword()
+        {
+            string email = "testlogin3@domain.ch";
+            string password = "theRightPassword";
+            string wrongPassword = "ExcuseMeWhaaaaat?";
+
+            _ = UserManager.RegisterRequest(email, password, password);
+
+            bool success = UserManager.LoginRequest(email, wrongPassword);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(EmptyFieldException))]
+        public void TestLoginWithoutPassword()
+        {
+            string email = "testLogin4@domain.ch";
+            string password = "Pa$$w0rd";
+            string emptyPassword = "";
+
+            _ = UserManager.RegisterRequest(email, password, password);
+
+            bool success = UserManager.LoginRequest(email, emptyPassword);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(EmptyFieldException))]
+        public void TestLoginWithoutEmail()
+        {
+            string email = "";
+            string password = "whatever";
+
+            bool success = UserManager.LoginRequest(email, password);
+        }
+        #endregion
     }
 }

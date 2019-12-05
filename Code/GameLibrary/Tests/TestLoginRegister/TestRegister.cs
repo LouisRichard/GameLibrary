@@ -6,12 +6,13 @@ using DatabaseManager;
 namespace TestLoginRegister
 { 
     [TestClass]
+    #region Test register
     public class TestRegister
     {
         [TestMethod]
         public void TestRegisterUserThatDoesntExist()
         {
-            string testUserEmail = @"testuser@domain.ch";
+            string testUserEmail = @"testregister1@domain.ch";
             string testUserPassword = "password";
             string testUserPasswordConfirm = "password";
             bool success = false;
@@ -22,10 +23,10 @@ namespace TestLoginRegister
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof(UserAldreadyExistsException))]
         public void TestRegisterUserThatAlreadyExist()
         {
-            string testUserEmail = @"testuser@domain.ch";
+            string testUserEmail = @"testregister2@domain.ch";
             string testUserPassword = "password";
             string testUserPasswordConfirm = "password";
             bool register = false;
@@ -36,7 +37,7 @@ namespace TestLoginRegister
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof(PasswordDontMatchException))]
         public void TestRegisterButPasswordsArentTheSame()
         {
             string testUserEmail = @"testuser@domain.ch";
@@ -46,12 +47,6 @@ namespace TestLoginRegister
 
             success = UserManager.RegisterRequest(testUserEmail, testUserPassword, testUserPasswordConfirm);
         }
-
-        [TestCleanup]
-        public void RemoveDatabase()
-        {
-            string query = @"DELETE FROM [Users] WHERE 'email' = 'testuser@domain.ch'";
-            ExecuteQuery.Delete(query);
-        }
+    #endregion
     }
 }
