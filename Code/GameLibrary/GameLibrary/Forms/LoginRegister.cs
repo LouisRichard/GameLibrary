@@ -37,10 +37,6 @@ namespace GameLibrary
         {
             SetDesktopLocation(lib.LoginLocation().X, lib.LoginLocation().Y);
         }
-        private void LoginRegister_FormClosing(object sender, FormClosedEventArgs e)
-        {
-
-        }
 
         #endregion formLoad
 

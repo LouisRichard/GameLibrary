@@ -22,12 +22,18 @@ namespace GameLibrary
 
         #region accessors
 
+        /// <summary>
+        /// Contains the user information
+        /// </summary>
         public User User
         {
             get { return user; }
             set { user = value; }
         }
 
+        /// <summary>
+        /// Lib contains all the methods for the login-register process
+        /// </summary>
         public LoginRegisterLib Lib
         {
             get { return lib; }
@@ -43,17 +49,19 @@ namespace GameLibrary
             InitializeComponent();
         }
 
+        /// <summary>
+        /// This method puts the username of the new user in the window
+        /// </summary>
+        private void RegisterValid_Load(object sender, EventArgs e)
+        {
+            lblConfirm.Text = $"{user.Username}, you're now registered.";
+        }
+
         private void btnSignIn_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
         #endregion formLoad
-
-        private void RegisterValid_Load(object sender, EventArgs e)
-        {
-            lblConfirm.Text = $"{user.Username}, you're now registered.";
-
-        }
     }
 }

@@ -39,12 +39,6 @@ namespace DataManager
 
         #endregion accessors
 
-        #region constructors
-
-        
-
-        #endregion constructors
-
         #region public methods
 
         /// <summary>

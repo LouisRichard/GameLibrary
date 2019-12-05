@@ -18,6 +18,9 @@ namespace GameLibrary
 
         #region accessors
 
+        /// <summary>
+        /// The username of the user
+        /// </summary>
         public string Username
         {
             get
@@ -30,6 +33,9 @@ namespace GameLibrary
             }
         }
 
+        /// <summary>
+        /// The password of the user
+        /// </summary>
         public string Password
         {
             get
@@ -42,6 +48,9 @@ namespace GameLibrary
             }
         }
 
+        /// <summary>
+        /// The password confirmed by the user
+        /// </summary>
         public string RePassword
         {
             get
