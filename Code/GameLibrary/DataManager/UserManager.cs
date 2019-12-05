@@ -55,29 +55,29 @@ namespace DataManager
         public static bool RegisterRequest(string email, string password, string confirmPassword)
         {
             LoginRegisterLib lib = new LoginRegisterLib();
-            if (email != "" || password != "" || confirmPassword != "")
+            if (email == "" || password == "" || confirmPassword == "")
             {
-                if (lib.ValidMail(email))
-                {
-                    if (password == confirmPassword)
-                    {
-                        string registerQuery = @"INSERT INTO [Users] (Email, Password) VALUES ('" + email + "', '" + crypto.Hash(password) + "')";
-                        try
-                        {
-
-                            ExecuteQuery.Insert(registerQuery);
-                            return true;
-                        }
-                        catch
-                        {
-                            throw new UserAldreadyExistsException();
-                        }
-                    }
-                    throw new PasswordDontMatchException();
-                }
-                throw new NotValidEmailException();
+                throw new EmptyFieldException();
             }
-            throw new EmptyFieldException();
+            if (lib.ValidMail(email))
+            {
+                if (password == confirmPassword)
+                {
+                    string registerQuery = @"INSERT INTO [Users] (Email, Password) VALUES ('" + email + "', '" + crypto.Hash(password) + "')";
+                    try
+                    {
+
+                        ExecuteQuery.Insert(registerQuery);
+                        return true;
+                    }
+                    catch
+                    {
+                        throw new UserAldreadyExistsException();
+                    }
+                }
+                throw new PasswordDontMatchException();
+            }
+            throw new NotValidEmailException();
         }
     }
 }
