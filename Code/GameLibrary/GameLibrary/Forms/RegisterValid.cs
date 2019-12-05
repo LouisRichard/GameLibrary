@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DataManager;
 
 namespace GameLibrary
 {
@@ -51,9 +52,8 @@ namespace GameLibrary
 
         private void RegisterValid_Load(object sender, EventArgs e)
         {
-//            this.SetDesktopLocation(lib.RegisterValidLocation().X, lib.RegisterValidLocation().Y);
-
             lblConfirm.Text = $"{user.Username}, you're now registered.";
+
         }
     }
 }
