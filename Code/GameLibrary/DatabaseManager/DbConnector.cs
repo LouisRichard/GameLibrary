@@ -1,12 +1,13 @@
 ﻿using System.IO;
 using System.Data.SQLite;
-using System;
 using System.Collections.Generic;
 
 namespace DatabaseManager
 {
     public class DbConnector
     {
+        #region public methods
+
         /// <summary>
         /// Connect to the SQLite database
         /// </summary>
@@ -94,5 +95,7 @@ namespace DatabaseManager
                 cmd.ExecuteNonQuery();
             }
         }
+
+        #endregion public methods
     }
 }

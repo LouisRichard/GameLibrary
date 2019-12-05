@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Data;
 
@@ -7,6 +6,8 @@ namespace DatabaseManager
 {
     public class ExecuteQuery
     {
+        #region public methods
+
         /// <summary>
         /// Execute a Select query
         /// </summary>
@@ -55,5 +56,7 @@ namespace DatabaseManager
 
                 _ = DbConnector.ConnectToDatabase(true); //close db connection   Using Ignore(_) as we don't care what it returns.
         }
+
+        #endregion public methods
     }
 }
