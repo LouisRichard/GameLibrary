@@ -11,8 +11,8 @@ namespace DataManager
         /// <summary>
         /// Tries to log in a user
         /// </summary>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
+        /// <param name="email">user email</param>
+        /// <param name="password">user password</param>
         /// <returns></returns>
         public static bool LoginRequest(string email, string password)
         {
@@ -43,9 +43,9 @@ namespace DataManager
         /// <summary>
         /// Tries to register a new user in the database
         /// </summary>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
-        /// <param name="confirmPassword"></param>
+        /// <param name="email">user email</param>
+        /// <param name="password">user password</param>
+        /// <param name="confirmPassword">user password confirmed</param>
         /// <returns>bool -> true if success</returns>
         public static bool RegisterRequest(string email, string password, string confirmPassword)
         {

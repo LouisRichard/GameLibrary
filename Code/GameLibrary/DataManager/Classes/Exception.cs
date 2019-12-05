@@ -86,6 +86,9 @@ namespace DataManager
 
     #region database
 
+    /// <summary>
+    /// This exception is used to inform that the database connection is lost
+    /// </summary>
     public class FailedDatabaseConnectionException : GameException
     {
         public FailedDatabaseConnectionException() : base("The database connection miserably failed.")
