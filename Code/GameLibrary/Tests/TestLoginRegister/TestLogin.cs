@@ -71,10 +71,8 @@ namespace TestLoginRegister
         public void TestLoginWithoutPassword()
         {
             string email = "testLogin4@domain.ch";
-            string password = "Pa$$w0rd";
             string emptyPassword = "";
 
-            _ = UserManager.RegisterRequest(email, password, password);
 
             bool success = UserManager.LoginRequest(email, emptyPassword);
         }
