@@ -6,6 +6,8 @@ namespace DataManager
     //Source code https://stackoverflow.com/questions/4181198/how-to-hash-a-password/10402129#10402129
     public class CryptoPassword
     {
+        #region attributes
+
         /// <summary>
         /// Size of salt.
         /// </summary>
@@ -21,6 +23,15 @@ namespace DataManager
         /// </summary>
         private const int iterations = 10000;
 
+        #endregion attributes
+
+        #region public methods
+
+        /// <summary>
+        /// This method takes a password, hash it with salt and resalt it.
+        /// </summary>
+        /// <param name="password">password to hash</param>
+        /// <returns>password hashed and salted</returns>
         public string Hash(string password)
         {
             byte[] salt;
@@ -77,5 +88,7 @@ namespace DataManager
             }
             return true;
         }
+
+        #endregion public methods
     }
 }
