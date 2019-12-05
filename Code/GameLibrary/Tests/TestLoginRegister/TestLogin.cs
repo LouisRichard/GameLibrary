@@ -32,6 +32,7 @@ namespace TestLoginRegister
         [TestMethod]
         public void LoginWithCorrectParameters()
         {
+            //If this test fails, try deleting your GLdb.db3 file in Code\GameLibrary\Tests\TestLoginRegister\bin\Debug
             string email = "testlogin1@domain.ch";
             string password = "Pa$$w0rd";
             //insert the user in the database
@@ -57,6 +58,7 @@ namespace TestLoginRegister
         [ExpectedException(typeof(WrongPasswordException))]
         public void TestLoginUserWithWrongPassword()
         {
+            //If this test fails, try deleting your GLdb.db3 file in Code\GameLibrary\Tests\TestLoginRegister\bin\Debug
             string email = "testlogin3@domain.ch";
             string password = "theRightPassword";
             string wrongPassword = "ExcuseMeWhaaaaat?";
