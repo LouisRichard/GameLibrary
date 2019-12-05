@@ -67,7 +67,7 @@ namespace DataManager
     /// </summary>
     public class NotValidEmailException : GameException
     {
-        public NotValidEmailException() : base("Your mail is badly formatted.")
+        public NotValidEmailException() : base("Your email is badly formatted.")
         {
         }
     }

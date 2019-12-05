@@ -49,6 +49,11 @@ namespace GameLibrary
             InitializeComponent();
         }
 
+        private void MyLibrary_Load(object sender, EventArgs e)
+        {
+            lblUsername.Text = $"{user.Username}";
+        }
+
         #endregion formLoad
     }
 }

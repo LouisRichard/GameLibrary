@@ -186,6 +186,8 @@ namespace GameLibrary
                     formRegisterValid.User = user;
                     formRegisterValid.Lib = lib;
                     formRegisterValid.ShowDialog(this);
+                    
+                    formLibrary.User = user;
                     formLibrary.ShowDialog();
                     this.Close();
                 }
@@ -221,6 +223,7 @@ namespace GameLibrary
                 if (loginRegisterSuccess)
                 {
                     this.Hide();
+                    formLibrary.User = user;
                     formLibrary.ShowDialog();
                     this.Close();
                 }

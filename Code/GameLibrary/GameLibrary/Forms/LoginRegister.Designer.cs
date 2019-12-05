@@ -140,8 +140,9 @@
             this.lblError.ForeColor = System.Drawing.Color.Crimson;
             this.lblError.Location = new System.Drawing.Point(345, 291);
             this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(0, 29);
+            this.lblError.Size = new System.Drawing.Size(19, 29);
             this.lblError.TabIndex = 18;
+            this.lblError.Text = ".";
             // 
             // LoginRegister
             // 
