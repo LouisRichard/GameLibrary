@@ -163,10 +163,25 @@ namespace GameLibrary
                 {
                     loginRegisterSuccess = UserManager.RegisterRequest(user.Username, user.Password, user.RePassword);
                 }
-                catch
+                catch (FailedDatabaseConnectionException message)
                 {
-                    //!!//add exception text
-                    //lblError.Text = $"{}";
+                    lblError.Text = $"{message}";
+                }
+                catch (NotValidEmailException message)
+                {
+                    lblError.Text = $"{message}";
+                }
+                catch (EmptyFieldException message)
+                {
+                    lblError.Text = $"{message}";
+                }
+                catch (UserAldreadyExistsException message)
+                {
+                    lblError.Text = $"{message}";
+                }
+                catch (PasswordDontMatchException message)
+                {
+                    lblError.Text = $"{message}";
                 }
 
                 if (loginRegisterSuccess)
@@ -186,9 +201,25 @@ namespace GameLibrary
                 {
                     loginRegisterSuccess = UserManager.LoginRequest(user.Username, user.Password);
                 }
-                catch (FailedDatabaseConnectionException exception)
+                catch (FailedDatabaseConnectionException message)
                 {
-                    lblError.Text = $"{exception}";
+                    lblError.Text = $"{message}";
+                }
+                catch (NotValidEmailException message)
+                {
+                    lblError.Text = $"{message}";
+                }
+                catch (EmptyFieldException message)
+                {
+                    lblError.Text = $"{message}";
+                }
+                catch (UserDoesntExistException message)
+                {
+                    lblError.Text = $"{message}";
+                }
+                catch (WrongPasswordException message)
+                {
+                    lblError.Text = $"{message}";
                 }
 
                 if (loginRegisterSuccess)
