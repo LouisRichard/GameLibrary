@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace GameLibrary
+namespace DataManager
 {
     /// <summary>
     /// This class will have different methods used in the login/register process

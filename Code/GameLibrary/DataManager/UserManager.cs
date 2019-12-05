@@ -15,11 +15,18 @@ namespace DataManager
         public static bool LoginRequest(string email, string password)
         {
             string testLoginQuery = @"SELECT * FROM [users] WHERE [email] = '" + email + "' AND PASSWORD = '" + password + "'"  ;
-            if(ExecuteQuery.Select(testLoginQuery).Count == 1)
+            try
             {
-                return true;
+                if (ExecuteQuery.Select(testLoginQuery).Count == 1)
+                {
+                    return true;
+                }
+                throw new UserDoesntExistException();
             }
-            throw new Exception("User doesn't exist");
+            catch
+            {
+                throw new FailedDatabaseConnectionException();
+            }
         }
 
 
@@ -32,24 +39,29 @@ namespace DataManager
         /// <returns>bool -> true if success</returns>
         public static bool RegisterRequest(string email, string password, string confirmPassword)
         {
-            if (password == confirmPassword)
+            LoginRegisterLib lib = new LoginRegisterLib();
+            if(lib.ValidMail(email))
             {
-                string registerQuery = @"INSERT INTO [Users] (Email, Password) VALUES ('" + email + "', '" + password + "')";
-                try { 
-
-                    ExecuteQuery.Insert(registerQuery);
-                    return true;
-                }
-                catch
+                if (password == confirmPassword)
                 {
-                    Exception exception;
-                    throw new Exception("User already exists");
+                    string registerQuery = @"INSERT INTO [Users] (Email, Password) VALUES ('" + email + "', '" + password + "')";
+                    try
+                    {
+
+                        ExecuteQuery.Insert(registerQuery);
+                        return true;
+                    }
+                    catch
+                    {
+                        throw new UserAldreadyExistsException();
+                    }
+
+
+
                 }
-
-                
-
+                throw new PasswordDontMatchException();
             }
-            throw new Exception("The passwords aren't the same");
+            throw new NotValidEmailException();
         }
     }
 }
