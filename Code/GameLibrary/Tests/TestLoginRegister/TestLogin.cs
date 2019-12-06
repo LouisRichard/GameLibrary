@@ -3,10 +3,17 @@ using DataManager;
 
 namespace TestLoginRegister
 {
+    /// <summary>
+    /// This class fully tests the login functionnality.
+    /// </summary>
     [TestClass]
     public class TestLogin
     {
         #region Test login
+
+        /// <summary>
+        /// This test is for a not valid email.
+        /// </summary>
         [TestMethod]
         public void TestEmailNotValid()
         {
@@ -17,6 +24,9 @@ namespace TestLoginRegister
             Assert.AreEqual(valid, false);
         }
 
+        /// <summary>
+        /// This test is for a valid email.
+        /// </summary>
         [TestMethod]
         public void TestEmailValid()
         {
@@ -27,7 +37,9 @@ namespace TestLoginRegister
             Assert.AreEqual(valid, true);
         }
 
-
+        /// <summary>
+        /// This test is for a working login process.
+        /// </summary>
         [TestMethod]
         public void LoginWithCorrectParameters()
         {
@@ -43,6 +55,9 @@ namespace TestLoginRegister
             Assert.AreEqual(true, success);
         }
 
+        /// <summary>
+        /// This test is for login but with a non-existing user. It expects an UserDoesntExistException.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(UserDoesntExistException))]
         public void TestLoginUserThatdoesntExist()
@@ -53,6 +68,9 @@ namespace TestLoginRegister
             bool success = UserManager.LoginRequest(email, password);
         }
 
+        /// <summary>
+        /// This test is for login but with the wrong password. It expects a WrongPasswordException.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(WrongPasswordException))]
         public void TestLoginUserWithWrongPassword()
@@ -67,6 +85,9 @@ namespace TestLoginRegister
             bool success = UserManager.LoginRequest(email, wrongPassword);
         }
 
+        /// <summary>
+        /// This test is for login without filling the password field. It expects an EmptyFieldException.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(EmptyFieldException))]
         public void TestLoginWithoutPassword()
@@ -78,6 +99,9 @@ namespace TestLoginRegister
             bool success = UserManager.LoginRequest(email, emptyPassword);
         }
 
+        /// <summary>
+        /// This test is for login without filling the email field. It expects an EmptyFieldException.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(EmptyFieldException))]
         public void TestLoginWithoutEmail()

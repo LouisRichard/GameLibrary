@@ -4,16 +4,28 @@ using System.Data.SQLite;
 
 namespace DataManager
 {
+    /// <summary>
+    /// The class for the login and register requests.
+    /// </summary>
     public class UserManager
     {
-        static CryptoPassword crypto = new CryptoPassword();
+        #region attributes
 
         /// <summary>
-        /// Tries to log in a user
+        /// The encryptions methods.
+        /// </summary>
+        static CryptoPassword crypto = new CryptoPassword();
+
+        #endregion attributes
+
+        #region public methods
+
+        /// <summary>
+        /// Tries to log in a user.
         /// </summary>
         /// <param name="email">user email</param>
         /// <param name="password">user password</param>
-        /// <returns></returns>
+        /// <returns>True if email + password matches.</returns>
         public static bool LoginRequest(string email, string password)
         {
             if(email == "" || password == "")
@@ -41,12 +53,11 @@ namespace DataManager
                 {
                     throw new FailedDatabaseConnectionException();
                 }
-            
         }
 
 
         /// <summary>
-        /// Tries to register a new user in the database
+        /// Tries to register a new user in the database.
         /// </summary>
         /// <param name="email">user email</param>
         /// <param name="password">user password</param>
@@ -79,5 +90,7 @@ namespace DataManager
             }
             throw new NotValidEmailException();
         }
+
+        #endregion public methods
     }
 }

@@ -4,16 +4,19 @@ using System.Collections.Generic;
 
 namespace DatabaseManager
 {
+    /// <summary>
+    /// This class assures the connection with the database.
+    /// </summary>
     public class DbConnector
     {
         #region methods
 
         /// <summary>
-        /// Connect to the SQLite database
+        /// Connect to the SQLite database.
         /// </summary>
-        /// <param name="close">If true : Close database connection. If false : Open database connection</param>
+        /// <param name="close">If true : Close database connection. If false : Open database connection.</param>
         /// <returns>SQLiteCommand cmd if database is getting opened.</returns>
-        /// <returns>Null if database is getting closed</returns>
+        /// <returns>Null if database is getting closed.</returns>
         internal static SQLiteCommand ConnectToDatabase(bool close)
         {
             bool createTable = false;
@@ -44,7 +47,7 @@ namespace DatabaseManager
         }
 
         /// <summary>
-        /// Create the DB File
+        /// Create the DB File.
         /// </summary>
         private static void CreateDatabase()
         {
@@ -53,7 +56,7 @@ namespace DatabaseManager
                         Directory.GetCurrentDirectory(), "GLdb.db3")); //Create the database
         }
         /// <summary>
-        /// Create the tables needed fot the database to works properly
+        /// Create the tables needed fot the database to works properly.
         /// </summary>
         /// <param name="cmd">SQLiteCommand cmd</param>
         private static void CreateTable(SQLiteCommand cmd)

@@ -8,29 +8,22 @@ namespace GameLibrary
     {
         #region attributes
 
+        /// <summary>
+        /// The user inherited from the login-register.
+        /// </summary>
         private User user;
-        private LoginRegisterLib lib;
 
         #endregion attributes
 
         #region accessors
 
         /// <summary>
-        /// Contains the user information
+        /// Contains the user information.
         /// </summary>
         public User User
         {
             get { return user; }
             set { user = value; }
-        }
-
-        /// <summary>
-        /// Lib contains all the methods for the login-register process
-        /// </summary>
-        public LoginRegisterLib Lib
-        {
-            get { return lib; }
-            set { lib = value; }
         }
 
         #endregion accessors
@@ -43,7 +36,7 @@ namespace GameLibrary
         }
 
         /// <summary>
-        /// This method puts the username of the new user in the window
+        /// This method puts the username of the new user in the window.
         /// </summary>
         private void RegisterValid_Load(object sender, EventArgs e)
         {

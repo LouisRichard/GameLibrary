@@ -11,14 +11,32 @@ using DataManager;
 
 namespace GameLibrary
 {
+    /// <summary>
+    /// This is the form from where you'll login/register.
+    /// </summary>
     public partial class LoginRegister : Form
     {
         #region attributes
 
+        /// <summary>
+        /// MyLibrary form.
+        /// </summary>
         private MyLibrary formLibrary = new MyLibrary();
+        /// <summary>
+        /// RegisterValid form.
+        /// </summary>
         private RegisterValid formRegisterValid = new RegisterValid();
+        /// <summary>
+        /// The login-register library of methods.
+        /// </summary>
         private LoginRegisterLib lib = new LoginRegisterLib();
+        /// <summary>
+        /// The user that wants to connect.
+        /// </summary>
         private User user = new User();
+        /// <summary>
+        /// The status of the login request or the register request. True if they went well.
+        /// </summary>
         private bool loginRegisterSuccess;
 
         #endregion attributes
@@ -31,7 +49,7 @@ namespace GameLibrary
         }
 
         /// <summary>
-        /// This method loads the user preferences during the load of the window
+        /// This method loads the user preferences during the load of the window.
         /// </summary>
         private void LoginRegister_Load(object sender, EventArgs e)
         {
@@ -43,7 +61,7 @@ namespace GameLibrary
         #region dynamicForm events
 
         /// <summary>
-        /// This method is used to dynamically toggle the view of the form
+        /// This method is used to dynamically toggle the view of the form.
         /// </summary>
         private void btnChange_Click(object sender, EventArgs e)
         {
@@ -76,7 +94,7 @@ namespace GameLibrary
         }
 
         /// <summary>
-        /// this method test if the mail textbox is well formatted
+        /// this method test if the mail textbox is well formatted.
         /// </summary>
         private void txtEmail_TextChanged(object sender, EventArgs e)
         {
@@ -95,7 +113,7 @@ namespace GameLibrary
         }
 
         /// <summary>
-        /// this method test if the password textbox is well formatted
+        /// this method test if the password textbox is well formatted.
         /// </summary>
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
@@ -123,7 +141,7 @@ namespace GameLibrary
         }
 
         /// <summary>
-        /// this method test if the confirm password textbox is well formatted
+        /// this method test if the confirm password textbox is well formatted.
         /// </summary>
         private void txtRePassword_TextChanged(object sender, EventArgs e)
         {
@@ -184,7 +202,6 @@ namespace GameLibrary
                 {
                     this.Hide();
                     formRegisterValid.User = user;
-                    formRegisterValid.Lib = lib;
                     formRegisterValid.ShowDialog(this);
                     
                     formLibrary.User = user;
@@ -234,7 +251,7 @@ namespace GameLibrary
         #endregion signIn signUp methods
 
         /// <summary>
-        /// This method save the position of the window
+        /// This method save the position of the window.
         /// </summary>
         private void LoginRegister_Move(object sender, EventArgs e)
         {

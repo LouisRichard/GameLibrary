@@ -3,6 +3,9 @@ using System.Security.Cryptography;
 
 namespace DataManager
 {
+    /// <summary>
+    /// This class can hash the password and verifies the hash.
+    /// </summary>
     //Source code https://stackoverflow.com/questions/4181198/how-to-hash-a-password/10402129#10402129
     public class CryptoPassword
     {
@@ -30,8 +33,8 @@ namespace DataManager
         /// <summary>
         /// This method takes a password, hash it with salt and resalt it.
         /// </summary>
-        /// <param name="password">password to hash</param>
-        /// <returns>password hashed and salted</returns>
+        /// <param name="password">Password to hash</param>
+        /// <returns>Password hashed and salted</returns>
         public string Hash(string password)
         {
             byte[] salt;
@@ -57,8 +60,8 @@ namespace DataManager
         /// <summary>
         /// Verifies a password against a hash.
         /// </summary>
-        /// <param name="password">The password.</param>
-        /// <param name="hashedPassword">The hash.</param>
+        /// <param name="password">The password</param>
+        /// <param name="hashedPassword">The hash</param>
         /// <returns>Could be verified?</returns>
         public bool Verify(string password, string hashedPassword)
         {

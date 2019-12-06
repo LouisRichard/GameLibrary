@@ -2,11 +2,18 @@
 using DataManager;
 
 namespace TestLoginRegister
-{ 
-    [TestClass]
+{
     #region Test register
+
+    /// <summary>
+    /// This class fully tests the register functionnality.
+    /// </summary>
+    [TestClass]
     public class TestRegister
     {
+        /// <summary>
+        /// This test is for register a new user.
+        /// </summary>
         [TestMethod]
         public void TestRegisterUserThatDoesntExist()
         {
@@ -21,6 +28,9 @@ namespace TestLoginRegister
             Assert.AreEqual(success, true);
         }
 
+        /// <summary>
+        /// This test is for register an already existing user. It expects an UserAldreadyExistsException.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(UserAldreadyExistsException))]
         public void TestRegisterUserThatAlreadyExist()
@@ -35,6 +45,9 @@ namespace TestLoginRegister
             registerSame = UserManager.RegisterRequest(testUserEmail, testUserPassword, testUserPasswordConfirm);
         }
 
+        /// <summary>
+        /// This test is for register with non-matching passwords. It expects a PasswordDontMatchException.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(PasswordDontMatchException))]
         public void TestRegisterButPasswordsArentTheSame()
@@ -47,6 +60,9 @@ namespace TestLoginRegister
             success = UserManager.RegisterRequest(testUserEmail, testUserPassword, testUserPasswordConfirm);
         }
 
+        /// <summary>
+        /// This test is for register without an email. It expects an EmptyFieldException.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(EmptyFieldException))]
         public void TestRegiserWithoutEmail()
@@ -57,6 +73,9 @@ namespace TestLoginRegister
             bool success = UserManager.RegisterRequest(testUserEmail, password, password);
         }
 
+        /// <summary>
+        /// This test is for register without passwords. It expects an EmptyFieldException.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(EmptyFieldException))]
         public void RegisterUserWithoutPasswords()
@@ -67,6 +86,9 @@ namespace TestLoginRegister
             bool success = UserManager.RegisterRequest(testUserEmail, password, password);
         }
 
+        /// <summary>
+        /// This test is for register without confirming the password. It expects an EmptyFieldException.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(EmptyFieldException))]
         public void RegisterUserWithoutConfirmPassword()
@@ -78,6 +100,9 @@ namespace TestLoginRegister
             bool success = UserManager.RegisterRequest(testUserEmail, password, confirm);
         }
 
+        /// <summary>
+        /// This test is for register without a password. It expects an EmptyFieldException.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(EmptyFieldException))]
         public void RegisterUserWithoutPasswordWithConfirm()
@@ -88,6 +113,7 @@ namespace TestLoginRegister
 
             bool success = UserManager.RegisterRequest(testUserEmail, password, confirm);
         }
-    #endregion
     }
+
+    #endregion Test register
 }

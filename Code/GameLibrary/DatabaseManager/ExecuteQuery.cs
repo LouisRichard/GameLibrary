@@ -4,12 +4,15 @@ using System.Data;
 
 namespace DatabaseManager
 {
+    /// <summary>
+    /// This class executes the queries on the database via the DbConnector.
+    /// </summary>
     public class ExecuteQuery
     {
         #region public methods
 
         /// <summary>
-        /// Execute a Select query
+        /// Execute a Select query.
         /// </summary>
         /// <param name="query">Select query to execute</param>
         /// <returns>Query result as an String List</returns>
@@ -32,7 +35,7 @@ namespace DatabaseManager
         }
 
         /// <summary>
-        /// Execute a Insert query
+        /// Execute a Insert query.
         /// </summary>
         /// <param name="query">Insert query to execute</param>
         public static void Insert(string query)
@@ -45,9 +48,9 @@ namespace DatabaseManager
         }
 
         /// <summary>
-        /// Execute a statement delete in the database
+        /// Execute a statement delete in the database.
         /// </summary>
-        /// <param name="query"></param>
+        /// <param name="query">Delete query to execute</param>
         public static void Delete(string query)
         {
                 SQLiteCommand command = DbConnector.ConnectToDatabase(false); //open db connection

@@ -11,33 +11,29 @@ using DataManager;
 
 namespace GameLibrary
 {
+    /// <summary>
+    /// This form is main form of the program past the login-register process.
+    /// </summary>
     public partial class MyLibrary : Form
     {
         #region attributes
 
+        /// <summary>
+        /// The user inherited from the login-register.
+        /// </summary>
         private User user;
-        private LoginRegisterLib lib;
 
         #endregion attributes
 
         #region accessors
 
         /// <summary>
-        /// Contains the user information
+        /// Contains the user information.
         /// </summary>
         public User User
         {
             get { return user; }
             set { user = value; }
-        }
-
-        /// <summary>
-        /// Lib contains all the methods for the login-register process
-        /// </summary>
-        public LoginRegisterLib Lib
-        {
-            get { return lib; }
-            set { lib = value; }
         }
 
         #endregion accessors
@@ -49,6 +45,9 @@ namespace GameLibrary
             InitializeComponent();
         }
 
+        /// <summary>
+        /// The loading of the form.
+        /// </summary>
         private void MyLibrary_Load(object sender, EventArgs e)
         {
             lblUsername.Text = $"{user.Username}";

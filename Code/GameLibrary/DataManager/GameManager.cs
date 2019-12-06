@@ -5,7 +5,10 @@ using DatabaseManager;
 
 namespace DataManager
 {
-    class GameManager
+    /// <summary>
+    /// The class for games requests.
+    /// </summary>
+    public class GameManager
     {
     }
 }

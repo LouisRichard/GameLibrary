@@ -4,13 +4,19 @@ using System.Text.RegularExpressions;
 namespace DataManager
 {
     /// <summary>
-    /// This class will have different methods used in the login/register process
+    /// This class has different methods used in the login/register process.
     /// </summary>
     public class LoginRegisterLib
     {
         #region attributes
 
+        /// <summary>
+        /// The status of the view. True for register and false for login.
+        /// </summary>
         private bool status;
+        /// <summary>
+        /// The location of the login window.
+        /// </summary>
         private Point loginLocation = new Point();
 
         #endregion attributes
