@@ -199,25 +199,25 @@ namespace GameLibrary
                 {
                     loginRegisterSuccess = UserManager.LoginRequest(user.Username, user.Password);
                 }
-                catch (FailedDatabaseConnectionException message)
+                catch (FailedDatabaseConnectionException except)
                 {
-                    lblError.Text = $"{message}";
+                    lblError.Text = $"{except.Message}";
                 }
-                catch (NotValidEmailException message)
+                catch (NotValidEmailException except)
                 {
-                    lblError.Text = $"{message}";
+                    lblError.Text = $"{except.Message}";
                 }
-                catch (EmptyFieldException message)
+                catch (EmptyFieldException except)
                 {
-                    lblError.Text = $"{message}";
+                    lblError.Text = $"{except.Message}";
                 }
-                catch (UserDoesntExistException message)
+                catch (UserDoesntExistException except)
                 {
-                    lblError.Text = $"{message}";
+                    lblError.Text = $"{except.Message}";
                 }
-                catch (WrongPasswordException message)
+                catch (WrongPasswordException except)
                 {
-                    lblError.Text = $"{message}";
+                    lblError.Text = $"{except.Message}";
                 }
 
                 if (loginRegisterSuccess)
