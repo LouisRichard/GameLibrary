@@ -6,7 +6,7 @@ namespace DatabaseManager
 {
     public class DbConnector
     {
-        #region public methods
+        #region methods
 
         /// <summary>
         /// Connect to the SQLite database
@@ -96,6 +96,6 @@ namespace DatabaseManager
             }
         }
 
-        #endregion public methods
+        #endregion methods
     }
 }
