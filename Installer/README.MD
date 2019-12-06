@@ -7,5 +7,5 @@
 | SP3_ | Sprint 3 |         |
 | SP4_ | Sprint 4 | 1.0     |
 
-To install the program, follow the instructions in [our Wiki](https://github.com/LouisRichard/GameLibrary/wiki/Installation-guide).
+To install the program, follow the instructions on [our Wiki](https://github.com/LouisRichard/GameLibrary/wiki/Installation-guide).
 
