@@ -25,18 +25,12 @@
         #region accessors
 
         /// <summary>
-        /// The username of the user.
+        /// The email of the user.
         /// </summary>
         public string Username
         {
-            get
-            {
-                return username;
-            }
-            set
-            {
-                this.username = value;
-            }
+            get { return username; }
+            set { this.username = value.ToLower(); }
         }
 
         /// <summary>

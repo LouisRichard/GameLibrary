@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataManager;
 
@@ -68,93 +62,76 @@ namespace GameLibrary
             lib.Status ^= true;
             lblError.Text = "";
 
-            if (lib.Status)
-            {
-                //register view
-                lblTitle.Text = "Register";
-                btnChange.Text = "Go login";
-                btnSignIn.Text = "Sign up";
-                this.Text = "Register";
+            lblTitle.Text = lib.Status ? "Register" : "Login";
+            btnChange.Text = lib.Status ? "Go login" : "Go register";
+            btnSignIn.Text = lib.Status ? "Sign Up" : "Sign In";
+            this.Text = lib.Status ? "Register" : "Login";
 
-                lblRePassword.Visible = true;
-                txtRePassword.Visible = true;
-            }
-            else
-            {
-                //login view
-                lblTitle.Text = "Login";
-                btnChange.Text = "Go register";
-                btnSignIn.Text = "Sign in";
-                this.Text = "Login";
-
-                lblRePassword.Visible = false;
-                txtRePassword.Visible = false;
-            }
+            lblRePassword.Visible = lib.Status;
+            txtRePassword.Visible = lib.Status;
 
         }
 
         /// <summary>
-        /// this method test if the mail textbox is well formatted.
+        /// This method test if the mail textbox is well formatted.
         /// </summary>
         private void txtEmail_TextChanged(object sender, EventArgs e)
         {
-            if (!(lib.ValidMail(txtEmail.Text)))
-            {
-                txtEmail.BackColor = Color.Crimson;
-            }
-            else if (txtEmail.Text == "")
-            {
-                txtEmail.BackColor = Color.Crimson;
-            }
-            else
-            {
-                txtEmail.BackColor = Color.White;
-            }
+            txtEmail.BackColor = !(lib.ValidMail(txtEmail.Text)) || txtEmail.Text == "" ?
+                Color.Crimson : Color.White;
         }
 
         /// <summary>
-        /// this method test if the password textbox is well formatted.
+        /// This method calls the txtEmail_TextChanged event.
+        /// </summary>
+        private void txtEmail_Enter(object sender, EventArgs e)
+        {
+            txtEmail_TextChanged(sender, e);
+        }
+
+        /// <summary>
+        /// This method test if the password textbox is well formatted.
         /// </summary>
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
+            txtPassword.BackColor = txtPassword.Text == "" ?
+                Color.Crimson : Color.White;
+
             if (lib.Status)
             {
-                if (!(txtPassword.Text == txtRePassword.Text))
-                {
-                    txtPassword.BackColor = Color.Crimson;
-                    txtRePassword.BackColor = Color.Crimson;
-                }
-                else
-                {
-                    txtPassword.BackColor = Color.White;
-                    txtRePassword.BackColor = Color.White;
-                }
+                txtPassword.BackColor = txtPassword.Text != txtRePassword.Text || txtPassword.Text == "" ?
+                    Color.Crimson : Color.White;
+                txtRePassword.BackColor = txtPassword.Text != txtRePassword.Text || txtRePassword.Text == "" ?
+                    Color.Crimson : Color.White;
             }
-            else if (txtPassword.Text == "")
-            {
-                txtPassword.BackColor = Color.Crimson;
-            }
-            else
-            {
-                txtPassword.BackColor = Color.White;
-            }
+
         }
 
         /// <summary>
-        /// this method test if the confirm password textbox is well formatted.
+        /// This method calls the txtPassword_TextChanged event.
+        /// </summary>
+        private void txtPassword_Enter(object sender, EventArgs e)
+        {
+            txtPassword_TextChanged(sender, e);
+        }
+
+        /// <summary>
+        /// This method test if the confirm password textbox is well formatted.
         /// </summary>
         private void txtRePassword_TextChanged(object sender, EventArgs e)
         {
-            if (!(txtPassword.Text == txtRePassword.Text && lib.Status))
-            {
-                txtPassword.BackColor = Color.Crimson;
-                txtRePassword.BackColor = Color.Crimson;
-            }
-            else
-            {
-                txtPassword.BackColor = Color.White;
-                txtRePassword.BackColor = Color.White;
-            }
+            txtPassword.BackColor = txtPassword.Text != txtRePassword.Text || txtPassword.Text == "" ?
+                    Color.Crimson : Color.White;
+            txtRePassword.BackColor = txtPassword.Text != txtRePassword.Text || txtRePassword.Text == "" ?
+                Color.Crimson : Color.White;
+        }
+
+        /// <summary>
+        /// This method calls the txtRePassword_TextChanged event.
+        /// </summary>
+        private void txtRePassword_Enter(object sender, EventArgs e)
+        {
+            txtRePassword_TextChanged(sender, e);
         }
 
         #endregion dynamic form
@@ -177,26 +154,13 @@ namespace GameLibrary
                 {
                     loginRegisterSuccess = UserManager.RegisterRequest(user.Username, user.Password, user.RePassword);
                 }
-                catch (FailedDatabaseConnectionException except)
+                catch (LoginRegisterException except)
                 {
-                    lblError.Text = $"{except.Message}";
+                    if (except is NotValidEmailException || except is EmptyFieldException ||
+                        except is UserAldreadyExistsException || except is PasswordDontMatchException)
+                    { lblError.Text = $"{except.Message}"; }
                 }
-                catch (NotValidEmailException except)
-                {
-                    lblError.Text = $"{except.Message}";
-                }
-                catch (EmptyFieldException except)
-                {
-                    lblError.Text = $"{except.Message}";
-                }
-                catch (UserAldreadyExistsException except)
-                {
-                    lblError.Text = $"{except.Message}";
-                }
-                catch (PasswordDontMatchException except)
-                {
-                    lblError.Text = $"{except.Message}";
-                }
+                catch (FailedDatabaseConnectionException except) { lblError.Text = $"{except.Message}"; }
 
                 if (loginRegisterSuccess)
                 {
@@ -216,26 +180,13 @@ namespace GameLibrary
                 {
                     loginRegisterSuccess = UserManager.LoginRequest(user.Username, user.Password);
                 }
-                catch (FailedDatabaseConnectionException except)
+                catch (LoginRegisterException except)
                 {
-                    lblError.Text = $"{except.Message}";
+                    if (except is NotValidEmailException || except is EmptyFieldException ||
+                        except is UserDoesntExistException || except is WrongPasswordException)
+                    { lblError.Text = $"{except.Message}"; }
                 }
-                catch (NotValidEmailException except)
-                {
-                    lblError.Text = $"{except.Message}";
-                }
-                catch (EmptyFieldException except)
-                {
-                    lblError.Text = $"{except.Message}";
-                }
-                catch (UserDoesntExistException except)
-                {
-                    lblError.Text = $"{except.Message}";
-                }
-                catch (WrongPasswordException except)
-                {
-                    lblError.Text = $"{except.Message}";
-                }
+                catch (FailedDatabaseConnectionException except) { lblError.Text = $"{except.Message}"; }
 
                 if (loginRegisterSuccess)
                 {
@@ -258,5 +209,18 @@ namespace GameLibrary
 
         }
 
+        #region dont evaluate this, its not a functionning part of the project...
+        #region seriously
+        /// <summary>
+        /// DONT LOOK UP HERE ! GO AWAY...
+        /// .....
+        /// Welp now it's found.
+        /// </summary>
+        private void LoginRegister_DoubleClick(object sender, EventArgs e)
+        {
+            if (lblLlabel1.Location.Y > 60) { lblLlabel1.Top -= 20; }
+        }
+        #endregion
+        #endregion
     }
 }
