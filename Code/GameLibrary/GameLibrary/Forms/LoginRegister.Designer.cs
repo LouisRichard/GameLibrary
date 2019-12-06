@@ -2,15 +2,8 @@
 {
     partial class LoginRegister
     {
-        /// <summary>
-        /// Variable nécessaire au concepteur.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Nettoyage des ressources utilisées.
-        /// </summary>
-        /// <param name="disposing">true si les ressources managées doivent être supprimées ; sinon, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,10 +15,6 @@
 
         #region Code généré par le Concepteur Windows Form
 
-        /// <summary>
-        /// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
-        /// le contenu de cette méthode avec l'éditeur de code.
-        /// </summary>
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginRegister));
@@ -39,6 +28,7 @@
             this.btnChange = new System.Windows.Forms.Button();
             this.btnSignIn = new System.Windows.Forms.Button();
             this.lblError = new System.Windows.Forms.Label();
+            this.lblLlabel1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblRePassword
@@ -91,6 +81,7 @@
             this.txtRePassword.TabIndex = 13;
             this.txtRePassword.Visible = false;
             this.txtRePassword.TextChanged += new System.EventHandler(this.txtRePassword_TextChanged);
+            this.txtRePassword.Enter += new System.EventHandler(this.txtRePassword_Enter);
             // 
             // txtPassword
             // 
@@ -100,6 +91,7 @@
             this.txtPassword.Size = new System.Drawing.Size(300, 35);
             this.txtPassword.TabIndex = 12;
             this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
+            this.txtPassword.Enter += new System.EventHandler(this.txtPassword_Enter);
             // 
             // txtEmail
             // 
@@ -110,6 +102,7 @@
             this.txtEmail.Size = new System.Drawing.Size(300, 35);
             this.txtEmail.TabIndex = 11;
             this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
+            this.txtEmail.Enter += new System.EventHandler(this.txtEmail_Enter);
             // 
             // btnChange
             // 
@@ -144,11 +137,21 @@
             this.lblError.TabIndex = 18;
             this.lblError.Text = ".";
             // 
+            // lblLlabel1
+            // 
+            this.lblLlabel1.AutoSize = true;
+            this.lblLlabel1.Location = new System.Drawing.Point(715, 650);
+            this.lblLlabel1.Name = "lblLlabel1";
+            this.lblLlabel1.Size = new System.Drawing.Size(61, 13);
+            this.lblLlabel1.TabIndex = 19;
+            this.lblLlabel1.Text = "Hello there.";
+            // 
             // LoginRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 361);
+            this.Controls.Add(this.lblLlabel1);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.lblRePassword);
             this.Controls.Add(this.lblPassword);
@@ -167,6 +170,7 @@
             this.Name = "LoginRegister";
             this.Text = "Login";
             this.Load += new System.EventHandler(this.LoginRegister_Load);
+            this.DoubleClick += new System.EventHandler(this.LoginRegister_DoubleClick);
             this.Move += new System.EventHandler(this.LoginRegister_Move);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -185,6 +189,7 @@
         private System.Windows.Forms.Button btnChange;
         private System.Windows.Forms.Button btnSignIn;
         private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.Label lblLlabel1;
     }
 }
 

@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GameLibrary
 {
+    /// <summary>
+    /// Main entry point of the program.
+    /// </summary>
     static class Program
     {
         /// <summary>
-        /// Point d'entrée principal de l'application.
+        /// Second main entry point of the program.
         /// </summary>
         [STAThread]
         static void Main()
