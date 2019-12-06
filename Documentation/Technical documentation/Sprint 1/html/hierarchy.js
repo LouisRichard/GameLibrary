@@ -25,7 +25,6 @@ var hierarchy =
     [ "DataManager.GameManager", "class_data_manager_1_1_game_manager.html", null ],
     [ "DataManager.LoginRegisterLib", "class_data_manager_1_1_login_register_lib.html", null ],
     [ "GameLibrary.Properties.Resources", "class_game_library_1_1_properties_1_1_resources.html", null ],
-    [ "GameLibrary.TestDatabase", "class_game_library_1_1_test_database.html", null ],
     [ "TestLoginRegister.TestLogin", "class_test_login_register_1_1_test_login.html", null ],
     [ "TestLoginRegister.TestPasswordEncryption", "class_test_login_register_1_1_test_password_encryption.html", null ],
     [ "TestLoginRegister.TestRegister", "class_test_login_register_1_1_test_register.html", null ],

@@ -4,6 +4,9 @@ using DataManager;
 
 namespace GameLibrary
 {
+    /// <summary>
+    /// The only purpose of this form is to inform you that your register has gone well.
+    /// </summary>
     public partial class RegisterValid : Form
     {
         #region attributes
