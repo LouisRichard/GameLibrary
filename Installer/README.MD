@@ -1,6 +1,6 @@
 # Version
 
-| Name | Sprint   | Version |
+| Prefix | Sprint   | Version |
 | ---- | -------- | ------- |
 | SP1_ | Sprint 1 | 0.3     |
 | SP2_ | Sprint 2 |         |
