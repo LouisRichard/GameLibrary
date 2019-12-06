@@ -59,7 +59,7 @@ namespace DataManager
             {
                 throw new EmptyFieldException();
             }
-            else if (lib.ValidMail(email))
+            if (lib.ValidMail(email))
             {
                 if (password == confirmPassword)
                 {
