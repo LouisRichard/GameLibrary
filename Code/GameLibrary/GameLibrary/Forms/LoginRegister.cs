@@ -154,13 +154,8 @@ namespace GameLibrary
                 {
                     loginRegisterSuccess = UserManager.RegisterRequest(user.Username, user.Password, user.RePassword);
                 }
-                catch (LoginRegisterException except)
-                {
-                    if (except is NotValidEmailException || except is EmptyFieldException ||
-                        except is UserAldreadyExistsException || except is PasswordDontMatchException)
-                    { lblError.Text = $"{except.Message}"; }
-                }
-                catch (FailedDatabaseConnectionException except) { lblError.Text = $"{except.Message}"; }
+                catch (DbException except) { lblError.Text = $"{except.Message}"; }
+                catch (LoginRegisterException except) { lblError.Text = $"{except.Message}"; }
 
                 if (loginRegisterSuccess)
                 {
@@ -180,13 +175,8 @@ namespace GameLibrary
                 {
                     loginRegisterSuccess = UserManager.LoginRequest(user.Username, user.Password);
                 }
-                catch (LoginRegisterException except)
-                {
-                    if (except is NotValidEmailException || except is EmptyFieldException ||
-                        except is UserDoesntExistException || except is WrongPasswordException)
-                    { lblError.Text = $"{except.Message}"; }
-                }
-                catch (FailedDatabaseConnectionException except) { lblError.Text = $"{except.Message}"; }
+                catch (DbException except) { lblError.Text = $"{except.Message}"; }
+                catch (LoginRegisterException except) { lblError.Text = $"{except.Message}"; }
 
                 if (loginRegisterSuccess)
                 {
