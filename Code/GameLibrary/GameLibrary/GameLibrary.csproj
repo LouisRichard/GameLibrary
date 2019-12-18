@@ -51,7 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\LoginRegisterLib.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Forms\LoginRegister\LoginRegister.cs">
       <SubType>Form</SubType>

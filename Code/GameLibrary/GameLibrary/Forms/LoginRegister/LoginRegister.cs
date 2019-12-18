@@ -57,6 +57,7 @@ namespace GameLibrary
             btnChange.Text = lib.Status ? "Go login" : "Go register";
             btnSignIn.Text = lib.Status ? "Sign Up" : "Sign In";
             this.Text = lib.Status ? "Register" : "Login";
+            this.btnSignIn.Click += lib.Status ? new System.EventHandler(this.Register) : new System.EventHandler(this.Login);
 
             lblRePassword.Visible = lib.Status;
             txtRePassword.Visible = lib.Status;
@@ -70,7 +71,7 @@ namespace GameLibrary
         /// <summary>
         /// This method sign the user. Depending on the status, it will add or authentifiate the user on the database.
         /// </summary>
-        private void btnSignIn_Click(object sender, EventArgs e)
+        private void Register(object sender, EventArgs e)
         {
             lblError.Text = "";
             user = new User(txtEmail.Text, txtPassword.Text, txtRePassword.Text);
@@ -78,45 +79,50 @@ namespace GameLibrary
             txtEmail.BackColor = lib.CheckMail(txtEmail.Text);
             txtPassword.BackColor = lib.CheckPassword(txtPassword.Text, txtRePassword.Text, lib.Status);
             txtRePassword.BackColor = lib.CheckPassword(txtPassword.Text, txtRePassword.Text, lib.Status);
-            
-            if (lib.Status)
+
+            try
             {
-                try
-                {
-                    loginRegisterSuccess = UserManager.RegisterRequest(user.Username, user.Password, user.RePassword);
-                }
-                catch (DbException except) { lblError.Text = $"{except.Message}"; }
-                catch (LoginRegisterException except) { lblError.Text = $"{except.Message}"; }
-
-                if (loginRegisterSuccess)
-                {
-                    this.Hide();
-                    formRegisterValid.User = user;
-                    formRegisterValid.ShowDialog(this);
-                    
-                    formLibrary.User = user;
-                    formLibrary.ShowDialog();
-                    this.Close();
-                }
-
+                loginRegisterSuccess = UserManager.RegisterRequest(user.Username, user.Password, user.RePassword);
             }
-            else
+            catch (DbException except) { lblError.Text = $"{except.Message}"; }
+            catch (LoginRegisterException except) { lblError.Text = $"{except.Message}"; }
+
+            if (loginRegisterSuccess)
             {
-                try
-                {
-                    loginRegisterSuccess = UserManager.LoginRequest(user.Username, user.Password);
-                }
-                catch (DbException except) { lblError.Text = $"{except.Message}"; }
-                catch (LoginRegisterException except) { lblError.Text = $"{except.Message}"; }
+                this.Hide();
+                formRegisterValid.User = user;
+                formRegisterValid.ShowDialog(this);
 
-                if (loginRegisterSuccess)
-                {
-                    this.Hide();
-                    formLibrary.User = user;
-                    formLibrary.ShowDialog();
-                    this.Close();
-                }
+                formLibrary.User = user;
+                formLibrary.ShowDialog();
+                this.Close();
+            }
+        }
 
+        /// <summary>
+        /// This method sign the user. Depending on the status, it will add or authentifiate the user on the database.
+        /// </summary>
+        private void Login(object sender, EventArgs e)
+        {
+            lblError.Text = "";
+            user = new User(txtEmail.Text, txtPassword.Text, txtRePassword.Text);
+
+            txtEmail.BackColor = lib.CheckMail(txtEmail.Text);
+            txtPassword.BackColor = lib.CheckPassword(txtPassword.Text, txtRePassword.Text, lib.Status);
+
+            try
+            {
+                loginRegisterSuccess = UserManager.LoginRequest(user.Username, user.Password);
+            }
+            catch (DbException except) { lblError.Text = $"{except.Message}"; }
+            catch (LoginRegisterException except) { lblError.Text = $"{except.Message}"; }
+
+            if (loginRegisterSuccess)
+            {
+                this.Hide();
+                formLibrary.User = user;
+                formLibrary.ShowDialog();
+                this.Close();
             }
         }
 

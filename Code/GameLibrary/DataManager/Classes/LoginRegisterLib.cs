@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Text.RegularExpressions;
 
-namespace GameLibrary
+namespace DataManager
 {
     /// <summary>
     /// This class has different methods used in the login/register process.
