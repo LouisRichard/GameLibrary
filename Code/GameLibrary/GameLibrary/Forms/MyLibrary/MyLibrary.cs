@@ -32,7 +32,6 @@ namespace GameLibrary
         /// </summary>
         public User User
         {
-            get { return user; }
             set { user = value; }
         }
 

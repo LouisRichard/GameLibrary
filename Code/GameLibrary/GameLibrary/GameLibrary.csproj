@@ -51,34 +51,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\LoginRegisterLib.cs" />
     <Compile Include="Classes\User.cs" />
-    <Compile Include="Forms\LoginRegister.cs">
+    <Compile Include="Forms\LoginRegister\LoginRegister.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\LoginRegister.Designer.cs">
+    <Compile Include="Forms\LoginRegister\LoginRegister.Designer.cs">
       <DependentUpon>LoginRegister.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MyLibrary.cs">
+    <Compile Include="Forms\MyLibrary\MyLibrary.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MyLibrary.Designer.cs">
+    <Compile Include="Forms\MyLibrary\MyLibrary.Designer.cs">
       <DependentUpon>MyLibrary.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Forms\RegisterValid.cs">
+    <Compile Include="Forms\LoginRegister\RegisterValid.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\RegisterValid.Designer.cs">
+    <Compile Include="Forms\LoginRegister\RegisterValid.Designer.cs">
       <DependentUpon>RegisterValid.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Forms\LoginRegister.resx">
+    <EmbeddedResource Include="Forms\LoginRegister\LoginRegister.resx">
       <DependentUpon>LoginRegister.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MyLibrary.resx">
+    <EmbeddedResource Include="Forms\MyLibrary\MyLibrary.resx">
       <DependentUpon>MyLibrary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\RegisterValid.resx">
+    <EmbeddedResource Include="Forms\LoginRegister\RegisterValid.resx">
       <DependentUpon>RegisterValid.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

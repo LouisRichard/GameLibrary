@@ -80,8 +80,6 @@
             this.txtRePassword.Size = new System.Drawing.Size(300, 35);
             this.txtRePassword.TabIndex = 13;
             this.txtRePassword.Visible = false;
-            this.txtRePassword.TextChanged += new System.EventHandler(this.txtRePassword_TextChanged);
-            this.txtRePassword.Enter += new System.EventHandler(this.txtRePassword_Enter);
             // 
             // txtPassword
             // 
@@ -90,8 +88,6 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(300, 35);
             this.txtPassword.TabIndex = 12;
-            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
-            this.txtPassword.Enter += new System.EventHandler(this.txtPassword_Enter);
             // 
             // txtEmail
             // 
@@ -101,8 +97,6 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(300, 35);
             this.txtEmail.TabIndex = 11;
-            this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
-            this.txtEmail.Enter += new System.EventHandler(this.txtEmail_Enter);
             // 
             // btnChange
             // 
@@ -169,9 +163,7 @@
             this.MinimumSize = new System.Drawing.Size(800, 400);
             this.Name = "LoginRegister";
             this.Text = "Login";
-            this.Load += new System.EventHandler(this.LoginRegister_Load);
             this.DoubleClick += new System.EventHandler(this.LoginRegister_DoubleClick);
-            this.Move += new System.EventHandler(this.LoginRegister_Move);
             this.ResumeLayout(false);
             this.PerformLayout();
 
