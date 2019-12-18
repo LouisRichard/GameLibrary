@@ -20,7 +20,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegisterValid));
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblConfirm = new System.Windows.Forms.Label();
-            this.btnSignIn = new System.Windows.Forms.Button();
+            this.cmdSignIn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -43,23 +43,23 @@
             this.lblConfirm.TabIndex = 1;
             this.lblConfirm.Text = "example@domain.com, you\'re now registered.";
             // 
-            // btnSignIn
+            // cmdSignIn
             // 
-            this.btnSignIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSignIn.Location = new System.Drawing.Point(50, 180);
-            this.btnSignIn.Name = "btnSignIn";
-            this.btnSignIn.Size = new System.Drawing.Size(125, 50);
-            this.btnSignIn.TabIndex = 10;
-            this.btnSignIn.Text = "Sign in";
-            this.btnSignIn.UseVisualStyleBackColor = true;
-            this.btnSignIn.Click += new System.EventHandler(this.btnSignIn_Click);
+            this.cmdSignIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdSignIn.Location = new System.Drawing.Point(50, 180);
+            this.cmdSignIn.Name = "cmdSignIn";
+            this.cmdSignIn.Size = new System.Drawing.Size(125, 50);
+            this.cmdSignIn.TabIndex = 10;
+            this.cmdSignIn.Text = "Sign in";
+            this.cmdSignIn.UseVisualStyleBackColor = true;
+            this.cmdSignIn.Click += new System.EventHandler(this.cmdSignIn_Click);
             // 
             // RegisterValid
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 261);
-            this.Controls.Add(this.btnSignIn);
+            this.Controls.Add(this.cmdSignIn);
             this.Controls.Add(this.lblConfirm);
             this.Controls.Add(this.lblTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -80,6 +80,6 @@
 
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblConfirm;
-        private System.Windows.Forms.Button btnSignIn;
+        private System.Windows.Forms.Button cmdSignIn;
     }
 }

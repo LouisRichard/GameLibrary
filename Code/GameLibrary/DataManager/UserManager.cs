@@ -19,20 +19,19 @@ namespace DataManager
         #endregion attributes
 
         #region public methods
-
+        
         /// <summary>
-        /// Tries to log in a user.
+        /// Tries to login a new user in the database.
         /// </summary>
-        /// <param name="email">user email</param>
-        /// <param name="password">user password</param>
-        /// <returns>True if email + password matches.</returns>
-        public static bool LoginRequest(string email, string password)
+        /// <param name="user">the user structure, it containe email, password and rePassword</param>
+        /// <returns>true if success</returns>
+        public static bool LoginRequest(User user)
         {
-            if(email == "" || password == "")
+            if(user.username == "" || user.password == "")
             {
                 throw new EmptyFieldException();
             }
-            string testLoginQuery = @"SELECT [Password] FROM [users] WHERE [email] = '" + email + "'";
+            string testLoginQuery = @"SELECT [Password] FROM [users] WHERE [email] = '" + user.username + "'";
                 try
                 {
                     List<string> queryResult = new List<string>();
@@ -41,7 +40,7 @@ namespace DataManager
                     {
                         string hashedPassword = queryResult[0];
 
-                        if (crypto.Verify(password, hashedPassword))
+                        if (crypto.Verify(user.password, hashedPassword))
                         {
                             return true;
                         }
@@ -54,27 +53,24 @@ namespace DataManager
                     throw new FailedDatabaseConnectionException();
                 }
         }
-
-
+        
         /// <summary>
         /// Tries to register a new user in the database.
         /// </summary>
-        /// <param name="email">user email</param>
-        /// <param name="password">user password</param>
-        /// <param name="confirmPassword">user password confirmed</param>
-        /// <returns>bool -> true if success</returns>
-        public static bool RegisterRequest(string email, string password, string confirmPassword)
+        /// <param name="user">the user structure, it containe email, password and rePassword</param>
+        /// <returns>true if success</returns>
+        public static bool RegisterRequest(User user)
         {
             LoginRegisterLib lib = new LoginRegisterLib();
-            if (email == "" || password == "" || confirmPassword == "")
+            if (user.username == "" || user.password == "" || user.rePassword == "")
             {
                 throw new EmptyFieldException();
             }
-            if (lib.ValidMail(email))
+            if (lib.ValidMail(user.username))
             {
-                if (password == confirmPassword)
+                if (user.password == user.rePassword)
                 {
-                    string registerQuery = @"INSERT INTO [Users] (Email, Password) VALUES ('" + email + "', '" + crypto.Hash(password) + "')";
+                    string registerQuery = @"INSERT INTO [Users] (Email, Password) VALUES ('" + user.username + "', '" + crypto.Hash(user.password) + "')";
                     try
                     {
 

@@ -45,7 +45,7 @@ namespace GameLibrary
             lblConfirm.Text = $"{user.Username}, you're now registered.";
         }
 
-        private void btnSignIn_Click(object sender, EventArgs e)
+        private void cmdSignIn_Click(object sender, EventArgs e)
         {
             this.Close();
         }

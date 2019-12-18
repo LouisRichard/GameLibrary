@@ -24,10 +24,6 @@ namespace GameLibrary
         /// </summary>
         private LoginRegisterLib lib = new LoginRegisterLib();
         /// <summary>
-        /// The user that wants to connect.
-        /// </summary>
-        private User user = new User();
-        /// <summary>
         /// The status of the login request or the register request. True if they went well.
         /// </summary>
         private bool loginRegisterSuccess;
@@ -48,16 +44,16 @@ namespace GameLibrary
         /// <summary>
         /// This method is used to toggle the view of the form.
         /// </summary>
-        private void btnChange_Click(object sender, EventArgs e)
+        private void ToggleView(object sender, EventArgs e)
         {
             lib.Status ^= true;
             lblError.Text = "";
 
             lblTitle.Text = lib.Status ? "Register" : "Login";
-            btnChange.Text = lib.Status ? "Go login" : "Go register";
-            btnSignIn.Text = lib.Status ? "Sign Up" : "Sign In";
+            cmdToggle.Text = lib.Status ? "Go login" : "Go register";
+            cmdSignIn.Text = lib.Status ? "Sign Up" : "Sign In";
             this.Text = lib.Status ? "Register" : "Login";
-            this.btnSignIn.Click += lib.Status ? new System.EventHandler(this.Register) : new System.EventHandler(this.Login);
+            this.cmdSignIn.Click += lib.Status ? new System.EventHandler(this.Register) : new System.EventHandler(this.Login);
 
             lblRePassword.Visible = lib.Status;
             txtRePassword.Visible = lib.Status;
@@ -69,12 +65,12 @@ namespace GameLibrary
         #region signIn signUp methods
 
         /// <summary>
-        /// This method sign the user. Depending on the status, it will add or authentifiate the user on the database.
+        /// This method tries to register the user. If everything goes well, it will add the user on the database.
         /// </summary>
         private void Register(object sender, EventArgs e)
         {
             lblError.Text = "";
-            user = new User(txtEmail.Text, txtPassword.Text, txtRePassword.Text);
+            User user = new User(txtEmail.Text, txtPassword.Text, txtRePassword.Text);
 
             txtEmail.BackColor = lib.CheckMail(txtEmail.Text);
             txtPassword.BackColor = lib.CheckPassword(txtPassword.Text, txtRePassword.Text, lib.Status);
@@ -82,7 +78,7 @@ namespace GameLibrary
 
             try
             {
-                loginRegisterSuccess = UserManager.RegisterRequest(user.Username, user.Password, user.RePassword);
+                loginRegisterSuccess = UserManager.RegisterRequest(user);
             }
             catch (DbException except) { lblError.Text = $"{except.Message}"; }
             catch (LoginRegisterException except) { lblError.Text = $"{except.Message}"; }
@@ -100,19 +96,19 @@ namespace GameLibrary
         }
 
         /// <summary>
-        /// This method sign the user. Depending on the status, it will add or authentifiate the user on the database.
+        /// This method tries to login the user. If everything goes well, it will authentifiate the user on the database.
         /// </summary>
         private void Login(object sender, EventArgs e)
         {
             lblError.Text = "";
-            user = new User(txtEmail.Text, txtPassword.Text, txtRePassword.Text);
+            User user = new User(txtEmail.Text, txtPassword.Text, txtRePassword.Text);
 
             txtEmail.BackColor = lib.CheckMail(txtEmail.Text);
             txtPassword.BackColor = lib.CheckPassword(txtPassword.Text, txtRePassword.Text, lib.Status);
 
             try
             {
-                loginRegisterSuccess = UserManager.LoginRequest(user.Username, user.Password);
+                loginRegisterSuccess = UserManager.LoginRequest(user);
             }
             catch (DbException except) { lblError.Text = $"{except.Message}"; }
             catch (LoginRegisterException except) { lblError.Text = $"{except.Message}"; }
@@ -148,7 +144,7 @@ namespace GameLibrary
         /// .....
         /// Welp now it's found.
         /// </summary>
-        private void LoginRegister_DoubleClick(object sender, EventArgs e)
+        private void DoubleClic(object sender, EventArgs e)
         {
             if (lblLlabel1.Location.Y > 60) { lblLlabel1.Top -= 20; }
         }

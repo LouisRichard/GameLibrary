@@ -58,6 +58,12 @@
     <Compile Include="Forms\LoginRegister\LoginRegister.Designer.cs">
       <DependentUpon>LoginRegister.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MyLibrary\AddAGame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MyLibrary\AddAGame.Designer.cs">
+      <DependentUpon>AddAGame.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MyLibrary\MyLibrary.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -25,8 +25,8 @@
             this.txtRePassword = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
-            this.btnChange = new System.Windows.Forms.Button();
-            this.btnSignIn = new System.Windows.Forms.Button();
+            this.cmdToggle = new System.Windows.Forms.Button();
+            this.cmdSignIn = new System.Windows.Forms.Button();
             this.lblError = new System.Windows.Forms.Label();
             this.lblLlabel1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -98,27 +98,27 @@
             this.txtEmail.Size = new System.Drawing.Size(300, 35);
             this.txtEmail.TabIndex = 11;
             // 
-            // btnChange
+            // cmdToggle
             // 
-            this.btnChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChange.Location = new System.Drawing.Point(625, 25);
-            this.btnChange.Name = "btnChange";
-            this.btnChange.Size = new System.Drawing.Size(150, 50);
-            this.btnChange.TabIndex = 10;
-            this.btnChange.Text = "Go Register";
-            this.btnChange.UseVisualStyleBackColor = true;
-            this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
+            this.cmdToggle.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdToggle.Location = new System.Drawing.Point(625, 25);
+            this.cmdToggle.Name = "cmdToggle";
+            this.cmdToggle.Size = new System.Drawing.Size(150, 50);
+            this.cmdToggle.TabIndex = 10;
+            this.cmdToggle.Text = "Go Register";
+            this.cmdToggle.UseVisualStyleBackColor = true;
+            this.cmdToggle.Click += new System.EventHandler(this.ToggleView);
             // 
-            // btnSignIn
+            // cmdSignIn
             // 
-            this.btnSignIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSignIn.Location = new System.Drawing.Point(50, 280);
-            this.btnSignIn.Name = "btnSignIn";
-            this.btnSignIn.Size = new System.Drawing.Size(125, 50);
-            this.btnSignIn.TabIndex = 9;
-            this.btnSignIn.Text = "Sign in";
-            this.btnSignIn.UseVisualStyleBackColor = true;
-            this.btnSignIn.Click += new System.EventHandler(this.Login);
+            this.cmdSignIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdSignIn.Location = new System.Drawing.Point(50, 280);
+            this.cmdSignIn.Name = "cmdSignIn";
+            this.cmdSignIn.Size = new System.Drawing.Size(125, 50);
+            this.cmdSignIn.TabIndex = 9;
+            this.cmdSignIn.Text = "Sign in";
+            this.cmdSignIn.UseVisualStyleBackColor = true;
+            this.cmdSignIn.Click += new System.EventHandler(this.Login);
             // 
             // lblError
             // 
@@ -154,8 +154,8 @@
             this.Controls.Add(this.txtRePassword);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtEmail);
-            this.Controls.Add(this.btnChange);
-            this.Controls.Add(this.btnSignIn);
+            this.Controls.Add(this.cmdToggle);
+            this.Controls.Add(this.cmdSignIn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -163,7 +163,7 @@
             this.MinimumSize = new System.Drawing.Size(800, 400);
             this.Name = "LoginRegister";
             this.Text = "Login";
-            this.DoubleClick += new System.EventHandler(this.LoginRegister_DoubleClick);
+            this.DoubleClick += new System.EventHandler(this.DoubleClic);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -178,8 +178,8 @@
         private System.Windows.Forms.TextBox txtRePassword;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.Button btnChange;
-        private System.Windows.Forms.Button btnSignIn;
+        private System.Windows.Forms.Button cmdToggle;
+        private System.Windows.Forms.Button cmdSignIn;
         private System.Windows.Forms.Label lblError;
         private System.Windows.Forms.Label lblLlabel1;
     }
