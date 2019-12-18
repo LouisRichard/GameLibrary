@@ -33,11 +33,9 @@ namespace GameLibrary
         /// </summary>
         /// <param name="email">the mail that must be checked</param>
         /// <returns>true if the mail is valid, false if it isnt</returns>
-        /// 
         /// <remarks>This regex has been found on StackOverflow. It has been posted by "PaRiMaL RaJ" and "mafafu".</remarks>
         public bool ValidMail(string email)
         {
-            //This regex has been made by "PaRiMaL RaJ" and "mafafu" on StackOverflow
             return Regex.IsMatch(email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
         }
 
