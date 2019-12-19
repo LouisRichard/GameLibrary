@@ -13,8 +13,8 @@ namespace DataManager
         /// Returns the user's game library using his email
         /// </summary>
         /// <param name="email"></param>
-        /// <returns>List of game id's in his library (string)</returns>
-        public List<string> GetGameLibrary(string email)
+        /// <returns>List of game id's in his library (string)</sreturns>
+        public static List<string> GetGameLibrary(string email)
         {
             int userID = UserManager.GetUserID(email);
             string getUserLibraryQuery = @"SELECT [idGame] FROM Library WHERE [idUser] = " + userID + "'";
@@ -29,10 +29,10 @@ namespace DataManager
             return gameList;
         }
 
-        public bool AddGameToLibrary(string title, string email)
+        public static bool AddGameToLibrary(string title, string email)
         {
             throw new NotImplementedException();
-            int userID = UserManager.GetUserID(email);
+            //int userID = UserManager.GetUserID(email);
 
             //TOOD
             //GET USER ID - DONE
@@ -48,7 +48,7 @@ namespace DataManager
         /// Get all the games in the database
         /// </summary>
         /// <returns>List of game title (string)</returns>
-        public List<string> GetGameList()
+        public static List<string> GetGameList()
         {
             string getGameQuery = @"SELECT [title] FROM [Games]";
             List<string> queryResult = new List<string>();
@@ -70,16 +70,16 @@ namespace DataManager
         /// </summary>
         /// <param name="gameTitle">Game title</param>
         /// <param name="platform">Platform name</param>
-        public void AddGameToGameList(string gameTitle, string platform)
+        public static void AddGameToGameList(Game game)
         {
-            if (gameTitle == "" || platform == "")
+            if (game.title == "" || game.platform == "")
             {
                 throw new EmptyFieldException();
             }
-            string getGameQuery = @"SELECT [idGame] FROM [Games] WHERE [title] = '" + gameTitle + "'";
+            string getGameQuery = @"SELECT [idGame] FROM [Games] WHERE [title] = '" + game.title + "'";
             if (ExecuteQuery.Select(getGameQuery)[0] == null)
             {
-                string addNewGameQuery = @"INSERT INTO [Games](title) VALUES ('" + gameTitle + "')";
+                string addNewGameQuery = @"INSERT INTO [Games](title) VALUES ('" + game.title + "')";
                 try
                 {
                     ExecuteQuery.Insert(addNewGameQuery);
@@ -93,7 +93,7 @@ namespace DataManager
             }
             try
             {
-                string getPlatformIdQuery = @"SELECT [idPlatform] FROM [Platforms] WHERE [Name] = '" + platform + "'";
+                string getPlatformIdQuery = @"SELECT [idPlatform] FROM [Platforms] WHERE [Name] = '" + game.platform + "'";
                 int gameID = int.Parse(ExecuteQuery.Select(getGameQuery)[0]);
                 int platformID = int.Parse(ExecuteQuery.Select(getPlatformIdQuery)[0]);
                 string insertGamePlatformQuery = @"INSERT INTO [GamesPlatforms] (idGame, idPlatform) VALUES (" + gameID + ", " + platformID + ")";

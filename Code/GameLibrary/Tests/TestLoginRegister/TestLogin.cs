@@ -46,11 +46,12 @@ namespace TestLoginRegister
             //If this test fails, try deleting your GLdb.db3 file in Code\GameLibrary\Tests\TestLoginRegister\bin\Debug
             string email = "testlogin1@domain.ch";
             string password = "Pa$$w0rd";
+            User user = new User(email, password, password);
             //insert the user in the database
-            _ = UserManager.RegisterRequest(email, password, password);
+            _ = UserManager.RegisterRequest(user);
 
             //Tries to log in
-            bool success = UserManager.LoginRequest(email, password);
+            bool success = UserManager.LoginRequest(user);
 
             Assert.AreEqual(true, success);
         }
@@ -64,8 +65,9 @@ namespace TestLoginRegister
         {
             string email = "thisuserdoesnotexist@sad.co.uk";
             string password = "whatever";
+            User user = new User(email, password, "doesn't matter");
 
-            bool success = UserManager.LoginRequest(email, password);
+            bool success = UserManager.LoginRequest(user);
         }
 
         /// <summary>
@@ -80,9 +82,12 @@ namespace TestLoginRegister
             string password = "theRightPassword";
             string wrongPassword = "ExcuseMeWhaaaaat?";
 
-            _ = UserManager.RegisterRequest(email, password, password);
+            User user = new User(email, wrongPassword, "");
+            User userRegister = new User(email, password, password);
 
-            bool success = UserManager.LoginRequest(email, wrongPassword);
+            _ = UserManager.RegisterRequest(userRegister);
+
+            bool success = UserManager.LoginRequest(user);
         }
 
         /// <summary>
@@ -94,9 +99,10 @@ namespace TestLoginRegister
         {
             string email = "testLogin4@domain.ch";
             string emptyPassword = "";
+            User user = new User(email, emptyPassword, "");
 
 
-            bool success = UserManager.LoginRequest(email, emptyPassword);
+            bool success = UserManager.LoginRequest(user);
         }
 
         /// <summary>
@@ -108,8 +114,8 @@ namespace TestLoginRegister
         {
             string email = "";
             string password = "whatever";
-
-            bool success = UserManager.LoginRequest(email, password);
+            User user = new User(email, password, "");
+            bool success = UserManager.LoginRequest(user);
         }
         #endregion
     }
