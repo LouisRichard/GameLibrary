@@ -101,7 +101,7 @@ namespace DatabaseManager
                 "Nintendo GameBoy Color",
                 "Nintendo GameBoy Evolution",
                 "Nintendo GameCube",
-                "Nintendo Pok�mon Mini",
+                "Nintendo Pokémon Mini",
                 "Nintendo Virtual Boy",
                 "Nintendo Wii",
                 "Nokia N-Gage/N-Gage QD",
