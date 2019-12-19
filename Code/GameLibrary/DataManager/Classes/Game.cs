@@ -1,5 +1,8 @@
 ﻿namespace DataManager
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Game
     {
         #region attributes
@@ -12,7 +15,6 @@
         /// 
         /// </summary>
         internal string platform;
-
 
         #endregion attributes
 
@@ -28,6 +30,7 @@
             this.title = title;
             this.platform = platorm;
         }
+
+        #endregion constructors
     }
 }
-        #endregion
