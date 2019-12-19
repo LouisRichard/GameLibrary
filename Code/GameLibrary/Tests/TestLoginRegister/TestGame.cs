@@ -11,31 +11,6 @@ namespace TestLoginRegister
     [TestClass]
     public class TestGame
     {
-        public TestGame()
-        {
-            //
-            // TODO: ajoutez ici la logique du constructeur
-            //
-        }
-
-        private TestContext testContextInstance;
-
-        /// <summary>
-        ///Obtient ou définit le contexte de test qui fournit
-        ///des informations sur la série de tests active, ainsi que ses fonctionnalités.
-        ///</summary>
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
-        }
-
         #region Attributs de tests supplémentaires
         //
         // Vous pouvez utiliser les attributs supplémentaires suivants lorsque vous écrivez vos tests :
@@ -59,11 +34,9 @@ namespace TestLoginRegister
         #endregion
 
         [TestMethod]
-        public void TestMethod1()
+        public void AddAGameThatDoesntExist()
         {
-            //
-            // TODO: ajoutez ici la logique du test
-            //
+
         }
     }
 }

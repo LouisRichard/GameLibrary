@@ -52,6 +52,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TestGame.cs" />
     <Compile Include="TestLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestRegister.cs" />
