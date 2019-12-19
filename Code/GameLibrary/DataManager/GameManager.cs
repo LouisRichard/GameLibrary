@@ -29,17 +29,24 @@ namespace DataManager
             return gameList;
         }
 
-        public static bool AddGameToLibrary(string title, string email)
+        public static bool AddGameToLibrary(Game game, User user)
         {
-            throw new NotImplementedException();
-            //int userID = UserManager.GetUserID(email);
+            int userID = UserManager.GetUserID(user.username);
+            int gameID = GetGameID(game);
+            DateTime myDateTime = DateTime.Now;
+            string sqlFomattedDate = myDateTime.ToString("YYYY-MM-dd");
+            try
+            {
+                string insertQuery = @"INSERT INTO [Library] (idUser, idGame, DateAdded) VALUES (" + userID + "," + gameID + ", "+sqlFomattedDate+")";
 
-            //TOOD
-            //GET USER ID - DONE
-            //GET GAME ID
-            //INSERT INTO LIBRARY THOSES TWO VALUES
-            //IF SUCCESS -> RETURN TRUE
-            //ELSE -> EXCEPTION : 
+                ExecuteQuery.Insert(insertQuery);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
             //GameAlreadyInLibraryException -> NEED TO BE WRITTEN
             //CannotAccessTheDatabaseException -> NEED TO BE WRITTEN
         }
@@ -103,6 +110,12 @@ namespace DataManager
                 throw new Exception(e.Message);
             }
 
+        }
+        public static int GetGameID(Game game)
+        {
+            string getUserIdQuery = @"SELECT [idGame] FROM [Games] WHERE [Title] = '" + game.title + "'";
+            List<string> userIDString = ExecuteQuery.Select(getUserIdQuery);
+            return int.Parse(userIDString[0]);
         }
     }
 }
