@@ -43,7 +43,7 @@ namespace DataManager
         /// This method tests if the email textbox is well formatted.
         /// </summary>
         /// <param name="email">the email in the email textbox</param>
-        /// <returns>the color that the </returns>
+        /// <returns>the color that the email field has to take</returns>
         public Color CheckMail(string email)
         {
             fieldColor = !ValidMail(email) || email == "" ?
@@ -57,7 +57,7 @@ namespace DataManager
         /// <param name="password">the password in the password textbox</param>
         /// <param name="rePassword">the password confirmed in the confirm your password textbox</param>
         /// <param name="status">the status of the view. True for Register</param>
-        /// <returns></returns>
+        /// <returns>the color that password fields have to take</returns>
         public Color CheckPassword(string password, string rePassword, bool status)
         {
             fieldColor = password == "" ?

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataManager;
 
@@ -22,6 +15,10 @@ namespace GameLibrary
         /// The user inherited from the login-register.
         /// </summary>
         private User user;
+        /// <summary>
+        /// AddAGame form.
+        /// </summary>
+        private AddAGame addAGame = new AddAGame();
 
         #endregion attributes
 
@@ -47,16 +44,18 @@ namespace GameLibrary
         /// <summary>
         /// The loading of the form.
         /// </summary>
-        private void MyLibrary_Load(object sender, EventArgs e)
+        public void MyLibrary_Load(object sender, EventArgs e)
         {
             lblUsername.Text = $"{user.Username}";
         }
 
         #endregion formLoad
 
-        private void cmdAddAGame_Click(object sender, EventArgs e)
+        /// <summary>
+        /// This method launches the add a game form on top of the library.
+        /// </summary>
+        public void AddAGame(object sender, EventArgs e)
         {
-            AddAGame addAGame = new AddAGame();
             addAGame.ShowDialog(this);
         }
     }

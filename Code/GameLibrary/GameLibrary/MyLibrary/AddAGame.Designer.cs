@@ -21,7 +21,7 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblPlatform = new System.Windows.Forms.Label();
             this.txtTitle = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cboPlatform = new System.Windows.Forms.ComboBox();
             this.cmdCancel = new System.Windows.Forms.Button();
             this.cmdConfirm = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -54,14 +54,15 @@
             this.txtTitle.Size = new System.Drawing.Size(600, 27);
             this.txtTitle.TabIndex = 2;
             // 
-            // comboBox1
+            // cboPlatform
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(150, 60);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(200, 28);
-            this.comboBox1.TabIndex = 3;
+            this.cboPlatform.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.cboPlatform.FormattingEnabled = true;
+            this.cboPlatform.Location = new System.Drawing.Point(150, 60);
+            this.cboPlatform.Name = "cboPlatform";
+            this.cboPlatform.Size = new System.Drawing.Size(200, 28);
+            this.cboPlatform.Sorted = true;
+            this.cboPlatform.TabIndex = 3;
             // 
             // cmdCancel
             // 
@@ -72,6 +73,7 @@
             this.cmdCancel.TabIndex = 4;
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = true;
+            this.cmdCancel.Click += new System.EventHandler(this.Cancel);
             // 
             // cmdConfirm
             // 
@@ -82,6 +84,7 @@
             this.cmdConfirm.TabIndex = 5;
             this.cmdConfirm.Text = "Confirm";
             this.cmdConfirm.UseVisualStyleBackColor = true;
+            this.cmdConfirm.Click += new System.EventHandler(this.Confirm);
             // 
             // AddAGame
             // 
@@ -90,7 +93,7 @@
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.cmdConfirm);
             this.Controls.Add(this.cmdCancel);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cboPlatform);
             this.Controls.Add(this.txtTitle);
             this.Controls.Add(this.lblPlatform);
             this.Controls.Add(this.lblTitle);
@@ -107,7 +110,7 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblPlatform;
         private System.Windows.Forms.TextBox txtTitle;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboPlatform;
         private System.Windows.Forms.Button cmdCancel;
         private System.Windows.Forms.Button cmdConfirm;
     }

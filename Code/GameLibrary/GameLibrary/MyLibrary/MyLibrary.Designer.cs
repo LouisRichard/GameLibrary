@@ -41,7 +41,7 @@
             this.cmdAddAGame.TabIndex = 1;
             this.cmdAddAGame.Text = "Add a game";
             this.cmdAddAGame.UseVisualStyleBackColor = true;
-            this.cmdAddAGame.Click += new System.EventHandler(this.cmdAddAGame_Click);
+            this.cmdAddAGame.Click += new System.EventHandler(this.AddAGame);
             // 
             // MyLibrary
             // 
