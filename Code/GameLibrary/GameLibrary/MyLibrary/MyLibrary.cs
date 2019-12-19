@@ -53,5 +53,11 @@ namespace GameLibrary
         }
 
         #endregion formLoad
+
+        private void cmdAddAGame_Click(object sender, EventArgs e)
+        {
+            AddAGame addAGame = new AddAGame();
+            addAGame.ShowDialog(this);
+        }
     }
 }

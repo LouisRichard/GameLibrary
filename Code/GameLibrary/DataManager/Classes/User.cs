@@ -38,5 +38,11 @@
         }
 
         #endregion constructors
+
+        #region accessors
+
+        public string Username { get => username; }
+
+        #endregion accessors
     }
 }

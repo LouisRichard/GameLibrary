@@ -20,11 +20,11 @@ namespace GameLibrary
         /// </summary>
         private RegisterValid formRegisterValid = new RegisterValid();
         /// <summary>
-        /// The login-register library of methods.
+        /// The login/register library of methods.
         /// </summary>
         private LoginRegisterLib lib = new LoginRegisterLib();
         /// <summary>
-        /// The status of the login request or the register request. True if they went well.
+        /// The status of the login request or the register request. True if the request went well.
         /// </summary>
         private bool loginRegisterSuccess;
 
