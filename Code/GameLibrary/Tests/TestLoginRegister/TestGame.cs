@@ -35,12 +35,15 @@ namespace TestLoginRegister
         #endregion
 
         [TestMethod]
+        [ExpectedException (typeof(EmptyFieldException))]
         public void AddAGameWithoutTitle()
         {
             string title = "";
-            string platform = "Nintendont 69";
+            string platform = "Sony PlayStation 3";
 
-            //TODO
+            Game game = new Game(title, platform);
+
+            GameManager.AddGameToGameList(game);
         }
     }
 }
