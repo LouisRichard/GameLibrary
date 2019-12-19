@@ -49,7 +49,7 @@ namespace DatabaseManager
         /// <summary>
         /// Create the DB File.
         /// </summary>
-        private static void CreateDatabase()
+        internal static void CreateDatabase()
         {
             System.Data.SQLite.SQLiteConnection.CreateFile(
                     Path.Combine(
@@ -59,7 +59,7 @@ namespace DatabaseManager
         /// Create the tables needed fot the database to works properly.
         /// </summary>
         /// <param name="cmd">SQLiteCommand cmd</param>
-        private static void CreateTable(SQLiteCommand cmd)
+        internal static void CreateTable(SQLiteCommand cmd)
         {
             List<string> createTableQuery = new List<string>
             {
