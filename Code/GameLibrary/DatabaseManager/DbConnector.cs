@@ -35,6 +35,7 @@ namespace DatabaseManager
                 if (createTable)
                 {
                     CreateTable(cmd);
+                    InsertPlatform(cmd);
                 }
                 return cmd;
             }
@@ -54,6 +55,98 @@ namespace DatabaseManager
             System.Data.SQLite.SQLiteConnection.CreateFile(
                     Path.Combine(
                         Directory.GetCurrentDirectory(), "GLdb.db3")); //Create the database
+        }
+
+        internal static void InsertPlatform(SQLiteCommand cmd)
+        {
+            List<string> platforms = new List<string>(new string[]
+            {
+                "1292 Advanced Programmable Video System",
+                "Panasonic 3DO Interactive Multiplayer FZ-1",
+                "3DO/Matsushita M2",
+                "Active Enterprises Action Gamemaster",
+                "Atari 2600 Video Computer System",
+                "Atari 2600 CE",
+                "Atari 2600 VCSp",
+                "Atari Lynx",
+                "Bally Professional Arcade/Astrocade",
+                "Bankzilla",
+                "Barcode Battler",
+                "Bit Corporation Gamate",
+                "Bit Corporation Gamate Color",
+                "Coleco Adam",
+                "ColecoVision",
+                "DataMax UV-1",
+                "Fujitsu FM Towns Marty/FM Towns Marty 2",
+                "GamePark 32",
+                "Hasbro Pox",
+                "Indrema Entertainment System",
+                "Infinium Labs Phantom",
+                "Interton VC-4000",
+                "iQue Player",
+                "Konix Multisystem",
+                "Magnavox Odyssey",
+                "Mega Duck/Cougar Boy",
+                "Mega Duck Super Junior Computer",
+                "Microsoft Xbox",
+                "Microsoft Xbox 360",
+                "Nintendo Entertainment System/Famicom",
+                "Nintendo 64",
+                "Nintendo 64 Dynamic Drive",
+                "Nintendo DS",
+                "Nintendo Famicom Disk System",
+                "Nintendo Game & Watch",
+                "Nintendo GameBoy/GameBoy Pocket",
+                "Nintendo GameBoy Advance/GameBoy Advance SP",
+                "Nintendo GameBoy Color",
+                "Nintendo GameBoy Evolution",
+                "Nintendo GameCube",
+                "Nintendo Pok�mon Mini",
+                "Nintendo Virtual Boy",
+                "Nintendo Wii",
+                "Nokia N-Gage/N-Gage QD",
+                "NPES",
+                "Portendo",
+                "PSp",
+                "Puma 2600",
+                "Sega 32X",
+                "Sega Dreamcast",
+                "Sega Dreamcast Visual Memory Unit",
+                "Sega Game Gear",
+                "Sega Master System/SG-1000 Mark III",
+                "Sega Mega CD/Sega CD",
+                "Sega Mega Drive/Genesis",
+                "Sega Mega Jet",
+                "Sega Neptune",
+                "Sega Nomad",
+                "Sega Pico",
+                "Sega Saturn",
+                "Sega SC-3000",
+                "Sega SG-1000",
+                "Sega Triforce",
+                "Nintendo Super NES/Super Famicom",
+                "SNES CD-ROM",
+                "SNESp",
+                "Sony PlayStation/PSOne",
+                "Sony PlayStation 2",
+                "Sony PlayStation 3",
+                "Sony PlayStation PocketStation",
+                "Sony PlayStation Portable",
+                "Super Cassette Vision",
+                "Supervision",
+                "Tapwave Zodiac",
+                "Tiger Telematics Gizmondo",
+                "Time Top GameKing",
+                "V-Tech V.Smile",
+                "Video Driver",
+                "ZGrass Computer Expansion Module"
+            });
+            foreach(string platform in platforms)
+            {
+                string query = @"INSERT INTO [Platforms](Name) VALUES ('" + platform + "')";
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+            }
         }
         /// <summary>
         /// Create the tables needed fot the database to works properly.
