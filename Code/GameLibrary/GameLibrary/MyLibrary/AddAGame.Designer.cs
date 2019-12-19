@@ -56,11 +56,91 @@
             // 
             // cboPlatform
             // 
-            this.cboPlatform.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.cboPlatform.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.cboPlatform.FormattingEnabled = true;
-            this.cboPlatform.Location = new System.Drawing.Point(150, 60);
+            this.cboPlatform.Items.AddRange(new object[] {
+            "1292 Advanced Programmable Video System",
+            "3DO/Matsushita M2",
+            "Active Enterprises Action Gamemaster",
+            "Atari 2600 CE",
+            "Atari 2600 VCSp",
+            "Atari 2600 Video Computer System",
+            "Atari Lynx",
+            "Bally Professional Arcade/Astrocade",
+            "Bankzilla",
+            "Barcode Battler",
+            "Bit Corporation Gamate",
+            "Bit Corporation Gamate Color",
+            "Coleco Adam",
+            "ColecoVision",
+            "DataMax UV-1",
+            "Fujitsu FM Towns Marty/FM Towns Marty 2",
+            "GamePark 32",
+            "Hasbro Pox",
+            "Indrema Entertainment System",
+            "Infinium Labs Phantom",
+            "Interton VC-4000",
+            "iQue Player",
+            "Konix Multisystem",
+            "Magnavox Odyssey",
+            "Mega Duck Super Junior Computer",
+            "Mega Duck/Cougar Boy",
+            "Microsoft Xbox",
+            "Microsoft Xbox 360",
+            "Nintendo 64",
+            "Nintendo 64 Dynamic Drive",
+            "Nintendo DS",
+            "Nintendo Entertainment System/Famicom",
+            "Nintendo Famicom Disk System",
+            "Nintendo Game & Watch",
+            "Nintendo GameBoy Advance/GameBoy Advance SP",
+            "Nintendo GameBoy Color",
+            "Nintendo GameBoy Evolution",
+            "Nintendo GameBoy/GameBoy Pocket",
+            "Nintendo GameCube",
+            "Nintendo Pokémon Mini",
+            "Nintendo Super NES/Super Famicom",
+            "Nintendo Virtual Boy",
+            "Nintendo Wii",
+            "Nokia N-Gage/N-Gage QD",
+            "NPES",
+            "Panasonic 3DO Interactive Multiplayer FZ-",
+            "Portendo",
+            "PSp",
+            "Puma 2600",
+            "Sega 32X",
+            "Sega Dreamcast",
+            "Sega Dreamcast Visual Memory Unit",
+            "Sega Game Gear",
+            "Sega Master System/SG-1000 Mark III",
+            "Sega Mega CD/Sega CD",
+            "Sega Mega Drive/Genesis",
+            "Sega Mega Jet",
+            "Sega Neptune",
+            "Sega Nomad",
+            "Sega Pico",
+            "Sega Saturn",
+            "Sega SC-3000",
+            "Sega SG-1000",
+            "Sega Triforce",
+            "SNES CD-ROM",
+            "SNESp",
+            "Sony PlayStation 2",
+            "Sony PlayStation 3",
+            "Sony PlayStation PocketStation",
+            "Sony PlayStation Portable",
+            "Sony PlayStation/PSOne",
+            "Super Cassette Vision",
+            "Supervision",
+            "Tapwave Zodiac",
+            "Tiger Telematics Gizmondo",
+            "Time Top GameKing",
+            "V-Tech V.Smile",
+            "Video Driver",
+            "ZGrass Computer Expansion Module"});
+            this.cboPlatform.Location = new System.Drawing.Point(150, 64);
             this.cboPlatform.Name = "cboPlatform";
-            this.cboPlatform.Size = new System.Drawing.Size(200, 28);
+            this.cboPlatform.Size = new System.Drawing.Size(200, 21);
             this.cboPlatform.Sorted = true;
             this.cboPlatform.TabIndex = 3;
             // 
@@ -99,6 +179,7 @@
             this.Controls.Add(this.lblTitle);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddAGame";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddAGame";
             this.ResumeLayout(false);
             this.PerformLayout();
