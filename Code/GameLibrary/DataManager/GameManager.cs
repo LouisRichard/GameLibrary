@@ -93,7 +93,6 @@ namespace DataManager
             }
             try
             {
-
                 string getPlatformIdQuery = @"SELECT [idPlatform] FROM [Platforms] WHERE [Name] = '" + platform + "'";
                 int gameID = int.Parse(ExecuteQuery.Select(getGameQuery)[0]);
                 int platformID = int.Parse(ExecuteQuery.Select(getPlatformIdQuery)[0]);

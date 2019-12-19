@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
+using DataManager;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestLoginRegister
@@ -34,9 +35,12 @@ namespace TestLoginRegister
         #endregion
 
         [TestMethod]
-        public void AddAGameThatDoesntExist()
+        public void AddAGameWithoutTitle()
         {
+            string title = "";
+            string platform = "Nintendont 69";
 
+            //TODO
         }
     }
 }

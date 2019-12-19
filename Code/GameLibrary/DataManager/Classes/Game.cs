@@ -12,20 +12,17 @@
         /// 
         /// </summary>
         internal string platform;
-        /// <summary>
-        /// 
-        /// </summary>
+
 
         #endregion attributes
 
         #region constructors
 
         /// <summary>
-        /// User with every fields filled constructor.
+        /// Game with every fields filled constructor.
         /// </summary>
-        /// <param name="username">the user's username.</param>
-        /// <param name="password">the user's password.</param>
-        /// <param name="rePassword">the user's password confirmed.</param>
+        /// <param name="title">the game title</param>
+        /// <param name="platform">the game platform</param>
         public Game(string title, string platorm)
         {
             this.title = title;
