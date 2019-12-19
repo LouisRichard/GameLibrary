@@ -23,6 +23,9 @@ namespace GameLibrary.Properties {
             }
         }
         
+        /// <summary>
+        /// This is the location of the loginRegister form stored after the program closes.
+        /// </summary>
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]

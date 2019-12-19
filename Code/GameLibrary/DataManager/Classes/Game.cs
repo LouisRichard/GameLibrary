@@ -8,11 +8,11 @@
         #region attributes
 
         /// <summary>
-        /// The user's email.
+        /// The game's title.
         /// </summary>
         internal string title;
         /// <summary>
-        /// 
+        /// The game's platform
         /// </summary>
         internal string platform;
 
@@ -23,8 +23,8 @@
         /// <summary>
         /// Game with every fields filled constructor.
         /// </summary>
-        /// <param name="title">the game title</param>
-        /// <param name="platform">the game platform</param>
+        /// <param name="title">the game's title</param>
+        /// <param name="platform">the game's platform</param>
         public Game(string title, string platorm)
         {
             this.title = title;

@@ -41,10 +41,7 @@ namespace GameLibrary
             InitializeComponent();
         }
 
-        /// <summary>
-        /// The loading of the form.
-        /// </summary>
-        public void MyLibrary_Load(object sender, EventArgs e)
+        private void MyLibrary_Load(object sender, EventArgs e)
         {
             lblUsername.Text = $"{user.Username}";
         }
