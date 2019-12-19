@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using DatabaseManager;
 using System.Data.SQLite;
+using System;
 
 namespace DataManager
 {
@@ -85,6 +86,18 @@ namespace DataManager
                 throw new PasswordDontMatchException();
             }
             throw new NotValidEmailException();
+        }
+
+        /// <summary>
+        /// Gets the user ID using his email
+        /// </summary>
+        /// <param name="email">User's email</param>
+        /// <returns>int32 User ID</returns>
+        public static int GetUserID(string email)
+        {
+            string getUserIdQuery = @"SELECT [idUser] FROM [Users] WHERE [Email] = '" + email + "'";
+            List<string> userIDString = ExecuteQuery.Select(getUserIdQuery);
+            return int.Parse(userIDString[0]);
         }
 
         #endregion public methods

@@ -107,4 +107,11 @@ namespace DataManager
     }
 
     #endregion database
+
+    #region Game
+    //TODO
+    //GameAlreadyExist -> In code, see if we try to put it in another plateform
+    //
+
+    #endregion
 }
