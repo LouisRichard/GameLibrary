@@ -10,11 +10,6 @@
 
 namespace GameLibrary.Properties
 {
-
-
-    /// <summary>
-    ///   Une classe de ressource fortement typée destinée, entre autres, à la consultation des chaînes localisées.
-    /// </summary>
     // Cette classe a été générée automatiquement par la classe StronglyTypedResourceBuilder
     // à l'aide d'un outil, tel que ResGen ou Visual Studio.
     // Pour ajouter ou supprimer un membre, modifiez votre fichier .ResX, puis réexécutez ResGen
@@ -24,7 +19,6 @@ namespace GameLibrary.Properties
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources
     {
-
         private static global::System.Resources.ResourceManager resourceMan;
 
         private static global::System.Globalization.CultureInfo resourceCulture;
@@ -34,9 +28,6 @@ namespace GameLibrary.Properties
         {
         }
 
-        /// <summary>
-        ///   Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
-        /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
         internal static global::System.Resources.ResourceManager ResourceManager
         {
@@ -51,10 +42,6 @@ namespace GameLibrary.Properties
             }
         }
 
-        /// <summary>
-        ///   Remplace la propriété CurrentUICulture du thread actuel pour toutes
-        ///   les recherches de ressources à l'aide de cette classe de ressource fortement typée.
-        /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
         internal static global::System.Globalization.CultureInfo Culture
         {

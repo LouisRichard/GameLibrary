@@ -21,9 +21,10 @@ namespace TestLoginRegister
             string testUserEmail = @"testregister1@domain.ch";
             string testUserPassword = "password";
             string testUserPasswordConfirm = "password";
+            User user = new User(testUserEmail, testUserPassword, testUserPasswordConfirm);
             bool success = false;
 
-            success = UserManager.RegisterRequest(testUserEmail, testUserPassword, testUserPasswordConfirm);
+            success = UserManager.RegisterRequest(user);
 
             Assert.AreEqual(success, true);
         }
@@ -38,11 +39,12 @@ namespace TestLoginRegister
             string testUserEmail = @"testregister2@domain.ch";
             string testUserPassword = "password";
             string testUserPasswordConfirm = "password";
+            User user = new User(testUserEmail, testUserPassword, testUserPasswordConfirm);
             bool register = false;
             bool registerSame = false;
 
-            register = UserManager.RegisterRequest(testUserEmail, testUserPassword, testUserPasswordConfirm);
-            registerSame = UserManager.RegisterRequest(testUserEmail, testUserPassword, testUserPasswordConfirm);
+            register = UserManager.RegisterRequest(user);
+            registerSame = UserManager.RegisterRequest(user);
         }
 
         /// <summary>
@@ -55,9 +57,10 @@ namespace TestLoginRegister
             string testUserEmail = @"testuser@domain.ch";
             string testUserPassword = "password";
             string testUserPasswordConfirm = "NotTheSamePassword";
+            User user = new User(testUserEmail, testUserPassword, testUserPasswordConfirm);
             bool success = false;
 
-            success = UserManager.RegisterRequest(testUserEmail, testUserPassword, testUserPasswordConfirm);
+            success = UserManager.RegisterRequest(user);
         }
 
         /// <summary>
@@ -69,8 +72,9 @@ namespace TestLoginRegister
         {
             string testUserEmail = "";
             string password = "root";
+            User user = new User(testUserEmail, password, password);
 
-            bool success = UserManager.RegisterRequest(testUserEmail, password, password);
+            bool success = UserManager.RegisterRequest(user);
         }
 
         /// <summary>
@@ -82,8 +86,9 @@ namespace TestLoginRegister
         {
             string testUserEmail = "testUser@domain.ch";
             string password = "";
+            User user = new User(testUserEmail, password, password);
 
-            bool success = UserManager.RegisterRequest(testUserEmail, password, password);
+            bool success = UserManager.RegisterRequest(user);
         }
 
         /// <summary>
@@ -96,8 +101,8 @@ namespace TestLoginRegister
             string testUserEmail = "testUser@domain.ch";
             string password = "Password";
             string confirm = "";
-
-            bool success = UserManager.RegisterRequest(testUserEmail, password, confirm);
+            User user = new User(testUserEmail, password, confirm);
+            bool success = UserManager.RegisterRequest(user);
         }
 
         /// <summary>
@@ -110,8 +115,8 @@ namespace TestLoginRegister
             string testUserEmail = "testUser@domain.ch";
             string password = "";
             string confirm = "confirmPassword";
-
-            bool success = UserManager.RegisterRequest(testUserEmail, password, confirm);
+            User user = new User(testUserEmail, password, confirm);
+            bool success = UserManager.RegisterRequest(user);
         }
     }
 

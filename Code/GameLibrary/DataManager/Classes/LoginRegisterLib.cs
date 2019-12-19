@@ -11,32 +11,18 @@ namespace DataManager
         #region attributes
 
         /// <summary>
-        /// The status of the view. True for register and false for login.
+        /// The color that a field needs to take during some processes.
         /// </summary>
-        private bool status;
-        /// <summary>
-        /// The location of the login window.
-        /// </summary>
-        private Point loginLocation = new Point();
+        private Color fieldColor;
 
         #endregion attributes
 
         #region accessors
 
         /// <summary>
-        /// Status of the LoginRegister form
+        /// The status of the view. True for register and false for login.
         /// </summary>
-        public bool Status
-        {
-            get
-            {
-                return status;
-            }
-            set
-            {
-                this.status = value;
-            }
-        }
+        public bool Status { get; set; }
 
         #endregion accessors
 
@@ -45,29 +31,45 @@ namespace DataManager
         /// <summary>
         /// Check if a mail is valid
         /// </summary>
-        /// <param name="email">string value: the mail that must be checked</param>
-        /// <returns>boolean value: true if the mail is valid, false if it isnt</returns>
+        /// <param name="email">the mail that must be checked</param>
+        /// <returns>true if the mail is valid, false if it isnt</returns>
+        /// <remarks>This regex has been found on StackOverflow. It has been posted by "PaRiMaL RaJ" and "mafafu".</remarks>
         public bool ValidMail(string email)
         {
-            //This regex has been made by "PaRiMaL RaJ" and "mafafu" on StackOverflow
             return Regex.IsMatch(email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
         }
 
         /// <summary>
-        /// This method returns login-register window location from the last user preferences
+        /// This method tests if the email textbox is well formatted.
         /// </summary>
-        /// <returns>Point structure: the position of the login-regiser window</returns>
-        public Point LoginLocation()
+        /// <param name="email">the email in the email textbox</param>
+        /// <returns>the color that the email field has to take</returns>
+        public Color CheckMail(string email)
         {
-            //loginLocation.X = json.JSONXLocation;
-            //loginLocation.Y = json.JSONYLocation;
-            loginLocation.X = 100;
-            loginLocation.Y = 50;
+            fieldColor = !ValidMail(email) || email == "" ?
+                Color.Crimson : Color.White;
+            return fieldColor;
+        }
 
-            return loginLocation;
+        /// <summary>
+        /// This the different condition that password textboxes should pass.
+        /// </summary>
+        /// <param name="password">the password in the password textbox</param>
+        /// <param name="rePassword">the password confirmed in the confirm your password textbox</param>
+        /// <param name="status">the status of the view. True for Register</param>
+        /// <returns>the color that password fields have to take</returns>
+        public Color CheckPassword(string password, string rePassword, bool status)
+        {
+            fieldColor = password == "" ?
+                Color.Crimson : Color.White;
+            if (status)
+            {
+                fieldColor = password != rePassword || password == "" || rePassword == "" ?
+                    Color.Crimson : Color.White;
+            }
+            return fieldColor;
         }
 
         #endregion public methods
-
     }
 }
