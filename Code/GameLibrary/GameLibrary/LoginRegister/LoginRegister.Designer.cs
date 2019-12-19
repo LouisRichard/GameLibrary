@@ -156,13 +156,16 @@
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.cmdToggle);
             this.Controls.Add(this.cmdSignIn);
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::GameLibrary.Properties.Settings.Default, "Location", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Location = global::GameLibrary.Properties.Settings.Default.Location;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(800, 400);
             this.MinimumSize = new System.Drawing.Size(800, 400);
             this.Name = "LoginRegister";
             this.Text = "Login";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoginRegister_FormClosing);
             this.DoubleClick += new System.EventHandler(this.DoubleClic);
             this.ResumeLayout(false);
             this.PerformLayout();

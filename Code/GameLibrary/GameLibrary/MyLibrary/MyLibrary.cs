@@ -51,12 +51,17 @@ namespace GameLibrary
 
         #endregion formLoad
 
+        #region actions
+
         /// <summary>
         /// This method launches the add a game form on top of the library.
         /// </summary>
         public void AddAGame(object sender, EventArgs e)
         {
+            addAGame.User = user;
             addAGame.ShowDialog(this);
         }
+
+        #endregion actions
     }
 }

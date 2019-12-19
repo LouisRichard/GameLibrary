@@ -60,6 +60,12 @@ namespace GameLibrary
 
         }
 
+
+        private void LoginRegister_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.Location= this.Location;
+        }
+
         #endregion dynamic form
 
         #region signIn signUp methods
@@ -149,8 +155,11 @@ namespace GameLibrary
             if (lblLlabel1.Location.Y > 60) { lblLlabel1.Top -= 20; }
         }
         #endregion whats here?
+
         #endregion
+
         #endregion
+
         #endregion
     }
 }
