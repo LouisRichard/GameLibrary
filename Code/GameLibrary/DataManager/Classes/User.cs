@@ -12,11 +12,11 @@
         /// </summary>
         internal string username;
         /// <summary>
-        /// 
+        /// The user's password.
         /// </summary>
         internal string password;
         /// <summary>
-        /// 
+        /// The user's password confirmed.
         /// </summary>
         internal string rePassword;
 
@@ -41,6 +41,9 @@
 
         #region accessors
 
+        /// <summary>
+        /// The user's username.
+        /// </summary>
         public string Username { get => username; }
 
         #endregion accessors

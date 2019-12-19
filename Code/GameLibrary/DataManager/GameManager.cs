@@ -75,8 +75,7 @@ namespace DataManager
         /// Add a game to the list of games in the database
         /// If the game already exist, add a reference for the platoform
         /// </summary>
-        /// <param name="gameTitle">Game title</param>
-        /// <param name="platform">Platform name</param>
+        /// <param name="game">the game object that contains the title and the platform name.</param>
         public static void AddGameToGameList(Game game)
         {
             if (game.title == "" || game.platform == "")
@@ -111,6 +110,12 @@ namespace DataManager
             }
 
         }
+
+        /// <summary>
+        /// Select the userID in the database.
+        /// </summary>
+        /// <param name="game"></param>
+        /// <returns>the ID converted in int</returns>
         public static int GetGameID(Game game)
         {
             string getUserIdQuery = @"SELECT [idGame] FROM [Games] WHERE [Title] = '" + game.title + "'";

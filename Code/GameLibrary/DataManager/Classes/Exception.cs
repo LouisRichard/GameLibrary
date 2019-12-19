@@ -97,7 +97,7 @@ namespace DataManager
     }
 
     /// <summary>
-    /// This exception is used to inform that the database connection is lost.
+    /// This exception is used to inform that the database connection failed.
     /// </summary>
     public class FailedDatabaseConnectionException : DbException
     {

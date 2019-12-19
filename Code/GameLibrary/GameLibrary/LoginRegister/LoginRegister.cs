@@ -35,6 +35,7 @@ namespace GameLibrary
         public LoginRegister()
         {
             InitializeComponent();
+            this.Location = Properties.Settings.Default.Location;
         }
 
         #endregion formLoad
@@ -44,7 +45,7 @@ namespace GameLibrary
         /// <summary>
         /// This method is used to toggle the view of the form.
         /// </summary>
-        private void ToggleView(object sender, EventArgs e)
+        public void ToggleView(object sender, EventArgs e)
         {
             lib.Status ^= true;
             lblError.Text = "";
@@ -64,6 +65,7 @@ namespace GameLibrary
         private void LoginRegister_FormClosing(object sender, FormClosingEventArgs e)
         {
             Properties.Settings.Default.Location= this.Location;
+            Properties.Settings.Default.Save();
         }
 
         #endregion dynamic form
@@ -73,7 +75,7 @@ namespace GameLibrary
         /// <summary>
         /// This method tries to register the user. If everything goes well, it will add the user on the database.
         /// </summary>
-        private void Register(object sender, EventArgs e)
+        public void Register(object sender, EventArgs e)
         {
             lblError.Text = "";
             User user = new User(txtEmail.Text, txtPassword.Text, txtRePassword.Text);
@@ -104,7 +106,7 @@ namespace GameLibrary
         /// <summary>
         /// This method tries to login the user. If everything goes well, it will authentifiate the user on the database.
         /// </summary>
-        private void Login(object sender, EventArgs e)
+        public void Login(object sender, EventArgs e)
         {
             lblError.Text = "";
             User user = new User(txtEmail.Text, txtPassword.Text, txtRePassword.Text);
@@ -150,16 +152,13 @@ namespace GameLibrary
         /// .....
         /// Welp now it's found.
         /// </summary>
-        private void DoubleClic(object sender, EventArgs e)
+        public void DoubleClic(object sender, EventArgs e)
         {
             if (lblLlabel1.Location.Y > 60) { lblLlabel1.Top -= 20; }
         }
         #endregion whats here?
-
         #endregion
-
         #endregion
-
         #endregion
     }
 }
