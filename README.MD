@@ -11,7 +11,7 @@
 [issues badge]:https://img.shields.io/github/issues/LouisRichard/GameLibrary.svg
 [contributors_badge]:https://img.shields.io/github/contributors/LouisRichard/GameLibrary.svg
 
-[licence]:https://github.com/LouisRichard/GameLibrary/blob/master/LICENSE.md
+[licence]:https://github.com/LouisRichard/GameLibrary/blob/master/LICENCE.MD
 [stars]:https://github.com/LouisRichard/GameLibrary/stargazers
 [forks]:https://github.com/LouisRichard/GameLibrary/network
 [issues]:https://github.com/LouisRichard/GameLibrary/issues
