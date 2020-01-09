@@ -43,7 +43,14 @@ namespace GameLibrary
         /// </summary>
         public void Confirm(object sender, EventArgs e)
         {
-            //for louis: user.email
+            User user = new User(/*Connected user email*/"lrd@cpnv.ch", "123", "");
+            Game game = new Game(txtTitle.Text, cboPlatform.Text);
+            GameManager.AddGameToLibrary(game, user);
+            //for louis: User user
+            //          Game game
+
+            //For dub': You can add a game to the library. The game appears in the library.
+            //If you get an exception, try creating the user "lrd@cpnv.ch"
 
             Cancel(sender, e);
         }
