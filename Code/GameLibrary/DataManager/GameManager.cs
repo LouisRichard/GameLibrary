@@ -18,7 +18,7 @@ namespace DataManager
         public static List<string> GetGameLibrary(string email)
         {
             int userID = UserManager.GetUserID(email);
-            string getUserLibraryQuery = @"SELECT [idGame] FROM Library WHERE [idUser] = " + userID + "'";
+            string getUserLibraryQuery = @"SELECT [idGame] FROM Library WHERE [idUser] = " + userID;
 
             List<string> gameList = new List<string>();
             foreach (string gameID in ExecuteQuery.Select(getUserLibraryQuery))
