@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Windows.Forms;
 using DataManager;
 
@@ -44,6 +47,14 @@ namespace GameLibrary
         private void MyLibrary_Load(object sender, EventArgs e)
         {
             lblUsername.Text = $"{user.Username}";
+            List<string> GameTitles = GameManager.GetGameLibrary(user.Username);
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Title");
+            for(int i = 0; i<GameTitles.Count;i++)
+            {
+                dt.Rows.Add(GameTitles[i]);
+            }
+            dgvLibrary.DataSource = dt;
         }
 
         #endregion formLoad
