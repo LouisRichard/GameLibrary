@@ -29,12 +29,26 @@ namespace DataManager
             return gameList;
         }
 
+        /// <summary>
+        /// Adds a game to the user's library
+        /// </summary>
+        /// <param name="game"></param>
+        /// <param name="user"></param>
+        /// <returns>True if operation is a success</returns>
         public static bool AddGameToLibrary(Game game, User user)
         {
             int userID = UserManager.GetUserID(user.username);
-            int gameID = GetGameID(game);
-            DateTime myDateTime = DateTime.Now;
-            string sqlFomattedDate = myDateTime.ToString("YYYY-MM-dd");
+            int gameID;
+            try
+            {
+                gameID = GetGameID(game);
+            }
+            catch
+            {
+                AddGameToGameList(game);
+                gameID = GetGameID(game);
+            }
+            string sqlFomattedDate = DateTime.Now.Date.ToString("yyyy-MM-dd");
             try
             {
                 string insertQuery = @"INSERT INTO [Library] (idUser, idGame, DateAdded) VALUES (" + userID + "," + gameID + ", "+sqlFomattedDate+")";
@@ -83,20 +97,19 @@ namespace DataManager
                 throw new EmptyFieldException();
             }
             string getGameQuery = @"SELECT [idGame] FROM [Games] WHERE [title] = '" + game.title + "'";
-            if (ExecuteQuery.Select(getGameQuery)[0] == null)
-            {
-                string addNewGameQuery = @"INSERT INTO [Games](title) VALUES ('" + game.title + "')";
-                try
-                {
-                    ExecuteQuery.Insert(addNewGameQuery);
-                }
-                catch (Exception e)
-                {
-                    throw new Exception(e.Message);
-                    // TO IMPLEMENT throw new GameAlreadyExistExeption();
 
-                }
+            string addNewGameQuery = @"INSERT INTO [Games](title) VALUES ('" + game.title + "')";
+            try
+            {
+                ExecuteQuery.Insert(addNewGameQuery);
             }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+                // TO IMPLEMENT throw new GameAlreadyExistExeption();
+
+            }
+            
             try
             {
                 string getPlatformIdQuery = @"SELECT [idPlatform] FROM [Platforms] WHERE [Name] = '" + game.platform + "'";
