@@ -9,6 +9,7 @@ namespace DataManager
     /// </summary>
     public class GameManager
     {
+        #region public methods
         /// <summary>
         /// Returns the user's game library using his email
         /// </summary>
@@ -39,6 +40,8 @@ namespace DataManager
         {
             int userID = UserManager.GetUserID(user.username);
             int gameID;
+            int platformID;
+
             try
             {
                 gameID = GetGameID(game);
@@ -48,9 +51,26 @@ namespace DataManager
                 AddGameToGameList(game);
                 gameID = GetGameID(game);
             }
+
+            try
+            {
+                string GetPlatformIDQuery = @"SELECT [idPlatform] FROM [Platforms] WHERE [Name] = '" + game.platform + "'";
+                platformID = int.Parse(ExecuteQuery.Select(GetPlatformIDQuery)[0]);
+                string getGamePlatformQuery = @"SELECT [idGame] FROM [GamesPlatforms] WHERE [idPlatform] = " + platformID;
+                int platform = int.Parse(ExecuteQuery.Select(getGamePlatformQuery)[0]);
+            }
+            catch
+            {
+                AddGamePlatform(game);
+                string GetPlatformIDQuery = @"SELECT [idPlatform] FROM [Platforms] WHERE [Name] = '" + game.platform + "'";
+                platformID = int.Parse(ExecuteQuery.Select(GetPlatformIDQuery)[0]);
+                string getGamePlatformQuery = @"SELECT [idGame] FROM [GamesPlatforms] WHERE [idPlatform] = " + platformID;
+                int platform = int.Parse(ExecuteQuery.Select(getGamePlatformQuery)[0]);
+            }
             string sqlFomattedDate = DateTime.Now.Date.ToString("yyyy-MM-dd");
             try
             {
+                //Add to version 1.1 OR 1.0 (depending on time we've got left) : platform in the library
                 string insertQuery = @"INSERT INTO [Library] (idUser, idGame, DateAdded) VALUES (" + userID + "," + gameID + ", "+sqlFomattedDate+")";
 
                 ExecuteQuery.Insert(insertQuery);
@@ -96,32 +116,34 @@ namespace DataManager
             {
                 throw new EmptyFieldException();
             }
-            string getGameQuery = @"SELECT [idGame] FROM [Games] WHERE [title] = '" + game.title + "'";
+            
 
             string addNewGameQuery = @"INSERT INTO [Games](title) VALUES ('" + game.title + "')";
             try
             {
                 ExecuteQuery.Insert(addNewGameQuery);
+                AddGamePlatform(game);
             }
             catch (Exception e)
             {
                 throw new Exception(e.Message);
                 // TO IMPLEMENT throw new GameAlreadyExistExeption();
+            }
+        }
 
-            }
-            
-            try
-            {
-                string getPlatformIdQuery = @"SELECT [idPlatform] FROM [Platforms] WHERE [Name] = '" + game.platform + "'";
-                int gameID = int.Parse(ExecuteQuery.Select(getGameQuery)[0]);
-                int platformID = int.Parse(ExecuteQuery.Select(getPlatformIdQuery)[0]);
-                string insertGamePlatformQuery = @"INSERT INTO [GamesPlatforms] (idGame, idPlatform) VALUES (" + gameID + ", " + platformID + ")";
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+        /// <summary>
+        /// Add a new relation between a game and a platform
+        /// </summary>
+        /// <param name="game"></param>
+        public static void AddGamePlatform(Game game)
+        {
+            string getGameQuery = @"SELECT [idGame] FROM [Games] WHERE [title] = '" + game.title + "'";
 
+            string getPlatformIdQuery = @"SELECT [idPlatform] FROM [Platforms] WHERE [Name] = '" + game.platform + "'";
+            int gameID = int.Parse(ExecuteQuery.Select(getGameQuery)[0]);
+            int platformID = int.Parse(ExecuteQuery.Select(getPlatformIdQuery)[0]);
+            string insertGamePlatformQuery = @"INSERT INTO [GamesPlatforms] (idGame, idPlatform) VALUES (" + gameID + ", " + platformID + ")";
+            ExecuteQuery.Insert(insertGamePlatformQuery);
         }
 
         /// <summary>
@@ -135,5 +157,6 @@ namespace DataManager
             List<string> userIDString = ExecuteQuery.Select(getUserIdQuery);
             return int.Parse(userIDString[0]);
         }
+        #endregion
     }
 }
