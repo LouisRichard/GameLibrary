@@ -27,7 +27,15 @@ namespace DatabaseManager
             
             while(reader.Read())
             {
-                result.Add(reader.GetString(0));
+                try
+                {
+                    result.Add(reader.GetString(0));
+                }
+                catch
+                {
+                    result.Add(reader.GetInt32(0).ToString());
+                }
+                
             }
             
                 _ = DbConnector.ConnectToDatabase(true); //close db connection  Using Ignore(_) as we don't care what it returns.
