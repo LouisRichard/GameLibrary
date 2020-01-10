@@ -35,6 +35,10 @@ namespace GameLibrary
         /// The temporay variable for the password.
         /// </summary>
         private string password = "";
+        /// <summary>
+        /// The temporay variable for the repassword.
+        /// </summary>
+        private string rePassword = "";
 
         #endregion attributes
 
@@ -88,7 +92,7 @@ namespace GameLibrary
 
         private void txtRePassword_TextChanged(object sender, EventArgs e)
         {
-            txtRePassword.Text = PasswordChanged(txtRePassword.Text);
+            txtRePassword.Text = RePasswordChanged(txtRePassword.Text);
 
             txtRePassword.Focus();
             txtRePassword.SelectionStart = txtRePassword.Text.Length;
@@ -116,6 +120,50 @@ namespace GameLibrary
             {
                 password = password.Substring(0, password.Length - 1);
                 if (password.Length != pass.Length) //if more than one character is deleted
+                {
+                    //we dont know whats written in the field
+                }
+            }
+
+            //cryptate
+            for (int i = 0; i < pass.Length - 1; i++)
+            {
+                tempPass += "•";
+            }
+
+            if (pass.Length != 0)
+            {
+                tempPass += pass.Substring(pass.Length - 1, 1);
+            }
+
+            //timer start
+            timer.Start();
+
+            return tempPass;
+        }
+
+        /// <summary>
+        /// Crypts every character but the last of the repassword and starts a timer.
+        /// </summary>
+        /// <param name="pass">The repassword field value</param>
+        /// <returns>The string to display in the current password field</returns>
+        private string RePasswordChanged(string pass)
+        {
+            string tempPass = "";
+
+            //store text
+            if (rePassword == "") //first char
+            {
+                rePassword = pass;
+            }
+            else if (rePassword.Length < pass.Length) //writting
+            {
+                rePassword += pass.Substring(pass.Length - 1);
+            }
+            else if (rePassword.Length > pass.Length) //erasing
+            {
+                rePassword = rePassword.Substring(0, rePassword.Length - 1);
+                if (rePassword.Length != pass.Length) //if more than one character is deleted
                 {
                     //we dont know whats written in the field
                 }
@@ -174,11 +222,11 @@ namespace GameLibrary
         public void Register(object sender, EventArgs e)
         {
             lblError.Text = "";
-            User user = new User(txtEmail.Text, txtPassword.Text, txtRePassword.Text);
+            User user = new User(txtEmail.Text, password, rePassword);
 
             txtEmail.BackColor = lib.CheckMail(txtEmail.Text);
-            txtPassword.BackColor = lib.CheckPassword(txtPassword.Text, txtRePassword.Text, lib.Status);
-            txtRePassword.BackColor = lib.CheckPassword(txtPassword.Text, txtRePassword.Text, lib.Status);
+            txtPassword.BackColor = lib.CheckPassword(password, rePassword, lib.Status);
+            txtRePassword.BackColor = lib.CheckPassword(password, rePassword, lib.Status);
 
             try { loginRegisterSuccess = UserManager.RegisterRequest(user); }
             catch (DbException except) { lblError.Text = $"{except.Message}"; }
@@ -202,10 +250,10 @@ namespace GameLibrary
         public void Login(object sender, EventArgs e)
         {
             lblError.Text = "";
-            User user = new User(txtEmail.Text, txtPassword.Text, txtRePassword.Text);
+            User user = new User(txtEmail.Text, password, rePassword);
 
             txtEmail.BackColor = lib.CheckMail(txtEmail.Text);
-            txtPassword.BackColor = lib.CheckPassword(txtPassword.Text, txtRePassword.Text, lib.Status);
+            txtPassword.BackColor = lib.CheckPassword(password, rePassword, lib.Status);
 
             try
             {
