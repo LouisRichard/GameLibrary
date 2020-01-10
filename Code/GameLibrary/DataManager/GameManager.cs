@@ -36,13 +36,13 @@ namespace DataManager
 
             DataTable dt = new DataTable();
             dt.Clear();
-            dt.Columns.Add("Platform");
             dt.Columns.Add("Title");
+            dt.Columns.Add("Platform");
             for(int i = 0; i < gameList.Count; i++)
             {
                 DataRow _ravi = dt.NewRow();
-                _ravi["Platform"] = platformList[i];
                 _ravi["Title"] = gameList[i];
+                _ravi["Platform"] = platformList[i];
                 dt.Rows.Add(_ravi);
             }
             

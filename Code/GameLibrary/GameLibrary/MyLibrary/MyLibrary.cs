@@ -51,6 +51,7 @@ namespace GameLibrary
             dt = GameManager.GetGameLibrary(user.Username);;
 
             dgvLibrary.DataSource = dt;
+            dgvLibrary.AutoResizeColumn(1);
         }
 
         #endregion formLoad
@@ -64,6 +65,8 @@ namespace GameLibrary
         {
             addAGame.User = user;
             addAGame.ShowDialog(this);
+
+            MyLibrary_Load(sender, e);
         }
 
         #endregion actions
