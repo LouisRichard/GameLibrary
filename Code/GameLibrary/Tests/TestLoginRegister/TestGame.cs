@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace TestLoginRegister
 {
     /// <summary>
-    /// Description résumée pour TestGame
+    /// This class tests the functionnalities related to games.
     /// </summary>
     [TestClass]
     public class TestGame

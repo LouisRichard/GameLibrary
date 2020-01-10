@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Data.SQLite;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DatabaseManager
 {
@@ -59,6 +60,8 @@ namespace DatabaseManager
 
         internal static void InsertPlatform(SQLiteCommand cmd)
         {
+            string query = @"INSERT INTO [Platforms](Name) VALUES ";
+
             List<string> platforms = new List<string>(new string[]
             {
                 "1292 Advanced Programmable Video System",
@@ -141,13 +144,26 @@ namespace DatabaseManager
                 "Video Driver",
                 "ZGrass Computer Expansion Module"
             });
-            foreach(string platform in platforms)
+
+            int nbPlatform = platforms.Count();
+            int index = 0;
+            foreach (string platform in platforms)
             {
-                string query = @"INSERT INTO [Platforms](Name) VALUES ('" + platform + "')";
-                cmd.CommandText = query;
-                cmd.ExecuteNonQuery();
+                index++;
+                if (index == nbPlatform)
+                {
+                    query = query + "('" + platform + "');";
+                }
+                else
+                {
+                    query = query + "('" + platform + "'), ";
+                }
             }
+            query = query + "')";
+            cmd.CommandText = query;
+            cmd.ExecuteNonQuery();
         }
+
         /// <summary>
         /// Create the tables needed fot the database to works properly.
         /// </summary>
@@ -169,9 +185,11 @@ namespace DatabaseManager
                                 [Library](
                                 [idUser] INTEGER NOT NULL,
                                 [idGame] INTEGER NOT NULL,
+                                [idPlatform] INTEGER NOT NULL,
                                 [DateAdded] DATE NOT NULL,
                                 FOREIGN KEY(idUser) REFERENCES Users(idUser),
-                                FOREIGN KEY(idGame) REFERENCES Games(idGame));",
+                                FOREIGN KEY(idGame) REFERENCES Games(idGame)
+                                FOREIGN KEY(idPlatform) REFERENCES Platforms(idPlatform));",
 
                 @"CREATE TABLE IF NOT EXISTS
                                 [Platforms]([idPlatform] INTEGER NOT NULL PRIMARY KEY,

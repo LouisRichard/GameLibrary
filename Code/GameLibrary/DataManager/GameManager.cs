@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using DatabaseManager;
 
 namespace DataManager
@@ -9,15 +10,22 @@ namespace DataManager
     /// </summary>
     public class GameManager
     {
+        #region public methods
         /// <summary>
         /// Returns the user's game library using his email
         /// </summary>
         /// <param name="email"></param>
         /// <returns>List of game id's in his library (string)</sreturns>
-        public static List<string> GetGameLibrary(string email)
+        public static DataTable GetGameLibrary(string email)
         {
             int userID = UserManager.GetUserID(email);
-            string getUserLibraryQuery = @"SELECT [idGame] FROM Library WHERE [idUser] = " + userID + "'";
+            string getUserLibraryQuery = @"SELECT [idGame] FROM Library WHERE [idUser] = " + userID;
+            string getPlatformIdQuery = @"SELECT idPlatform from Library WHERE [idUser] = " + userID;
+            List<string> platformList = new List<string>();
+            foreach (string platformID in ExecuteQuery.Select(getPlatformIdQuery))
+            {
+                platformList.Add(ExecuteQuery.Select("SELECT Name From Platforms where idPlatform = " + int.Parse(platformID))[0]);
+            }
 
             List<string> gameList = new List<string>();
             foreach (string gameID in ExecuteQuery.Select(getUserLibraryQuery))
@@ -26,29 +34,83 @@ namespace DataManager
                 gameList.Add(ExecuteQuery.Select(getGameTitleLibraryQuery)[0]);
             }
 
-            return gameList;
+            DataTable dt = new DataTable();
+            dt.Clear();
+            dt.Columns.Add("Title");
+            dt.Columns.Add("Platform");
+            for(int i = 0; i < gameList.Count; i++)
+            {
+                DataRow _ravi = dt.NewRow();
+                _ravi["Title"] = gameList[i];
+                _ravi["Platform"] = platformList[i];
+                dt.Rows.Add(_ravi);
+            }
+            
+            return dt;
         }
 
+        /// <summary>
+        /// Adds a game to the user's library
+        /// </summary>
+        /// <param name="game"></param>
+        /// <param name="user"></param>
+        /// <returns>True if operation is a success</returns>
         public static bool AddGameToLibrary(Game game, User user)
         {
             int userID = UserManager.GetUserID(user.username);
-            int gameID = GetGameID(game);
-            DateTime myDateTime = DateTime.Now;
-            string sqlFomattedDate = myDateTime.ToString("YYYY-MM-dd");
+            int gameID;
+            int platformID;
+
             try
             {
-                string insertQuery = @"INSERT INTO [Library] (idUser, idGame, DateAdded) VALUES (" + userID + "," + gameID + ", "+sqlFomattedDate+")";
+                gameID = GetGameID(game);
+            }
+            catch
+            {
+                AddGameToGameList(game);
+                gameID = GetGameID(game);
+            }
+
+            try
+            {
+                string GetPlatformIDQuery = @"SELECT [idPlatform] FROM [Platforms] WHERE [Name] = '" + game.platform + "'";
+                platformID = int.Parse(ExecuteQuery.Select(GetPlatformIDQuery)[0]);
+                string getGamePlatformQuery = @"SELECT [idGame] FROM [GamesPlatforms] WHERE [idPlatform] = " + platformID;
+                int platform = int.Parse(ExecuteQuery.Select(getGamePlatformQuery)[0]);
+            }
+            catch
+            {
+                AddGamePlatform(game);
+                string GetPlatformIDQuery = @"SELECT [idPlatform] FROM [Platforms] WHERE [Name] = '" + game.platform + "'";
+                platformID = int.Parse(ExecuteQuery.Select(GetPlatformIDQuery)[0]);
+                string getGamePlatformQuery = @"SELECT [idGame] FROM [GamesPlatforms] WHERE [idPlatform] = " + platformID;
+                int platform = int.Parse(ExecuteQuery.Select(getGamePlatformQuery)[0]);
+            }
+            string sqlFomattedDate = DateTime.Now.Date.ToString("yyyy-MM-dd");
+            try
+            {
+                //Add to version 1.1 OR 1.0 (depending on time we've got left) : platform in the library
+                string insertQuery = @"INSERT INTO [Library] (idUser, idGame, idPlatform, DateAdded) VALUES (" + userID + "," + gameID + ", " + platformID + ", " + sqlFomattedDate + ")";
 
                 ExecuteQuery.Insert(insertQuery);
 
                 return true;
             }
-            catch (Exception e)
+            catch
             {
-                throw new Exception(e.Message);
+                throw new GameAlreadyExistsException();
             }
-            //GameAlreadyInLibraryException -> NEED TO BE WRITTEN
-            //CannotAccessTheDatabaseException -> NEED TO BE WRITTEN
+        }
+
+        public static void DeleteFromLibrary(string cell1, string cell2, string username)
+        {
+            Game game = new Game(cell1, "");
+            int gameID = GetGameID(game);
+            string getPlatformIdQuery = @"SELECT [idPlatform] FROM [Platforms] WHERE [Name] = '" + cell2 + "'";
+            int idUser = UserManager.GetUserID(username);
+            int idPlatform = int.Parse(ExecuteQuery.Select(getPlatformIdQuery)[0]);
+            string deleteQuery = @"DELETE FROM [Library] WHERE [idGame] = " + gameID + " AND [idPlatform] = " + idPlatform + " AND [idUser] = '" + idUser + "'";
+            ExecuteQuery.Delete(deleteQuery);
         }
 
         /// <summary>
@@ -64,10 +126,9 @@ namespace DataManager
                 queryResult = ExecuteQuery.Select(getGameQuery);
                 return queryResult;
             }
-            catch (Exception e)
+            catch
             {
-                throw new Exception(e.Message);
-                //TO IMPLEMENT throw new GameAlreadyExistExeption();
+                throw new FailedDatabaseConnectionException();
             }
         }
 
@@ -82,33 +143,40 @@ namespace DataManager
             {
                 throw new EmptyFieldException();
             }
-            string getGameQuery = @"SELECT [idGame] FROM [Games] WHERE [title] = '" + game.title + "'";
-            if (ExecuteQuery.Select(getGameQuery)[0] == null)
-            {
-                string addNewGameQuery = @"INSERT INTO [Games](title) VALUES ('" + game.title + "')";
-                try
-                {
-                    ExecuteQuery.Insert(addNewGameQuery);
-                }
-                catch (Exception e)
-                {
-                    throw new Exception(e.Message);
-                    // TO IMPLEMENT throw new GameAlreadyExistExeption();
+            
 
-                }
-            }
+            string addNewGameQuery = @"INSERT INTO [Games](title) VALUES ('" + game.title + "')";
             try
             {
+                ExecuteQuery.Insert(addNewGameQuery);
+                AddGamePlatform(game);
+            }
+            catch (System.Data.SQLite.SQLiteException)
+            {
+                throw new FailedDatabaseConnectionException();
+            }
+        }
+
+        /// <summary>
+        /// Add a new relation between a game and a platform
+        /// </summary>
+        /// <param name="game"></param>
+        public static void AddGamePlatform(Game game)
+        {
+            try
+            {
+                string getGameQuery = @"SELECT [idGame] FROM [Games] WHERE [title] = '" + game.title + "'";
+
                 string getPlatformIdQuery = @"SELECT [idPlatform] FROM [Platforms] WHERE [Name] = '" + game.platform + "'";
                 int gameID = int.Parse(ExecuteQuery.Select(getGameQuery)[0]);
                 int platformID = int.Parse(ExecuteQuery.Select(getPlatformIdQuery)[0]);
-                string insertGamePlatformQuery = @"INSERT INTO [GamesPlatforms] (idGame, idPlatform) VALUES (" + gameID + ", " + platformID + ")";
+                string insertGamePlatformQuery = @"INSERT INTO [GamesPlatforms] (idGame, idPlatform) VALUES ('" + gameID + "', '" + platformID + "')";
+                ExecuteQuery.Insert(insertGamePlatformQuery);
             }
-            catch (Exception e)
+            catch
             {
-                throw new Exception(e.Message);
+                throw new PlatformDoesntExistsException(); 
             }
-
         }
 
         /// <summary>
@@ -119,8 +187,9 @@ namespace DataManager
         public static int GetGameID(Game game)
         {
             string getUserIdQuery = @"SELECT [idGame] FROM [Games] WHERE [Title] = '" + game.title + "'";
-            List<string> userIDString = ExecuteQuery.Select(getUserIdQuery);
-            return int.Parse(userIDString[0]);
+            List<string> gameIDString = ExecuteQuery.Select(getUserIdQuery);
+            return int.Parse(gameIDString[0]);
         }
+        #endregion
     }
 }

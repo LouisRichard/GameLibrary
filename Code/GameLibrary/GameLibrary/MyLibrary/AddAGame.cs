@@ -4,6 +4,9 @@ using DataManager;
 
 namespace GameLibrary
 {
+    /// <summary>
+    /// This form is used to add a game to your library.
+    /// </summary>
     public partial class AddAGame : Form
     {
         #region attributes
@@ -12,6 +15,10 @@ namespace GameLibrary
         /// The user inherited from the login-register.
         /// </summary>
         private User user;
+        /// <summary>
+        /// 
+        /// </summary>
+        private Game game;
 
         #endregion attributes
 
@@ -23,6 +30,11 @@ namespace GameLibrary
         public User User
         {
             set { user = value; }
+        }
+
+        public Game Game
+        {
+            get; set;
         }
 
         #endregion accessors
@@ -43,9 +55,15 @@ namespace GameLibrary
         /// </summary>
         public void Confirm(object sender, EventArgs e)
         {
-            //for louis: user.email
+            bool success = false;
 
-            Cancel(sender, e);
+            Game game = new Game(txtTitle.Text, cboPlatform.Text);
+            try { success = GameManager.AddGameToLibrary(game, user); }
+            catch (DbException except) { lblError.Text = $"{except.Message}"; }
+            catch (GameException except) { lblError.Text = $"{except.Message}"; }
+            catch (EmptyFieldException except) { lblError.Text = $"{except.Message}"; }
+
+            if (success) Cancel(sender, e);
         }
 
         /// <summary>
@@ -57,5 +75,11 @@ namespace GameLibrary
         }
 
         #endregion confirm-cancel
+
+        private void AddAGame_Load(object sender, EventArgs e)
+        {
+
+                //TODO : Fill the txb and the cbo if game exists (if clicked modify)
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿namespace DataManager
 {
     /// <summary>
-    /// 
+    /// This class represents a game.
     /// </summary>
     public class Game
     {
