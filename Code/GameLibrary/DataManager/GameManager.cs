@@ -115,7 +115,7 @@ namespace DataManager
                 queryResult = ExecuteQuery.Select(getGameQuery);
                 return queryResult;
             }
-            catch (Exception e)
+            catch
             {
                 throw new FailedDatabaseConnectionException();
             }
@@ -152,13 +152,20 @@ namespace DataManager
         /// <param name="game"></param>
         public static void AddGamePlatform(Game game)
         {
-            string getGameQuery = @"SELECT [idGame] FROM [Games] WHERE [title] = '" + game.title + "'";
+            try
+            {
+                string getGameQuery = @"SELECT [idGame] FROM [Games] WHERE [title] = '" + game.title + "'";
 
-            string getPlatformIdQuery = @"SELECT [idPlatform] FROM [Platforms] WHERE [Name] = '" + game.platform + "'";
-            int gameID = int.Parse(ExecuteQuery.Select(getGameQuery)[0]);
-            int platformID = int.Parse(ExecuteQuery.Select(getPlatformIdQuery)[0]);
-            string insertGamePlatformQuery = @"INSERT INTO [GamesPlatforms] (idGame, idPlatform) VALUES (" + gameID + ", " + platformID + ")";
-            ExecuteQuery.Insert(insertGamePlatformQuery);
+                string getPlatformIdQuery = @"SELECT [idPlatform] FROM [Platforms] WHERE [Name] = '" + game.platform + "'";
+                int gameID = int.Parse(ExecuteQuery.Select(getGameQuery)[0]);
+                int platformID = int.Parse(ExecuteQuery.Select(getPlatformIdQuery)[0]);
+                string insertGamePlatformQuery = @"INSERT INTO [GamesPlatforms] (idGame, idPlatform) VALUES (" + gameID + ", " + platformID + ")";
+                ExecuteQuery.Insert(insertGamePlatformQuery);
+            }
+            catch
+            {
+                throw new PlatformDoesntExistsException(); 
+            }
         }
 
         /// <summary>

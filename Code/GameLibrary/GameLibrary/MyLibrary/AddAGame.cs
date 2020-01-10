@@ -49,6 +49,7 @@ namespace GameLibrary
             try { success = GameManager.AddGameToLibrary(game, user); }
             catch (DbException except) { lblError.Text = $"{except.Message}"; }
             catch (GameException except) { lblError.Text = $"{except.Message}"; }
+            catch (EmptyFieldException except) { lblError.Text = $"{except.Message}"; }
 
             if (success) Cancel(sender, e);
         }

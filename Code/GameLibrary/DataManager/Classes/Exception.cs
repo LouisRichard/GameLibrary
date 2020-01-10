@@ -130,5 +130,15 @@ namespace DataManager
         }
     }
 
+    /// <summary>
+    /// This exception is used to inform the user that he has to choose a platform from our list.
+    /// </summary>
+    public class PlatformDoesntExistsException : GameException
+    {
+        public PlatformDoesntExistsException() : base("This platform is not in the list.")
+        {
+        }
+    }
+
     #endregion
 }
