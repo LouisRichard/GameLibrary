@@ -108,10 +108,27 @@ namespace DataManager
 
     #endregion database
 
-    #region Game
-    //TODO
-    //GameAlreadyExist -> In code, see if we try to put it in another plateform
-    //
+    #region game
+
+    /// <summary>
+    /// GameException is the master exception for all exceptions related to games processes.
+    /// </summary>
+    public class GameException : Exception
+    {
+        public GameException(string message) : base(message)
+        {
+        }
+    }
+
+    /// <summary>
+    /// This exception is used to inform the user that the game already exists in his library.
+    /// </summary>
+    public class GameAlreadyExistsException : GameException
+    {
+        public GameAlreadyExistsException() : base("This game already exists in your library.")
+        {
+        }
+    }
 
     #endregion
 }
