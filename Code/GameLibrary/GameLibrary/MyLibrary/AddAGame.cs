@@ -43,10 +43,14 @@ namespace GameLibrary
         /// </summary>
         public void Confirm(object sender, EventArgs e)
         {
-            Game game = new Game(txtTitle.Text, cboPlatform.Text);
-            GameManager.AddGameToLibrary(game, user);
+            bool success = false;
 
-            Cancel(sender, e);
+            Game game = new Game(txtTitle.Text, cboPlatform.Text);
+            try { success = GameManager.AddGameToLibrary(game, user); }
+            catch (DbException except) { lblError.Text = $"{except.Message}"; }
+            catch (GameException except) { lblError.Text = $"{except.Message}"; }
+
+            if (success) Cancel(sender, e);
         }
 
         /// <summary>
