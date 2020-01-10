@@ -53,7 +53,7 @@ namespace DataManager
             var base64Hash = Convert.ToBase64String(hashBytes);
 
             // Format hash with extra information
-            return string.Format("$BANQUEHASH$V1${0}${1}", iterations, base64Hash);
+            return string.Format("$GAMECRYPT$V1${0}${1}", iterations, base64Hash);
         }
 
 
@@ -66,7 +66,7 @@ namespace DataManager
         public bool Verify(string password, string hashedPassword)
         {
             // Extract iteration and Base64 string
-            var splittedHashString = hashedPassword.Replace("$BANQUEHASH$V1$", "").Split('$');
+            var splittedHashString = hashedPassword.Replace("$GAMECRYPT$V1$", "").Split('$');
             var iterations = int.Parse(splittedHashString[0]);
             var base64Hash = splittedHashString[1];
 
