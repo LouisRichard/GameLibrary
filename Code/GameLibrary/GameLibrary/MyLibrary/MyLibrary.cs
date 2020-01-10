@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
+using System.Windows;
 using System.Windows.Forms;
 using DataManager;
 
@@ -80,22 +79,25 @@ namespace GameLibrary
         {
             if (dgvLibrary.SelectedCells.Count > 0)
             {
-                string cellValue = dgvLibrary.SelectedCells[0].Value.ToString();
-                int rowIndex = dgvLibrary.CurrentCell.RowIndex;
-                int columnIndex = dgvLibrary.CurrentCell.ColumnIndex;
-                if (columnIndex == 0)
-                    columnIndex++;
-                else
-                    columnIndex -= 1;
-                string otherCellValue = dgvLibrary.Rows[rowIndex].Cells[columnIndex].Value.ToString();
+                var confirm = MessageBox.Show("Are you sure to delete this game ?", "", MessageBoxButtons.YesNo);
+                if (confirm == DialogResult.Yes)
+                {
+                    string cellValue = dgvLibrary.SelectedCells[0].Value.ToString();
+                    int rowIndex = dgvLibrary.CurrentCell.RowIndex;
+                    int columnIndex = dgvLibrary.CurrentCell.ColumnIndex;
+                    if (columnIndex == 0)
+                        columnIndex++;
+                    else
+                        columnIndex -= 1;
+                    string otherCellValue = dgvLibrary.Rows[rowIndex].Cells[columnIndex].Value.ToString();
                 
-                if (columnIndex == 0)
-                    GameManager.DeleteFromLibrary(otherCellValue, cellValue, user.Username);
-                else
-                    GameManager.DeleteFromLibrary(cellValue, otherCellValue, user.Username);
+                    if (columnIndex == 0)
+                        GameManager.DeleteFromLibrary(otherCellValue, cellValue, user.Username);
+                    else
+                        GameManager.DeleteFromLibrary(cellValue, otherCellValue, user.Username);
 
-                MyLibrary_Load(sender, e);
-                
+                    MyLibrary_Load(sender, e);
+                }
             }
         }
     }
