@@ -96,12 +96,10 @@ namespace DataManager
 
                 return true;
             }
-            catch (Exception e)
+            catch
             {
-                throw new Exception(e.Message);
+                throw new GameAlreadyExistsException();
             }
-            //GameAlreadyInLibraryException -> NEED TO BE WRITTEN
-            //CannotAccessTheDatabaseException -> NEED TO BE WRITTEN
         }
 
         /// <summary>
@@ -119,8 +117,7 @@ namespace DataManager
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
-                //TO IMPLEMENT throw new GameAlreadyExistExeption();
+                throw new FailedDatabaseConnectionException();
             }
         }
 
@@ -143,10 +140,9 @@ namespace DataManager
                 ExecuteQuery.Insert(addNewGameQuery);
                 AddGamePlatform(game);
             }
-            catch (Exception e)
+            catch (System.Data.SQLite.SQLiteException)
             {
-                throw new Exception(e.Message);
-                // TO IMPLEMENT throw new GameAlreadyExistExeption();
+                throw new FailedDatabaseConnectionException();
             }
         }
 
