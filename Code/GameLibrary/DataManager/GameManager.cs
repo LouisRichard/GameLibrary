@@ -102,6 +102,17 @@ namespace DataManager
             }
         }
 
+        public static void DeleteFromLibrary(string cell1, string cell2, string username)
+        {
+            Game game = new Game(cell1, "");
+            int gameID = GetGameID(game);
+            string getPlatformIdQuery = @"SELECT [idPlatform] FROM [Platforms] WHERE [Name] = '" + cell2 + "'";
+            int idUser = UserManager.GetUserID(username);
+            int idPlatform = int.Parse(ExecuteQuery.Select(getPlatformIdQuery)[0]);
+            string deleteQuery = @"DELETE FROM [Library] WHERE [idGame] = " + gameID + " AND [idPlatform] = " + idPlatform + " AND [idUser] = '" + idUser + "'";
+            ExecuteQuery.Delete(deleteQuery);
+        }
+
         /// <summary>
         /// Get all the games in the database
         /// </summary>
@@ -159,7 +170,7 @@ namespace DataManager
                 string getPlatformIdQuery = @"SELECT [idPlatform] FROM [Platforms] WHERE [Name] = '" + game.platform + "'";
                 int gameID = int.Parse(ExecuteQuery.Select(getGameQuery)[0]);
                 int platformID = int.Parse(ExecuteQuery.Select(getPlatformIdQuery)[0]);
-                string insertGamePlatformQuery = @"INSERT INTO [GamesPlatforms] (idGame, idPlatform) VALUES (" + gameID + ", " + platformID + ")";
+                string insertGamePlatformQuery = @"INSERT INTO [GamesPlatforms] (idGame, idPlatform) VALUES ('" + gameID + "', '" + platformID + "')";
                 ExecuteQuery.Insert(insertGamePlatformQuery);
             }
             catch
@@ -176,8 +187,8 @@ namespace DataManager
         public static int GetGameID(Game game)
         {
             string getUserIdQuery = @"SELECT [idGame] FROM [Games] WHERE [Title] = '" + game.title + "'";
-            List<string> userIDString = ExecuteQuery.Select(getUserIdQuery);
-            return int.Parse(userIDString[0]);
+            List<string> gameIDString = ExecuteQuery.Select(getUserIdQuery);
+            return int.Parse(gameIDString[0]);
         }
         #endregion
     }

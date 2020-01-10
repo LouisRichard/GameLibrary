@@ -70,5 +70,33 @@ namespace GameLibrary
         }
 
         #endregion actions
+
+        private void EditAGame(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Delete(object sender, EventArgs e)
+        {
+            if (dgvLibrary.SelectedCells.Count > 0)
+            {
+                string cellValue = dgvLibrary.SelectedCells[0].Value.ToString();
+                int rowIndex = dgvLibrary.CurrentCell.RowIndex;
+                int columnIndex = dgvLibrary.CurrentCell.ColumnIndex;
+                if (columnIndex == 0)
+                    columnIndex++;
+                else
+                    columnIndex -= 1;
+                string otherCellValue = dgvLibrary.Rows[rowIndex].Cells[columnIndex].Value.ToString();
+                
+                if (columnIndex == 0)
+                    GameManager.DeleteFromLibrary(otherCellValue, cellValue, user.Username);
+                else
+                    GameManager.DeleteFromLibrary(cellValue, otherCellValue, user.Username);
+
+                MyLibrary_Load(sender, e);
+                
+            }
+        }
     }
 }

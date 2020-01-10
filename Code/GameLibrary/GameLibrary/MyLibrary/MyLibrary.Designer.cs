@@ -64,6 +64,7 @@
             this.cmdEdit.TabIndex = 4;
             this.cmdEdit.Text = "Edit a game";
             this.cmdEdit.UseVisualStyleBackColor = true;
+            this.cmdEdit.Click += new System.EventHandler(this.EditAGame);
             // 
             // cmdDelete
             // 
@@ -74,6 +75,7 @@
             this.cmdDelete.TabIndex = 5;
             this.cmdDelete.Text = "Delete";
             this.cmdDelete.UseVisualStyleBackColor = true;
+            this.cmdDelete.Click += new System.EventHandler(this.Delete);
             // 
             // MyLibrary
             // 
