@@ -194,6 +194,7 @@
             this.Name = "AddAGame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddAGame";
+            this.Load += new System.EventHandler(this.AddAGame_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

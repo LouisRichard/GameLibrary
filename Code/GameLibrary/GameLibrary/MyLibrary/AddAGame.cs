@@ -72,5 +72,11 @@ namespace GameLibrary
         }
 
         #endregion confirm-cancel
+
+        private void AddAGame_Load(object sender, EventArgs e)
+        {
+
+                //TODO : Fill the txb and the cbo if game exists (if clicked modify)
+        }
     }
 }
