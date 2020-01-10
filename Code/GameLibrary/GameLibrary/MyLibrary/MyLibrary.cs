@@ -47,13 +47,9 @@ namespace GameLibrary
         private void MyLibrary_Load(object sender, EventArgs e)
         {
             lblUsername.Text = $"{user.Username}";
-            List<string> gameTitles = GameManager.GetGameLibrary(user.Username);
             DataTable dt = new DataTable();
-            dt.Columns.Add("Title");
-            foreach(string title in gameTitles)
-            {
-                dt.Rows.Add(title);
-            }
+            dt = GameManager.GetGameLibrary(user.Username);;
+
             dgvLibrary.DataSource = dt;
         }
 

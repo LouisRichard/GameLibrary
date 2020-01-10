@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using DatabaseManager;
 
 namespace DataManager
@@ -15,10 +16,16 @@ namespace DataManager
         /// </summary>
         /// <param name="email"></param>
         /// <returns>List of game id's in his library (string)</sreturns>
-        public static List<string> GetGameLibrary(string email)
+        public static DataTable GetGameLibrary(string email)
         {
             int userID = UserManager.GetUserID(email);
             string getUserLibraryQuery = @"SELECT [idGame] FROM Library WHERE [idUser] = " + userID;
+            string getPlatformIdQuery = @"SELECT idPlatform from Library WHERE [idUser] = " + userID;
+            List<string> platformList = new List<string>();
+            foreach (string platformID in ExecuteQuery.Select(getPlatformIdQuery))
+            {
+                platformList.Add(ExecuteQuery.Select("SELECT Name From Platforms where idPlatform = " + int.Parse(platformID))[0]);
+            }
 
             List<string> gameList = new List<string>();
             foreach (string gameID in ExecuteQuery.Select(getUserLibraryQuery))
@@ -27,7 +34,19 @@ namespace DataManager
                 gameList.Add(ExecuteQuery.Select(getGameTitleLibraryQuery)[0]);
             }
 
-            return gameList;
+            DataTable dt = new DataTable();
+            dt.Clear();
+            dt.Columns.Add("Platform");
+            dt.Columns.Add("Title");
+            for(int i = 0; i < gameList.Count; i++)
+            {
+                DataRow _ravi = dt.NewRow();
+                _ravi["Platform"] = platformList[i];
+                _ravi["Title"] = gameList[i];
+                dt.Rows.Add(_ravi);
+            }
+            
+            return dt;
         }
 
         /// <summary>
@@ -71,7 +90,7 @@ namespace DataManager
             try
             {
                 //Add to version 1.1 OR 1.0 (depending on time we've got left) : platform in the library
-                string insertQuery = @"INSERT INTO [Library] (idUser, idGame, DateAdded) VALUES (" + userID + "," + gameID + ", "+sqlFomattedDate+")";
+                string insertQuery = @"INSERT INTO [Library] (idUser, idGame, idPlatform, DateAdded) VALUES (" + userID + "," + gameID + ", " + platformID + ", " + sqlFomattedDate + ")";
 
                 ExecuteQuery.Insert(insertQuery);
 

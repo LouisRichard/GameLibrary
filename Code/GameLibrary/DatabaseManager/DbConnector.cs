@@ -185,9 +185,11 @@ namespace DatabaseManager
                                 [Library](
                                 [idUser] INTEGER NOT NULL,
                                 [idGame] INTEGER NOT NULL,
+                                [idPlatform] INTEGER NOT NULL,
                                 [DateAdded] DATE NOT NULL,
                                 FOREIGN KEY(idUser) REFERENCES Users(idUser),
-                                FOREIGN KEY(idGame) REFERENCES Games(idGame));",
+                                FOREIGN KEY(idGame) REFERENCES Games(idGame)
+                                FOREIGN KEY(idPlatform) REFERENCES Platforms(idPlatform));",
 
                 @"CREATE TABLE IF NOT EXISTS
                                 [Platforms]([idPlatform] INTEGER NOT NULL PRIMARY KEY,
