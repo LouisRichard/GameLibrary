@@ -4,6 +4,9 @@ using DataManager;
 
 namespace GameLibrary
 {
+    /// <summary>
+    /// This form is used to add a game to your library.
+    /// </summary>
     public partial class AddAGame : Form
     {
         #region attributes
