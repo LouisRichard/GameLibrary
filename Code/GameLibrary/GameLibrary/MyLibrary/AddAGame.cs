@@ -12,6 +12,10 @@ namespace GameLibrary
         /// The user inherited from the login-register.
         /// </summary>
         private User user;
+        /// <summary>
+        /// 
+        /// </summary>
+        private Game game;
 
         #endregion attributes
 
@@ -23,6 +27,11 @@ namespace GameLibrary
         public User User
         {
             set { user = value; }
+        }
+
+        public Game Game
+        {
+            get; set;
         }
 
         #endregion accessors

@@ -72,7 +72,32 @@ namespace GameLibrary
 
         private void EditAGame(object sender, EventArgs e)
         {
+            if(dgvLibrary.SelectedCells.Count > 0)
+            {
+                string cellValue = dgvLibrary.SelectedCells[0].Value.ToString();
+                int rowIndex = dgvLibrary.CurrentCell.RowIndex;
+                int columnIndex = dgvLibrary.CurrentCell.ColumnIndex;
+                if (columnIndex == 0)
+                    columnIndex++;
+                else
+                    columnIndex -= 1;
+                string otherCellValue = dgvLibrary.Rows[rowIndex].Cells[columnIndex].Value.ToString();
 
+                if (columnIndex == 0)
+                {
+                    addAGame.Game = new Game(otherCellValue, cellValue);
+                    addAGame.User = user;
+                    addAGame.ShowDialog(this);
+                }
+
+                else
+                {
+                    addAGame.Game = new Game(cellValue, otherCellValue);
+                    addAGame.User = user;
+                    addAGame.ShowDialog(this);
+                }
+                MyLibrary_Load(sender, e);    
+            }
         }
 
         private void Delete(object sender, EventArgs e)
