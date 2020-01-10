@@ -27,8 +27,13 @@ namespace GameLibrary
         /// The status of the login request or the register request. True if the request went well.
         /// </summary>
         private bool loginRegisterSuccess;
-
+        /// <summary>
+        /// The timer for passwords wildcards.
+        /// </summary>
         private Timer timer = new Timer();
+        /// <summary>
+        /// The temporay variable for the password.
+        /// </summary>
         private string password = "";
 
         #endregion attributes
@@ -67,7 +72,6 @@ namespace GameLibrary
 
         }
 
-
         private void LoginRegister_FormClosing(object sender, FormClosingEventArgs e)
         {
             Properties.Settings.Default.Location= this.Location;
@@ -81,6 +85,7 @@ namespace GameLibrary
             txtPassword.Focus();
             txtPassword.SelectionStart = txtPassword.Text.Length;
         }
+
         private void txtRePassword_TextChanged(object sender, EventArgs e)
         {
             txtRePassword.Text = PasswordChanged(txtRePassword.Text);
@@ -89,6 +94,11 @@ namespace GameLibrary
             txtRePassword.SelectionStart = txtRePassword.Text.Length;
         }
 
+        /// <summary>
+        /// Crypts every character but the last of the password and starts a timer.
+        /// </summary>
+        /// <param name="pass">The password field value</param>
+        /// <returns>The string to display in the current password field</returns>
         private string PasswordChanged(string pass)
         {
             string tempPass = "";
@@ -128,6 +138,9 @@ namespace GameLibrary
             return tempPass;
         }
 
+        /// <summary>
+        /// Crypts the final character of the password.
+        /// </summary>
         private void MaskPassword(object sender, EventArgs e)
         {
             //cryptate password
@@ -167,10 +180,7 @@ namespace GameLibrary
             txtPassword.BackColor = lib.CheckPassword(txtPassword.Text, txtRePassword.Text, lib.Status);
             txtRePassword.BackColor = lib.CheckPassword(txtPassword.Text, txtRePassword.Text, lib.Status);
 
-            try
-            {
-                loginRegisterSuccess = UserManager.RegisterRequest(user);
-            }
+            try { loginRegisterSuccess = UserManager.RegisterRequest(user); }
             catch (DbException except) { lblError.Text = $"{except.Message}"; }
             catch (LoginRegisterException except) { lblError.Text = $"{except.Message}"; }
 
