@@ -50,15 +50,15 @@
             // dgvLibrary
             // 
             this.dgvLibrary.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLibrary.Location = new System.Drawing.Point(49, 60);
+            this.dgvLibrary.Location = new System.Drawing.Point(50, 75);
             this.dgvLibrary.Name = "dgvLibrary";
-            this.dgvLibrary.Size = new System.Drawing.Size(711, 634);
+            this.dgvLibrary.Size = new System.Drawing.Size(700, 600);
             this.dgvLibrary.TabIndex = 3;
             // 
             // cmdEdit
             // 
             this.cmdEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.cmdEdit.Location = new System.Drawing.Point(206, 700);
+            this.cmdEdit.Location = new System.Drawing.Point(215, 700);
             this.cmdEdit.Name = "cmdEdit";
             this.cmdEdit.Size = new System.Drawing.Size(150, 50);
             this.cmdEdit.TabIndex = 4;
@@ -68,7 +68,7 @@
             // cmdDelete
             // 
             this.cmdDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.cmdDelete.Location = new System.Drawing.Point(362, 699);
+            this.cmdDelete.Location = new System.Drawing.Point(380, 700);
             this.cmdDelete.Name = "cmdDelete";
             this.cmdDelete.Size = new System.Drawing.Size(100, 50);
             this.cmdDelete.TabIndex = 5;

@@ -24,6 +24,7 @@
             this.cboPlatform = new System.Windows.Forms.ComboBox();
             this.cmdCancel = new System.Windows.Forms.Button();
             this.cmdConfirm = new System.Windows.Forms.Button();
+            this.lblError = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -140,7 +141,7 @@
             "ZGrass Computer Expansion Module"});
             this.cboPlatform.Location = new System.Drawing.Point(150, 64);
             this.cboPlatform.Name = "cboPlatform";
-            this.cboPlatform.Size = new System.Drawing.Size(200, 21);
+            this.cboPlatform.Size = new System.Drawing.Size(600, 21);
             this.cboPlatform.Sorted = true;
             this.cboPlatform.TabIndex = 3;
             // 
@@ -166,11 +167,23 @@
             this.cmdConfirm.UseVisualStyleBackColor = true;
             this.cmdConfirm.Click += new System.EventHandler(this.Confirm);
             // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.lblError.ForeColor = System.Drawing.Color.Crimson;
+            this.lblError.Location = new System.Drawing.Point(24, 523);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(19, 29);
+            this.lblError.TabIndex = 19;
+            this.lblError.Text = ".";
+            // 
             // AddAGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.lblError);
             this.Controls.Add(this.cmdConfirm);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cboPlatform);
@@ -194,5 +207,6 @@
         private System.Windows.Forms.ComboBox cboPlatform;
         private System.Windows.Forms.Button cmdCancel;
         private System.Windows.Forms.Button cmdConfirm;
+        private System.Windows.Forms.Label lblError;
     }
 }
