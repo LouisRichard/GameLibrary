@@ -57,6 +57,11 @@ namespace DataManager
         /// <returns>True if operation is a success</returns>
         public static bool AddGameToLibrary(Game game, User user)
         {
+            if(game.title == "" || game.platform == "")
+            {
+                throw new GameException("The platform or the title cannot be empty");
+            }
+
             int userID = UserManager.GetUserID(user.username);
             int gameID;
             int platformID;
