@@ -112,8 +112,8 @@ namespace TestLoginRegister
 
         [TestMethod]
         [ExpectedException(typeof(GameAlreadyExistsException))]
-        public void AddAGameToTheLibraryTheUserAlreadyHaves()
-        {
+        public void AddAGameToTheLibraryTheUserAlreadyHaves() //Fails. We do not check if the user already has the game.
+        {                                                     //Could be a feature tho
             string title = "Portal 3";
             string platform = "Atari Lynx";
             string userEmail = "gordon.freeman@blackmesa.corp";
@@ -125,6 +125,21 @@ namespace TestLoginRegister
             UserManager.RegisterRequest(user);
             GameManager.AddGameToLibrary(game, user);
 
+            GameManager.AddGameToLibrary(game, user);
+        }
+
+        [TestMethod]
+        public void AddAGameWithSpecialCharactersInTheTitle() //Fails. The DB doesn't like "'"
+        {
+            string title = "*(l1ve 🅱️arker'$# J3rich°";
+            string platform = "Sony PlayStation 3";
+            string userEmail = "clive.barker@idk.com";
+            string userPsw = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH";
+
+            Game game = new Game(title, platform);
+            User user = new User(userEmail, userPsw, userPsw);
+
+            UserManager.RegisterRequest(user);
             GameManager.AddGameToLibrary(game, user);
         }
     }
