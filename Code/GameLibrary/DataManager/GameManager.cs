@@ -92,18 +92,14 @@ namespace DataManager
                 int platform = int.Parse(ExecuteQuery.Select(getGamePlatformQuery)[0]);
             }
             string sqlFomattedDate = DateTime.Now.Date.ToString("yyyy-MM-dd");
-            try
-            {
-                string insertQuery = @"INSERT INTO [Library] (idUser, idGame, idPlatform, DateAdded) VALUES (" + userID + "," + gameID + ", " + platformID + ", " + sqlFomattedDate + ")";
 
-                ExecuteQuery.Insert(insertQuery);
+            string insertQuery = @"INSERT INTO [Library] (idUser, idGame, idPlatform, DateAdded) VALUES (" + userID + "," + gameID + ", " + platformID + ", " + sqlFomattedDate + ")";
 
-                return true;
-            }
-            catch
-            {
-                throw new GameAlreadyExistsException();
-            }
+            ExecuteQuery.Insert(insertQuery);
+
+            return true;
+
+
         }
 
         public static void DeleteFromLibrary(string cell1, string cell2, string username)
