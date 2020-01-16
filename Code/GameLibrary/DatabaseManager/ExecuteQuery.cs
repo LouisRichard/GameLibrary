@@ -68,6 +68,19 @@ namespace DatabaseManager
                 _ = DbConnector.ConnectToDatabase(true); //close db connection   Using Ignore(_) as we don't care what it returns.
         }
 
+        /// <summary>
+        /// Execute a statement update in the database.
+        /// </summary>
+        /// <param name="query">Update query to execute</param>
+        public static void Update(string query)
+        {
+            SQLiteCommand command = DbConnector.ConnectToDatabase(false); //open db connection
+            command.CommandText = query;
+            command.ExecuteNonQuery();
+
+            _ = DbConnector.ConnectToDatabase(true);
+        }
+
         #endregion public methods
     }
 }
