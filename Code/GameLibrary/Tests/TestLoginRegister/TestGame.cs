@@ -97,7 +97,7 @@ namespace TestLoginRegister
             //Prep
             string title = "Left4Dead 3";
             string platform = "Panasonic 3DO Interactive Multiplayer FZ-1";
-            string userEmail = "glad0s@lj-corp.ch";
+            string userEmail = "glad0s@aperture.corp";
             string userPsw = "Bond";
 
             Game game = new Game(title, platform);
@@ -108,6 +108,24 @@ namespace TestLoginRegister
 
             //Now for the test
             GameManager.DeleteFromLibrary(title, platform, userEmail);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(GameAlreadyExistsException))]
+        public void AddAGameToTheLibraryTheUserAlreadyHaves()
+        {
+            string title = "Portal 3";
+            string platform = "Atari Lynx";
+            string userEmail = "gordon.freeman@blackmesa.corp";
+            string userPsw = "Crowbar$3";
+
+            Game game = new Game(title, platform);
+            User user = new User(userEmail, userPsw, userPsw);
+
+            UserManager.RegisterRequest(user);
+            GameManager.AddGameToLibrary(game, user);
+
+            GameManager.AddGameToLibrary(game, user);
         }
     }
 }
