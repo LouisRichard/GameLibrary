@@ -35,15 +35,79 @@ namespace TestLoginRegister
         #endregion
 
         [TestMethod]
-        [ExpectedException (typeof(EmptyFieldException))]
+        [ExpectedException (typeof(GameException))]
         public void AddAGameWithoutTitle()
         {
             string title = "";
             string platform = "Sony PlayStation 3";
 
+            User user = new User("TestUser1@email.com", "", "");
             Game game = new Game(title, platform);
 
-            GameManager.AddGameToGameList(game);
+            GameManager.AddGameToLibrary(game, user);
+        }
+
+        [TestMethod]
+        [ExpectedException (typeof(GameException))]
+        public void AddAGameWithoutPlatform()
+        {
+            string title = "Portal 2";
+            string platform = "";
+
+            User user = new User("TestUser1@email.com", "", "");
+            Game game = new Game(title, platform);
+
+            GameManager.AddGameToLibrary(game, user);
+        }
+
+        [TestMethod]
+        [ExpectedException (typeof(PlatformDoesntExistsException))]
+        public void AddAGameWithoutAValidPlatform()
+        {
+            string title = "Portal 2";
+            string platform = "Look at me! I am the brand new platform everyone likes! I am soooo kewl! Better than a race car!";
+
+            User user = new User("TestUser1@email.com", "psw1", "psw1");
+            //The user needs to be registed because the program tries to get the user ID from the database
+            UserManager.RegisterRequest(user); //In the case you get "UserAlreadyExistsException", delete the database and try again twice
+
+            Game game = new Game(title, platform);
+
+            GameManager.AddGameToLibrary(game, user);
+        }
+
+        [TestMethod]
+        public void AddAGameWithCorrectValues()
+        {
+            string title = "Half Life 3";
+            string platform = "Sony PlayStation 3";
+            string userEmail = "gaben@valvesoftware.com";
+            string userPsw = "MoolyFTW";
+
+            Game game = new Game(title, platform);
+            User user = new User(userEmail, userPsw, userPsw);
+
+            UserManager.RegisterRequest(user);
+            GameManager.AddGameToLibrary(game, user);
+        }
+
+        [TestMethod]
+        public void DeleteAGameFromTheLibrary()
+        {
+            //Prep
+            string title = "Left4Dead 3";
+            string platform = "Panasonic 3DO Interactive Multiplayer FZ-1";
+            string userEmail = "glad0s@lj-corp.ch";
+            string userPsw = "Bond";
+
+            Game game = new Game(title, platform);
+            User user = new User(userEmail, userPsw, userPsw);
+
+            UserManager.RegisterRequest(user);
+            GameManager.AddGameToLibrary(game, user);
+
+            //Now for the test
+            GameManager.DeleteFromLibrary(title, platform, userEmail);
         }
     }
 }
