@@ -94,7 +94,6 @@ namespace DataManager
             string sqlFomattedDate = DateTime.Now.Date.ToString("yyyy-MM-dd");
             try
             {
-                //Add to version 1.1 OR 1.0 (depending on time we've got left) : platform in the library
                 string insertQuery = @"INSERT INTO [Library] (idUser, idGame, idPlatform, DateAdded) VALUES (" + userID + "," + gameID + ", " + platformID + ", " + sqlFomattedDate + ")";
 
                 ExecuteQuery.Insert(insertQuery);
