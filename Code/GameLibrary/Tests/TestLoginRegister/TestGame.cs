@@ -111,9 +111,8 @@ namespace TestLoginRegister
         }
 
         [TestMethod]
-        [ExpectedException(typeof(GameAlreadyExistsException))]
-        public void AddAGameToTheLibraryTheUserAlreadyHaves() //Fails. We do not check if the user already has the game.
-        {                                                     //Could be a feature tho
+        public void AddAGameToTheLibraryTheUserAlreadyHaves()
+        {                                                    
             string title = "Portal 3";
             string platform = "Sony PlayStation 4";
             string userEmail = "gordon.freeman@blackmesa.corp";
