@@ -129,7 +129,7 @@ namespace TestLoginRegister
         }
 
         [TestMethod]
-        public void AddAGameWithSpecialCharactersInTheTitle() //Fails. The DB doesn't like "'"
+        public void AddAGameWithSpecialCharactersInTheTitle()
         {
             string title = "*(l1ve 🅱️arker'$# J3rich°";
             string platform = "Sony PlayStation 3";
