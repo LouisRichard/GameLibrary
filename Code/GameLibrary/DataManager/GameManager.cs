@@ -102,14 +102,20 @@ namespace DataManager
 
         }
 
-        public static void DeleteFromLibrary(string cell1, string cell2, string username)
+        /// <summary>
+        /// Delete a game from your library
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="platform"></param>
+        /// <param name="username"></param>
+        public static void DeleteFromLibrary(string title, string platform, string username)
         {
-            Game game = new Game(cell1, "");
+            Game game = new Game(title, platform);
             int gameID = GetGameID(game);
-            string getPlatformIdQuery = @"SELECT [idPlatform] FROM [Platforms] WHERE [Name] = '" + cell2 + "'";
+            string getPlatformIdQuery = @"SELECT [idPlatform] FROM [Platforms] WHERE [Name] = '" + game.platform + "'";
             int idUser = UserManager.GetUserID(username);
             int idPlatform = int.Parse(ExecuteQuery.Select(getPlatformIdQuery)[0]);
-            string deleteQuery = @"DELETE FROM [Library] WHERE [idGame] = " + gameID + " AND [idPlatform] = " + idPlatform + " AND [idUser] = '" + idUser + "'";
+            string deleteQuery = @"DELETE FROM [Library] WHERE [idGame] = " + gameID + " AND [idPlatform] = " + game.platform + " AND [idUser] = '" + idUser + "'";
             ExecuteQuery.Delete(deleteQuery);
         }
 
