@@ -115,7 +115,7 @@ namespace DataManager
             string getPlatformIdQuery = @"SELECT [idPlatform] FROM [Platforms] WHERE [Name] = '" + game.platform + "'";
             int idUser = UserManager.GetUserID(username);
             int idPlatform = int.Parse(ExecuteQuery.Select(getPlatformIdQuery)[0]);
-            string deleteQuery = @"DELETE FROM [Library] WHERE [idGame] = " + gameID + " AND [idPlatform] = " + game.platform + " AND [idUser] = '" + idUser + "'";
+            string deleteQuery = @"DELETE FROM [Library] WHERE [idGame] = " + gameID + " AND [idPlatform] = " + idPlatform + " AND [idUser] = '" + idUser + "'";
             ExecuteQuery.Delete(deleteQuery);
         }
 
