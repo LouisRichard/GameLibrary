@@ -39,7 +39,7 @@ namespace TestLoginRegister
         public void AddAGameWithoutTitle()
         {
             string title = "";
-            string platform = "Sony PlayStation 3";
+            string platform = "Sony PlayStation 4";
 
             User user = new User("TestUser1@email.com", "", "");
             Game game = new Game(title, platform);
@@ -80,7 +80,7 @@ namespace TestLoginRegister
         public void AddAGameWithCorrectValues()
         {
             string title = "Half Life 3";
-            string platform = "Sony PlayStation 3";
+            string platform = "Sony PlayStation 4";
             string userEmail = "gaben@valvesoftware.com";
             string userPsw = "MoolyFTW";
 
@@ -96,9 +96,9 @@ namespace TestLoginRegister
         {
             //Prep
             string title = "Left4Dead 3";
-            string platform = "3DO Interactive Multiplayer";
+            string platform = "Sony PlayStation 4";
             string userEmail = "glad0s@aperture.corp";
-            string userPsw = "Bond";
+            string userPsw = "For science, you monster";
 
             Game game = new Game(title, platform);
             User user = new User(userEmail, userPsw, userPsw);
@@ -115,7 +115,7 @@ namespace TestLoginRegister
         public void AddAGameToTheLibraryTheUserAlreadyHaves() //Fails. We do not check if the user already has the game.
         {                                                     //Could be a feature tho
             string title = "Portal 3";
-            string platform = "Atari Lynx";
+            string platform = "Sony PlayStation 4";
             string userEmail = "gordon.freeman@blackmesa.corp";
             string userPsw = "Crowbar$3";
 
