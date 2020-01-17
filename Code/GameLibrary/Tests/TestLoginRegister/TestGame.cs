@@ -96,7 +96,7 @@ namespace TestLoginRegister
         {
             //Prep
             string title = "Left4Dead 3";
-            string platform = "Panasonic 3DO Interactive Multiplayer FZ-1";
+            string platform = "3DO Interactive Multiplayer";
             string userEmail = "glad0s@aperture.corp";
             string userPsw = "Bond";
 
