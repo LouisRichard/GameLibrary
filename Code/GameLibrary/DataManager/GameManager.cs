@@ -151,7 +151,7 @@ namespace DataManager
             }
             
 
-            string addNewGameQuery = @"INSERT INTO [Games](title) VALUES ('" + game.title + "')";
+            string addNewGameQuery = "INSERT INTO [Games](title) VALUES (" + '"' + game.title + '"' + ")";
             try
             {
                 ExecuteQuery.Insert(addNewGameQuery);
@@ -171,7 +171,7 @@ namespace DataManager
         {
             try
             {
-                string getGameQuery = @"SELECT [idGame] FROM [Games] WHERE [title] = '" + game.title + "'";
+                string getGameQuery = @"SELECT [idGame] FROM [Games] WHERE [title] = " + '"' + game.title + '"';
 
                 string getPlatformIdQuery = @"SELECT [idPlatform] FROM [Platforms] WHERE [Name] = '" + game.platform + "'";
                 int gameID = int.Parse(ExecuteQuery.Select(getGameQuery)[0]);
@@ -192,7 +192,7 @@ namespace DataManager
         /// <returns>the ID converted in int</returns>
         public static int GetGameID(Game game)
         {
-            string getUserIdQuery = @"SELECT [idGame] FROM [Games] WHERE [Title] = '" + game.title + "'";
+            string getUserIdQuery = @"SELECT [idGame] FROM [Games] WHERE [Title] = " + '"' + game.title + '"';
             List<string> gameIDString = ExecuteQuery.Select(getUserIdQuery);
             return int.Parse(gameIDString[0]);
         }
