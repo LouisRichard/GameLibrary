@@ -51,7 +51,7 @@ namespace DataManager
                 }
                 catch (SQLiteException)
                 {
-                    throw new FailedDatabaseConnectionException();
+                    throw new LoginRegisterException("Please register first");
                 }
         }
         
