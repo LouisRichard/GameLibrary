@@ -53,9 +53,17 @@ namespace GameLibrary
             dgvLibrary.AutoResizeColumn(1);
         }
 
+        /// <summary>
+        /// This method quits the program
+        /// </summary>
+        private void Quit(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         #endregion formLoad
 
-        #region actions
+        #region add, edit, delete
 
         /// <summary>
         /// This method launches the add a game form on top of the library.
@@ -68,8 +76,9 @@ namespace GameLibrary
             MyLibrary_Load(sender, e);
         }
 
-        #endregion actions
-
+        /// <summary>
+        /// 
+        /// </summary>
         private void EditAGame(object sender, EventArgs e)
         {
             if(dgvLibrary.SelectedCells.Count > 0)
@@ -100,6 +109,9 @@ namespace GameLibrary
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void Delete(object sender, EventArgs e)
         {
             if (dgvLibrary.SelectedCells.Count > 0)
@@ -125,5 +137,7 @@ namespace GameLibrary
                 }
             }
         }
+
+        #endregion actions
     }
 }

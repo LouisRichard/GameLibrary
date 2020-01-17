@@ -23,6 +23,7 @@
             this.dgvLibrary = new System.Windows.Forms.DataGridView();
             this.cmdEdit = new System.Windows.Forms.Button();
             this.cmdDelete = new System.Windows.Forms.Button();
+            this.cmdQuit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLibrary)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,11 +78,23 @@
             this.cmdDelete.UseVisualStyleBackColor = true;
             this.cmdDelete.Click += new System.EventHandler(this.Delete);
             // 
+            // cmdQuit
+            // 
+            this.cmdQuit.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.cmdQuit.Location = new System.Drawing.Point(650, 700);
+            this.cmdQuit.Name = "cmdQuit";
+            this.cmdQuit.Size = new System.Drawing.Size(100, 50);
+            this.cmdQuit.TabIndex = 6;
+            this.cmdQuit.Text = "Quit";
+            this.cmdQuit.UseVisualStyleBackColor = true;
+            this.cmdQuit.Click += new System.EventHandler(this.Quit);
+            // 
             // MyLibrary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 761);
+            this.Controls.Add(this.cmdQuit);
             this.Controls.Add(this.cmdDelete);
             this.Controls.Add(this.cmdEdit);
             this.Controls.Add(this.dgvLibrary);
@@ -104,5 +117,6 @@
         private System.Windows.Forms.DataGridView dgvLibrary;
         private System.Windows.Forms.Button cmdEdit;
         private System.Windows.Forms.Button cmdDelete;
+        private System.Windows.Forms.Button cmdQuit;
     }
 }
