@@ -67,7 +67,7 @@ namespace TestLoginRegister
             string title = "Portal 2";
             string platform = "Look at me! I am the brand new platform everyone likes! I am soooo kewl! Better than a race car!";
 
-            User user = new User("TestUser1@email.com", "psw1", "psw1");
+            User user = new User("paul.bernard@please.dude", "psw1", "psw1");
             //The user needs to be registed because the program tries to get the user ID from the database
             UserManager.RegisterRequest(user); //In the case you get "UserAlreadyExistsException", delete the database and try again twice
 
