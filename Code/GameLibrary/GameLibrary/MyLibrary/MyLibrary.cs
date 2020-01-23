@@ -83,7 +83,10 @@ namespace GameLibrary
         {
             if(dgvLibrary.SelectedCells.Count > 0)
             {
-                string cellValue = dgvLibrary.SelectedCells[0].Value.ToString();
+                string title;
+                string platform;
+
+                string selectedCellValue = dgvLibrary.SelectedCells[0].Value.ToString();
                 int rowIndex = dgvLibrary.CurrentCell.RowIndex;
                 int columnIndex = dgvLibrary.CurrentCell.ColumnIndex;
                 if (columnIndex == 0)
@@ -94,17 +97,18 @@ namespace GameLibrary
 
                 if (columnIndex == 0)
                 {
-                    addAGame.Game = new Game(otherCellValue, cellValue);
-                    addAGame.User = user;
-                    addAGame.ShowDialog(this);
+                    title = otherCellValue;
+                    platform = selectedCellValue; 
                 }
 
                 else
                 {
-                    addAGame.Game = new Game(cellValue, otherCellValue);
-                    addAGame.User = user;
-                    addAGame.ShowDialog(this);
+                    title = selectedCellValue;
+                    platform = otherCellValue;
                 }
+                addAGame.Game = new Game(title, platform);
+                addAGame.User = user;
+                addAGame.ShowDialog(this);
                 MyLibrary_Load(sender, e);    
             }
         }
