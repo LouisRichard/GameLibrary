@@ -14,7 +14,7 @@ namespace DataManager
         /// <summary>
         /// Returns the user's game library using his email
         /// </summary>
-        /// <param name="email"></param>
+        /// <param name="email">the user's email</param>
         /// <returns>List of game id's in his library (string)</sreturns>
         public static DataTable GetGameLibrary(string email)
         {
@@ -52,8 +52,8 @@ namespace DataManager
         /// <summary>
         /// Adds a game to the user's library
         /// </summary>
-        /// <param name="game"></param>
-        /// <param name="user"></param>
+        /// <param name="game">the game to add</param>
+        /// <param name="user">the user which wants to add a game</param>
         /// <returns>True if operation is a success</returns>
         public static bool AddGameToLibrary(Game game, User user)
         {
@@ -105,9 +105,9 @@ namespace DataManager
         /// <summary>
         /// Delete a game from your library
         /// </summary>
-        /// <param name="title"></param>
-        /// <param name="platform"></param>
-        /// <param name="username"></param>
+        /// <param name="title">the title of the game to delete</param>
+        /// <param name="platform">the platform of the game to delete</param>
+        /// <param name="username">the user that wants to delete a game</param>
         public static void DeleteFromLibrary(string title, string platform, string username)
         {
             Game game = new Game(title, platform);
@@ -166,7 +166,7 @@ namespace DataManager
         /// <summary>
         /// Add a new relation between a game and a platform
         /// </summary>
-        /// <param name="game"></param>
+        /// <param name="game">the game to add</param>
         public static void AddGamePlatform(Game game)
         {
             try
@@ -188,7 +188,7 @@ namespace DataManager
         /// <summary>
         /// Select the userID in the database.
         /// </summary>
-        /// <param name="game"></param>
+        /// <param name="game">the game</param>
         /// <returns>the ID converted in int</returns>
         public static int GetGameID(Game game)
         {
