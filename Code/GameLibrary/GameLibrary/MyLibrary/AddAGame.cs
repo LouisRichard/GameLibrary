@@ -57,8 +57,8 @@ namespace GameLibrary
             if (mode == "Edit")
             {
                 this.Text = "EditAGame";
-                txtTitle.Text = game.Title;
-                cboPlatform.Text = game.Platform;
+                //txtTitle.Text = game.Title;
+                //cboPlatform.Text = game.Platform;
             }
         }
 
