@@ -20,7 +20,11 @@ namespace GameLibrary
         /// <summary>
         /// AddAGame form.
         /// </summary>
-        private AddAGame addAGame = new AddAGame();
+        private AddAGame addAGame;
+        /// <summary>
+        /// The game selected by the user.
+        /// </summary>
+        private Game game;
 
         #endregion attributes
 
@@ -70,6 +74,7 @@ namespace GameLibrary
         /// </summary>
         public void AddAGame(object sender, EventArgs e)
         {
+            addAGame = new AddAGame("Add");
             addAGame.User = user;
             addAGame.ShowDialog(this);
 
@@ -77,7 +82,7 @@ namespace GameLibrary
         }
 
         /// <summary>
-        /// 
+        /// This method launches the edit a game form on top of the library.
         /// </summary>
         private void EditAGame(object sender, EventArgs e)
         {
@@ -89,25 +94,19 @@ namespace GameLibrary
                 string selectedCellValue = dgvLibrary.SelectedCells[0].Value.ToString();
                 int rowIndex = dgvLibrary.CurrentCell.RowIndex;
                 int columnIndex = dgvLibrary.CurrentCell.ColumnIndex;
-                if (columnIndex == 0)
-                    columnIndex++;
-                else
-                    columnIndex -= 1;
+                columnIndex = columnIndex == 0 ? columnIndex++ : columnIndex--;
                 string otherCellValue = dgvLibrary.Rows[rowIndex].Cells[columnIndex].Value.ToString();
 
-                if (columnIndex == 0)
-                {
-                    title = otherCellValue;
-                    platform = selectedCellValue; 
-                }
+                title = columnIndex == 0 ? otherCellValue : selectedCellValue;
+                platform = columnIndex == 0 ? selectedCellValue : otherCellValue;
 
-                else
-                {
-                    title = selectedCellValue;
-                    platform = otherCellValue;
-                }
-                addAGame.Game = new Game(title, platform);
+                game = new Game(title, platform);
+
+                addAGame = new AddAGame("Edit");
+
+                addAGame.Game = game;
                 addAGame.User = user;
+                
                 addAGame.ShowDialog(this);
                 MyLibrary_Load(sender, e);    
             }

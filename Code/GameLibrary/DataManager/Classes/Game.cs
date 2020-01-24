@@ -32,5 +32,19 @@
         }
 
         #endregion constructors
+
+        #region accessors
+
+        /// <summary>
+        /// The game's title.
+        /// </summary>
+        public string Title { get => title; set => title = value; }
+
+        /// <summary>
+        /// The platform on which the game runs.
+        /// </summary>
+        public string Platform { get => platform; set => platform = value; }
+
+        #endregion accessors
     }
 }

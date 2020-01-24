@@ -16,9 +16,13 @@ namespace GameLibrary
         /// </summary>
         private User user;
         /// <summary>
-        /// 
+        /// The game coming from MyLibrary.
         /// </summary>
         private Game game;
+        /// <summary>
+        /// The mode of the view, Add or Edit.
+        /// </summary>
+        private string mode;
 
         #endregion attributes
 
@@ -41,9 +45,21 @@ namespace GameLibrary
 
         #region formLoad
 
-        public AddAGame()
+        public AddAGame(string mode)
         {
             InitializeComponent();
+
+            this.mode = mode;
+        }
+
+        private void AddAGame_Load(object sender, EventArgs e)
+        {
+            if (mode == "Edit")
+            {
+                this.Text = "EditAGame";
+                txtTitle.Text = game.Title;
+                cboPlatform.Text = game.Platform;
+            }
         }
 
         #endregion formLoad
@@ -63,7 +79,14 @@ namespace GameLibrary
             catch (GameException except) { lblError.Text = $"{except.Message}"; }
             catch (EmptyFieldException except) { lblError.Text = $"{except.Message}"; }
 
-            if (success) Cancel(sender, e);
+            if (success)
+            {
+                if (mode == "Edit")
+                {
+                    //Edit game
+                }
+                Cancel(sender, e);
+            }
         }
 
         /// <summary>
@@ -76,10 +99,5 @@ namespace GameLibrary
 
         #endregion confirm-cancel
 
-        private void AddAGame_Load(object sender, EventArgs e)
-        {
-
-                //TODO : Fill the txb and the cbo if game exists (if clicked modify)
-        }
     }
 }
