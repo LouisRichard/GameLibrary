@@ -1,7 +1,7 @@
 # GameLibrary
 [![licence badge]][licence] 
 [![stars badge]][stars]
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/67fd32fccb7b4cf386f136c8d6f864da)](https://www.codacy.com/app/LouisRichard/GameLibrary)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8d37ba4dc970404eb03abb979f71395b)](https://www.codacy.com/manual/LouisRichard/GameLibrary?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=LouisRichard/GameLibrary&amp;utm_campaign=Badge_Grade)
 [![forks badge]][forks]
 [![issues badge]][issues]
 [![contributors_badge]][contributors] 
